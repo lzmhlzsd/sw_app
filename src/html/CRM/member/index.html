@@ -1,0 +1,136 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <title>teeapp</title>
+</head>
+
+<body>
+<!--end:header-->
+<style>
+    .weui-navbar__item.weui-bar__item--on {
+        color: #ffcc00;
+        background-color: #fff;
+    }
+
+    .img-radius {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        overflow: hidden;
+    }
+
+    .content-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qrcode {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<div class="full-page">
+    <div class="weui-tab">
+        <div class="weui-navbar">
+            <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                店铺二维码
+            </a>
+            <a class="weui-navbar__item" href="#tab2">
+                导购二维码
+            </a>
+        </div>
+        <div class="weui-tab__bd">
+            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <div class="content-body">
+                    <div class="img-radius">
+                        <img src="./../../../image/CRM/store.jpeg" alt="" width="300">
+                    </div>
+                    <div style="padding: 20px 0 10px;">欢迎光临卡宾服饰正佳广场店！</div>
+                    <div style="height: 20px;margin-bottom: 20px;"></div>
+                    <div id="sqrcode" class="qrcode"></div>
+                    <div style="margin-top: 10px;">请扫描二维码</div>
+                    <div>关注卡宾</div>
+                </div>
+            </div>
+            <div id="tab2" class="weui-tab__bd-item">
+                <div class="content-body">
+                    <div class="img-radius">
+                        <img src="./../../../image/CRM/photo.jpg" alt="" width="120">
+                    </div>
+                    <div style="padding: 20px 0 10px;">欢迎光临卡宾服饰正佳广场店！</div>
+                    <div style="height: 20px;margin-bottom: 20px;">
+                        我是导购 张菲
+                    </div>
+                    <div id="mqrcode" class="qrcode"></div>
+                    <div style="margin-top: 10px;">请扫描二维码</div>
+                    <div>关注卡宾</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/base.js"></script>
+<!--end:script-->
+
+<script type="text/javascript" src="./../../../script/jquery-qrcode.js"></script>
+<script>
+    $( function () {
+        $( "#sqrcode" ).qrcode( {
+            render: "canvas", //table方式 
+            width: 200, //宽度 
+            height: 200, //高度 
+            text: toUtf8( "www.baidu.com" ) //任意内容 
+        } );
+
+        $( "#mqrcode" ).qrcode( {
+            render: "canvas", //table方式 
+            width: 200, //宽度 
+            height: 200, //高度 
+            text: toUtf8( "www.baidu.com" ) //任意内容 
+        } );
+
+        function toUtf8( str ) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for ( i = 0; i < len; i++ ) {
+                c = str.charCodeAt( i );
+                if ( ( c >= 0x0001 ) && ( c <= 0x007F ) ) {
+                    out += str.charAt( i );
+                } else if ( c > 0x07FF ) {
+                    out += String.fromCharCode( 0xE0 | ( ( c >> 12 ) & 0x0F ) );
+                    out += String.fromCharCode( 0x80 | ( ( c >> 6 ) & 0x3F ) );
+                    out += String.fromCharCode( 0x80 | ( ( c >> 0 ) & 0x3F ) );
+                } else {
+                    out += String.fromCharCode( 0xC0 | ( ( c >> 6 ) & 0x1F ) );
+                    out += String.fromCharCode( 0x80 | ( ( c >> 0 ) & 0x3F ) );
+                }
+            }
+            return out;
+        }
+    } )
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->
