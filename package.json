@@ -1,0 +1,19 @@
+{
+  "name": "sw_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vux": "^2.9.1"
+  },
+  "devDependencies": {
+    "node-watch": "^0.5.8"
+  }
+}
