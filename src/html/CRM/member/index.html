@@ -8,129 +8,335 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
-    <title>teeapp</title>
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>会员</title>
 </head>
 
 <body>
-<!--end:header-->
-<style>
-    .weui-navbar__item.weui-bar__item--on {
-        color: #ffcc00;
-        background-color: #fff;
-    }
+    <!--end:header-->
 
-    .img-radius {
-        width: 120px;
-        height: 120px;
-        border-radius: 60px;
-        overflow: hidden;
-    }
 
-    .content-body {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+    <style>
+        .header {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            color: #fff;
+            background: #373737;
+            border-radius: 0 0 50px 50px / 0 0 25px 25px;
+        }
 
-    .qrcode {
-        width: 200px;
-        height: 200px;
-    }
-</style>
-<div class="full-page">
-    <div class="weui-tab">
-        <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-                店铺二维码
-            </a>
-            <a class="weui-navbar__item" href="#tab2">
-                导购二维码
-            </a>
-        </div>
-        <div class="weui-tab__bd">
-            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-                <div class="content-body">
-                    <div class="img-radius">
-                        <img src="./../../../image/CRM/store.jpeg" alt="" width="300">
-                    </div>
-                    <div style="padding: 20px 0 10px;">欢迎光临卡宾服饰正佳广场店！</div>
-                    <div style="height: 20px;margin-bottom: 20px;"></div>
-                    <div id="sqrcode" class="qrcode"></div>
-                    <div style="margin-top: 10px;">请扫描二维码</div>
-                    <div>关注卡宾</div>
+        .content {
+            top: 200px;
+            right: 0;
+            left: 0;
+        }
+
+        .content .birthday-list {
+            margin: 10px;
+            border-radius: 5px 5px 0 0;
+            background: #fff;
+        }
+
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+
+        .action-list .weui-grid {
+            width: 25% !important;
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 5px;
+            border-radius: 35px;
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .action-icon i {
+            font-size: 26px;
+        }
+
+        .weui-grid {
+            padding: 10px;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        .customer {
+            padding: 10px;
+            width: 100%;
+            white-space: nowrap;
+            overflow-x: scroll;
+            float: left;
+            overflow-y: hidden;
+            height: 84px;
+        }
+
+        .customer>div {
+            height: 60px;
+            margin: 2px;
+        }
+    </style>
+
+    <div class="full-page p-r">
+        <div class="header">
+            <div class="flex flex-between flex-align-center pt-10 pb-10">
+                <div>开卡目标
+                    <i class="iconfont icon-arrowr f-18 p-r" style="top: 2px;"></i>
+                </div>
+                <div class="flex flex-align-center">
+                    <div class="mr-5" data-key="today">0000-00-00</div>
+                    <div id="bar1"></div>
                 </div>
             </div>
-            <div id="tab2" class="weui-tab__bd-item">
-                <div class="content-body">
-                    <div class="img-radius">
-                        <img src="./../../../image/CRM/photo.jpg" alt="" width="120">
+            <div class="flex flex-between flex-align-center pt-5 pb-5">
+                <div>
+                    <span class="f-26 a-text">134</span>
+                    <span class="f-18 p-r" style="top: -2px;">/</span>
+                    <span class="f-20">360</span>
+                    <span class="ml-10">查看店员
+                        <i class="iconfont icon-arrow-right f-18 p-r" style="top: 1px;"></i>
+                    </span>
+                </div>
+                <div>
+                    36.3%
+                </div>
+            </div>
+            <div id="bar2"></div>
+            <div class="flex pt-15 pb-10">
+                <div class="flex-1">
+                    <div class="title t-center">普卡升银卡</div>
+                    <div class="pt-5 t-center">
+                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-18 p-r" style="top: -2px;">/</span>
+                        <span class="f-20" data-key="b">0</span>
                     </div>
-                    <div style="padding: 20px 0 10px;">欢迎光临卡宾服饰正佳广场店！</div>
-                    <div style="height: 20px;margin-bottom: 20px;">
-                        我是导购 张菲
+                </div>
+                <div class="flex-1">
+                    <div class="title t-center">银卡升金卡</div>
+                    <div class="pt-5 t-center">
+                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-18 p-r" style="top: -2px;">/</span>
+                        <span class="f-20" data-key="b">0</span>
                     </div>
-                    <div id="mqrcode" class="qrcode"></div>
-                    <div style="margin-top: 10px;">请扫描二维码</div>
-                    <div>关注卡宾</div>
+                </div>
+                <div class="flex-1">
+                    <div class="title t-center">生日</div>
+                    <div class="pt-5 t-center">
+                        <span class="f-20" data-key="b">0</span>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="title t-center">金银卡
+                        <br>销售占比</div>
+                    <div class="pt-5 t-center">
+                        <span class="f-20" data-key="b">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content p-a">
+            <div class="birthday-list p-10">
+                <div class="flex flex-between">
+                    <div class="label">本周生日会员</div>
+                    <div class="link">查看详情
+                        <i class="iconfont icon-arrow-right f-18"></i>
+                    </div>
+                </div>
+                <div class="flex pt-10">
+                    <div class="flex-1 t-center">
+                        <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
+                    </div>
+                    <div class="flex-1 t-center">
+                        <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
+                    </div>
+                    <div class="flex-1 t-center">
+                        <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
+                    </div>
+                    <div class="flex-1 t-center">
+                        <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="weui-cells mt-5">
+                    <a class="weui-cell dropdown" data-drop="task" c-b="test" href="javascript:;">
+                        <div class="weui-cell__bd">
+                            <p>待处理任务</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <span class="weui-badge c-badge">16</span>
+                            <i class="iconfont icon-arrow-right drop-icon"></i>
+                        </div>
+                    </a>
+                    <div class="weui-cells dropdown-content" data-dropcontent="task" style="margin-top: 0;">
+                        <a class="weui-cell weui-link" href="javascript:;">
+                            <div class="weui-cell__bd">
+                                <p>生日回访</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                                <span class="weui-badge c-badge">14</span>
+                                <i class="iconfont icon-arrow-right"></i>
+                            </div>
+                        </a>
+                        <a class="weui-cell weui-link" href="javascript:;">
+                            <div class="weui-cell__bd">
+                                <p>其他回访任务</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                                <span class="weui-badge c-badge">2</span>
+                                <i class="iconfont icon-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <a class="weui-cell dropdown" data-drop="customer" href="javascript:;">
+                        <div class="weui-cell__bd">
+                            <p>新消费顾客</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <span class="weui-badge c-badge">4</span>
+                            <i class="iconfont icon-arrow-right drop-icon"></i>
+                        </div>
+                    </a>
+                    <div class="weui-cells dropdown-content" data-dropcontent="customer" style="margin-top: 0;">
+                        <div class="customer t-center">
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
+                            </div>
+                            <div class="inline-block t-center">
+                                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-10 pr-15 pb-10 pl-15">
+                <div class="mb-5 label">功能列表</div>
+                <div class="weui-grids no-border action-list">
+                    <a href="ptr.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #ffcc01;">
+                            <i class="iconfont icon-fenzu"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            分组
+                        </p>
+                    </a>
+                    <a href="infinite.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #b39cdc;">
+                            <i class="iconfont icon-renwu"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            任务分配
+                        </p>
+                    </a>
+                    <a href="picker.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #01a9f4;">
+                            <i class="iconfont icon-pingjia"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            评价
+                        </p>
+                    </a>
+                    <a href="calendar.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #ff7101;">
+                            <i class="iconfont icon-yuyue"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            预约
+                        </p>
+                    </a>
+                    <a href="city-picker.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #ff7579;">
+                            <i class="iconfont icon-fenpei"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            会员分配
+                        </p>
+                    </a>
+                    <a href="datetime-picker.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #2bdb6f;">
+                            <i class="iconfont icon-tuwentag"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            图文
+                        </p>
+                    </a>
+                    <a href="datetime-picker.html" class="weui-grid no-border">
+                        <div class="action-icon" style="background: #e580e7;">
+                            <i class="iconfont icon-fensi"></i>
+                        </div>
+                        <p class="weui-grid__label">
+                            粉丝列表
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-
-<!--start:script-->
+    <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
 <script type="text/javascript" src="./../../../script/fastclick.js"></script>
 <script type="text/javascript" src="./../../../script/lodash.min.js"></script>
 <script type="text/javascript" src="./../../../script/moment.min.js"></script>
-<script type="text/javascript" src="./../../../script/base.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
 <!--end:script-->
 
 <script type="text/javascript" src="./../../../script/jquery-qrcode.js"></script>
 <script>
     $( function () {
-        $( "#sqrcode" ).qrcode( {
-            render: "canvas", //table方式 
-            width: 200, //宽度 
-            height: 200, //高度 
-            text: toUtf8( "www.baidu.com" ) //任意内容 
-        } );
 
-        $( "#mqrcode" ).qrcode( {
-            render: "canvas", //table方式 
-            width: 200, //宽度 
-            height: 200, //高度 
-            text: toUtf8( "www.baidu.com" ) //任意内容 
-        } );
+        $( '#bar1' ).bar( { height: 10, width: 120 } )
+        $( '#bar2' ).bar( { height: 10 } )
 
-        function toUtf8( str ) {
-            var out, i, len, c;
-            out = "";
-            len = str.length;
-            for ( i = 0; i < len; i++ ) {
-                c = str.charCodeAt( i );
-                if ( ( c >= 0x0001 ) && ( c <= 0x007F ) ) {
-                    out += str.charAt( i );
-                } else if ( c > 0x07FF ) {
-                    out += String.fromCharCode( 0xE0 | ( ( c >> 12 ) & 0x0F ) );
-                    out += String.fromCharCode( 0x80 | ( ( c >> 6 ) & 0x3F ) );
-                    out += String.fromCharCode( 0x80 | ( ( c >> 0 ) & 0x3F ) );
-                } else {
-                    out += String.fromCharCode( 0xC0 | ( ( c >> 6 ) & 0x1F ) );
-                    out += String.fromCharCode( 0x80 | ( ( c >> 0 ) & 0x3F ) );
-                }
-            }
-            return out;
-        }
+        //数据渲染
+        util.render( {
+            today: '2018-05-05', 
+            b: 2, 
+            c: 10, 
+            d: 1000
+        } )
+
+
     } )
 </script>
 
 <!--start:footer-->
+
 </html>
 <!--end:footer-->

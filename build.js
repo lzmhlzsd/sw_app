@@ -52,15 +52,17 @@ function buildhtml( path, xpath, callback ) {
                             //var match = data.match( /<!--start:footer-->([\s\S]*?)<!--end:footer-->/g )
                             var result = reg.exec( temphtml )
                             //console.log(result)
-                            if ( result.length > 0 ) {
-                                var name = result[0].match( /<!--start:(\S*)-->/ )[1]
-                                //console.log('name: %s', name)
-                                var ninclude = include[name + '.html']
-                                    .replace( /href="\.\//g, 'href="./' + xpath )
-                                    .replace( /src="\.\//g, 'src="./' + xpath )
-                                var h = '<!--start:' + name + '-->\n'
-                                var f = '\n<!--end:' + name + '-->'
-                                temphtml = temphtml.replace( reg, h + ninclude + f )
+                            if ( result ) {
+                                if ( result.length > 0 ) {
+                                    var name = result[0].match( /<!--start:(\S*)-->/ )[1]
+                                    //console.log('name: %s', name)
+                                    var ninclude = include[name + '.html']
+                                        .replace( /href="\.\//g, 'href="./' + xpath )
+                                        .replace( /src="\.\//g, 'src="./' + xpath )
+                                    var h = '<!--start:' + name + '-->\n'
+                                    var f = '\n<!--end:' + name + '-->'
+                                    temphtml = temphtml.replace( reg, h + ninclude + f )
+                                }
                             }
                         }
                         //console.log( 'newhtml: %s', temphtml)

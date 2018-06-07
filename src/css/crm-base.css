@@ -1,7 +1,168 @@
 html,body{
     height: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
 }
 
 .full-page {
     height: 100%;
 }
+
+div {
+    box-sizing: border-box;
+}
+.flex { display: flex; }
+.flex-between {
+    justify-content: space-between;
+}
+.flex-align-center {
+    align-items: center;
+}
+
+.p-r { position: relative; }
+.p-a { position: absolute; }
+
+.t-center { text-align: center }
+
+.link { color: #fed139; }
+.label { color: #888888; }
+.a-text { color: #ffcc01; }
+
+.fl { float: left; }
+.clearfix:after {
+   content:""; 
+   display: block; 
+   clear:both; 
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.c-badge {
+    padding: 3px 10px;
+    color: #333;
+    background: #ffcc01;
+}
+
+.dropdown .drop-icon {
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+}
+.dropdown-content {
+    background: #f7f7f7;
+    display: none;
+}
+.dropdown-content .weui-cell__bd p {
+    font-size: 14px;
+}
+/* weui css */
+.weui-grids.no-border:before {
+    border-top-width: 0;
+}
+.weui-grids.no-border:after {
+    border-left-width: 0;
+}
+.weui-grid.no-border:before {
+    border-right-width: 0;
+}
+.weui-grid.no-border:after {
+    border-bottom-width: 0;
+}
+.weui-cell__bd p {
+    color: #333;
+}
+.weui-cell.weui-link .iconfont{
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+}
+.weui-link:active {
+    background-color: #ececec;
+}
+/* 常用字体类 */
+.f-12 { font-size: 12px !important; }
+.f-14 { font-size: 14px !important; }
+.f-16 { font-size: 16px !important; }
+.f-18 { font-size: 18px !important; }
+.f-20 { font-size: 20px !important; }
+.f-22 { font-size: 22px !important; }
+.f-24 { font-size: 24px !important; }
+.f-26 { font-size: 26px !important; }
+.f-28 { font-size: 28px !important; }
+.f-30 { font-size: 30px !important; }
+
+/* 常用间距类 */
+.p-5 { padding: 5px; }
+.p-10 { padding: 10px; }
+.p-15 { padding: 15px; }
+.p-20 { padding: 20px; }
+.p-25 { padding: 25px; }
+.p-30 { padding: 30px; }
+
+.pt-5 { padding-top: 5px; }
+.pt-10 { padding-top: 10px; }
+.pt-15 { padding-top: 15px; }
+.pt-20 { padding-top: 20px; }
+.pt-25 { padding-top: 25px; }
+.pt-30 { padding-top: 30px; }
+
+.pr-5 { padding-right: 5px; }
+.pr-10 { padding-right: 10px; }
+.pr-15 { padding-right: 15px; }
+.pr-20 { padding-right: 20px; }
+.pr-25 { padding-right: 25px; }
+.pr-30 { padding-right: 30px; }
+
+.pb-5 { padding-bottom: 5px; }
+.pb-10 { padding-bottom: 10px; }
+.pb-15 { padding-bottom: 15px; }
+.pb-20 { padding-bottom: 20px; }
+.pb-25 { padding-bottom: 25px; }
+.pb-30 { padding-bottom: 30px; }
+
+.pl-5 { padding-left: 5px; }
+.pl-10 { padding-left: 10px; }
+.pl-15 { padding-left: 15px; }
+.pl-20 { padding-left: 20px; }
+.pl-25 { padding-left: 25px; }
+.pl-30 { padding-left: 30px; }
+
+.m-5 { margin: 5px; }
+.m-10 { margin: 10px; }
+.m-15 { margin: 15px; }
+.m-20 { margin: 20px; }
+.m-25 { margin: 25px; }
+.m-30 { margin: 30px; }
+
+.mt-5 { margin-top: 5px; }
+.mt-10 { margin-top: 10px; }
+.mt-15 { margin-top: 15px; }
+.mt-20 { margin-top: 20px; }
+.mt-25 { margin-top: 25px; }
+.mt-30 { margin-top: 30px; }
+
+.mr-5 { margin-right: 5px; }
+.mr-10 { margin-right: 10px; }
+.mr-15 { margin-right: 15px; }
+.mr-20 { margin-right: 20px; }
+.mr-25 { margin-right: 25px; }
+.mr-30 { margin-right: 30px; }
+
+.mb-5 { margin-bottom: 5px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-25 { margin-bottom: 25px; }
+.mb-30 { margin-bottom: 30px; }
+
+.ml-5 { margin-left: 5px; }
+.ml-10 { margin-left: 10px; }
+.ml-15 { margin-left: 15px; }
+.ml-20 { margin-left: 20px; }
+.ml-25 { margin-left: 25px; }
+.ml-30 { margin-left: 30px; }
+
+.flex-1 { flex: 1 }
