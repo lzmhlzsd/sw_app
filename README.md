@@ -3,7 +3,7 @@ npm run build
 
 ## 项目目录
 ```
-├── www                                  
+├── src                                  
     ├── component                        // 页面逻辑
     ├── css                              // 公共库样式
     ├── img                              // 图片

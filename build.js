@@ -15,11 +15,11 @@ fs.readdir( rootPath, 'utf8', function ( err, files ) {
     //console.log( files )
     files.forEach( function ( name ) {
         include[name] = fs.readFileSync( rootPath + '/' + name, 'utf8' )
-            // .replace( /\.css/g, '.css?v=' + random )
-            // .replace( /\.js/g, '.js?v=' + random )
+        // .replace( /\.css/g, '.css?v=' + random )
+        // .replace( /\.js/g, '.js?v=' + random )
     } )
 
-    buildhtml( './www/views', '', function () {
+    buildhtml( './src/html/CRM', '../', function () {
         console.log( 'build html complete......\n' )
     } )   // params1: 处理页面的目录 params2: 相对路径 params3 callback
 } );
@@ -60,11 +60,11 @@ function buildhtml( path, xpath, callback ) {
                                     .replace( /src="\.\//g, 'src="./' + xpath )
                                 var h = '<!--start:' + name + '-->\n'
                                 var f = '\n<!--end:' + name + '-->'
-                                temphtml = temphtml.replace( reg, h + ninclude + f)
+                                temphtml = temphtml.replace( reg, h + ninclude + f )
                             }
                         }
                         //console.log( 'newhtml: %s', temphtml)
-                        console.log( 'page: %s \nbuild complete\n', path + '/' + filename)
+                        console.log( 'page: %s \nbuild complete\n', path + '/' + filename )
                         fs.writeFile( path + '/' + filename, temphtml, 'utf8', function ( err ) {
                             if ( err ) {
                                 console.log( err );
@@ -75,7 +75,7 @@ function buildhtml( path, xpath, callback ) {
                     }
                 } )
             } else {
-                buildhtml( path + '/' + filename, xpath + '../', callback)
+                buildhtml( path + '/' + filename, xpath + '../', callback )
             }
         } )
     } )
