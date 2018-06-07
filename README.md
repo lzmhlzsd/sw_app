@@ -1,5 +1,5 @@
 ## 项目生成
-npm run build                 （启动开发环境）
+npm run build              (启动开发环境)
 
 ## 项目目录
 ```
