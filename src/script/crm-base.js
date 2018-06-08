@@ -32,7 +32,7 @@ $( function () {
 
     var template = function () {
         return `<div class="bar" style="height: {height}px;width: {width}px;border-radius: {radius}px;background: #fff;">
-            <div class="value" style="width: 30%;height: {height}px;border-radius: {radius}px;background: {vcolor} "></div>
+            <div class="value" style="width: 0%;height: {height}px;border-radius: {radius}px;background: {vcolor} "></div>
         </div>`
     }
 
@@ -50,6 +50,11 @@ $( function () {
                     width: '100%'
                 } )
             }
+        },
+        setValue: function (v) {
+            this.$element.find( '.value' ).css( {
+                width: v + '%'
+            })
         }
     }
 
@@ -73,6 +78,11 @@ var util = {
                 }
             }
         }
+    },
+    //模版渲染
+    templateRender: function (id, data, ele) {
+        var html = template( id, data );
+        ele.html(html)
     },
     format: function ( str, param ) {
         var reg = /{([^{}]+)}/gm;

@@ -9,11 +9,11 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>会员</title>
+    <title>teeapp</title>
 </head>
 
 <body>
-    <!--end:header-->
+<!--end:header-->
 
 
     <style>
@@ -104,46 +104,44 @@
             </div>
             <div class="flex flex-between flex-align-center pt-5 pb-5">
                 <div>
-                    <span class="f-26 a-text">134</span>
+                    <span class="f-26 a-text" data-key="count">0</span>
                     <span class="f-18 p-r" style="top: -2px;">/</span>
-                    <span class="f-20">360</span>
+                    <span class="f-20" data-key="total">0</span>
                     <span class="ml-10">查看店员
                         <i class="iconfont icon-arrow-right f-18 p-r" style="top: 1px;"></i>
                     </span>
                 </div>
-                <div>
-                    36.3%
-                </div>
+                <div data-key="ratio1">0%</div>
             </div>
             <div id="bar2"></div>
             <div class="flex pt-15 pb-10">
                 <div class="flex-1">
                     <div class="title t-center">普卡升银卡</div>
                     <div class="pt-5 t-center">
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="py_num">0</span>
                         <span class="f-18 p-r" style="top: -2px;">/</span>
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="py_total">0</span>
                     </div>
                 </div>
                 <div class="flex-1">
                     <div class="title t-center">银卡升金卡</div>
                     <div class="pt-5 t-center">
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="yj_num">0</span>
                         <span class="f-18 p-r" style="top: -2px;">/</span>
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="yj_total">0</span>
                     </div>
                 </div>
                 <div class="flex-1">
                     <div class="title t-center">生日</div>
                     <div class="pt-5 t-center">
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="birthday_num">0</span>
                     </div>
                 </div>
                 <div class="flex-1">
                     <div class="title t-center">金银卡
                         <br>销售占比</div>
                     <div class="pt-5 t-center">
-                        <span class="f-20" data-key="b">0</span>
+                        <span class="f-20" data-key="ratio2">0</span>
                     </div>
                 </div>
             </div>
@@ -156,19 +154,8 @@
                         <i class="iconfont icon-arrow-right f-18"></i>
                     </div>
                 </div>
-                <div class="flex pt-10">
-                    <div class="flex-1 t-center">
-                        <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
-                    </div>
-                    <div class="flex-1 t-center">
-                        <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
-                    </div>
-                    <div class="flex-1 t-center">
-                        <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
-                    </div>
-                    <div class="flex-1 t-center">
-                        <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
-                    </div>
+                <div id="bmems" class="flex pt-10">
+                    <!-- template -->
                 </div>
             </div>
             <div>
@@ -178,7 +165,7 @@
                             <p>待处理任务</p>
                         </div>
                         <div class="weui-cell__ft">
-                            <span class="weui-badge c-badge">16</span>
+                            <span class="weui-badge c-badge" data-key="task_num">0</span>
                             <i class="iconfont icon-arrow-right drop-icon"></i>
                         </div>
                     </a>
@@ -188,7 +175,7 @@
                                 <p>生日回访</p>
                             </div>
                             <div class="weui-cell__ft">
-                                <span class="weui-badge c-badge">14</span>
+                                <span class="weui-badge c-badge" data-key="task_birthday_num">0</span>
                                 <i class="iconfont icon-arrow-right"></i>
                             </div>
                         </a>
@@ -197,7 +184,7 @@
                                 <p>其他回访任务</p>
                             </div>
                             <div class="weui-cell__ft">
-                                <span class="weui-badge c-badge">2</span>
+                                <span class="weui-badge c-badge" data-key="task_other_num">0</span>
                                 <i class="iconfont icon-arrow-right"></i>
                             </div>
                         </a>
@@ -207,36 +194,13 @@
                             <p>新消费顾客</p>
                         </div>
                         <div class="weui-cell__ft">
-                            <span class="weui-badge c-badge">4</span>
+                            <span class="weui-badge c-badge" data-key="customer_num">0</span>
                             <i class="iconfont icon-arrow-right drop-icon"></i>
                         </div>
                     </a>
                     <div class="weui-cells dropdown-content" data-dropcontent="customer" style="margin-top: 0;">
-                        <div class="customer t-center">
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m4.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m5.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m6.jpeg" alt="">
-                            </div>
-                            <div class="inline-block t-center">
-                                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
-                            </div>
+                        <div id="customers" class="customer t-center">
+                            <!-- template -->
                         </div>
                     </div>
                 </div>
@@ -304,8 +268,23 @@
             </div>
         </div>
     </div>
+    <!-- 生日会员模版 -->
+    <script id="tp-bmem" type="text/html">  
+        {{each list as imgs index}}  
+        <div class="flex-1 t-center">
+            <img class="mem-birthday" src="{{imgs.img}}" alt="">
+        </div>
+        {{/each}}  
+    </script>
 
-
+    <!-- 生日会员模版 -->
+    <script id="tp-customer" type="text/html">  
+        {{each list as imgs index}}  
+        <div class="inline-block t-center">
+            <img class="mem-birthday" src="{{imgs.img}}" alt="">
+        </div>
+        {{/each}}  
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -320,23 +299,79 @@
 <script type="text/javascript" src="./../../../script/jquery-qrcode.js"></script>
 <script>
     $( function () {
+        var Mock = {
+            today: '2018-06-08',
+            bar1: 30,
+            bar2: 50,
+            count: 120,
+            total: 200,
+            py_num: 2,
+            py_total: 6,
+            yj_num: 5,
+            yj_total: 10,
+            birthday_num: 8,
+            ratio1: '60.2%',
+            ratio2: '38%',
+            customer: [],
+            birthday_mem: [
+                { name: 'a', img: './../../../image/CRM/m4.jpeg' },
+                { name: 'b', img: './../../../image/CRM/m5.jpeg' },
+                { name: 'c', img: './../../../image/CRM/m6.jpeg' },
+                { name: 'd', img: './../../../image/CRM/m1.jpeg' }
+            ],
+            task_num: 16,
+            task_birthday_num: 14,
+            task_other_num: 2,
+            customer_num: 8,
+            customer: [
+                { name: 'a', img: './../../../image/CRM/m4.jpeg' },
+                { name: 'b', img: './../../../image/CRM/m5.jpeg' },
+                { name: 'c', img: './../../../image/CRM/m6.jpeg' },
+                { name: 'd', img: './../../../image/CRM/m1.jpeg' },
+                { name: 'e', img: './../../../image/CRM/m4.jpeg' },
+                { name: 'f', img: './../../../image/CRM/m5.jpeg' },
+                { name: 'g', img: './../../../image/CRM/m6.jpeg' },
+                { name: 'f', img: './../../../image/CRM/m1.jpeg' }
+            ]
+        }
 
-        $( '#bar1' ).bar( { height: 10, width: 120 } )
-        $( '#bar2' ).bar( { height: 10 } )
+        var bar1 = $( '#bar1' ).bar( { height: 10, width: 120 } )
+        var bar2 = $( '#bar2' ).bar( { height: 10 } )
+
+        bar1.setValue( Mock.bar1 )
+        bar2.setValue( Mock.bar2 )
+
+
 
         //数据渲染
         util.render( {
-            today: '2018-05-05', 
-            b: 2, 
-            c: 10, 
-            d: 1000
+            today: Mock.today,
+            count: Mock.count,
+            total: Mock.total,
+            py_num: Mock.py_num,
+            py_total: Mock.py_total,
+            yj_num: Mock.yj_num,
+            yj_total: Mock.yj_total,
+            birthday_num: Mock.birthday_num,
+            ratio1: Mock.ratio1,
+            ratio2: Mock.ratio2,
+            task_num: Mock.task_num,
+            task_birthday_num: Mock.task_birthday_num,
+            task_other_num: Mock.task_other_num,
+            customer_num: Mock.customer_num
         } )
 
+        //模版渲染
+        util.templateRender('tp-bmem', {
+            list: Mock.birthday_mem
+        }, $('#bmems'))
 
+        util.templateRender( 'tp-customer', {
+            list: Mock.customer
+        }, $( '#customers' ) )
     } )
 </script>
 
 <!--start:footer-->
-
 </html>
 <!--end:footer-->
