@@ -1,0 +1,135 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>teeapp</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .bar {
+            width: 100px;
+            height: 10px;
+            border-radius: 5px;
+            background: #eeeeee;
+        }
+        .bar-value {
+            height: 10px;
+            border-radius: 5px;
+            background: #ffcc01;
+        }
+        .card { padding: 10px 5px; }
+        .card:not(:last-child) {
+            border-bottom: 1px solid #ececec;
+        }
+    </style>
+    <div class="pt-15" ontouchstart>
+        <div class="weui-pull-to-refresh__layer">
+            <div class='weui-pull-to-refresh__arrow'></div>
+            <div class='weui-pull-to-refresh__preloader'></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
+        <div id="cardlist" class="p-10">
+            <!-- template -->
+        </div>
+    </div>
+    <!-- 开卡模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex flex-align-center">
+            <img class="mem-birthday mr-10" src="./../../../image/CRM/m4.jpeg" alt="">
+            <div class="flex-1 flex flex-between">
+                <div class="f-14">
+                    <div >{{m.name}} <span class="txt-l"> | {{m.job}}</span></div>
+                    <div>
+                        <i class="iconfont icon-shouji"></i>
+                        <span class="txt-l">{{m.phone}}</span>
+                    </div>
+                    <div>会员数: <span class="txt-l">{{m.members}}</span></div>
+                </div>
+                <div class="t-right">
+                    <div>
+                        <span class="f-18 a-text">{{m.count}}</span>
+                        <span class="p-r txt-d" style="top: -2px;">/</span>
+                        <span class="f-18 txt-d">{{m.total}}</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-value" style="width: {{m.ratio}}"></div>
+                    </div>
+                    <div class="f-14 mt-5">{{m.ratio}}</div>
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    $( function () {
+        var Mock = {
+            list: [
+                { name: '钟文', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '李国涛', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '张丽', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '李金明', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '陈赫', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' }
+            ]
+        }
+        //模版渲染
+        util.templateRender( 'tp-card', {
+            list: Mock.list
+        }, $( '#cardlist' ) )
+
+        $( document.body ).pullToRefresh( function () {
+            // 模拟分页加载
+            setTimeout( function () {
+                var tdata = [
+                    { name: '季杰', job: '店长', phone: '13812312345', members: 193, count: 45, total: 200, ratio: '50.3%' }
+                ]
+                render( tdata)
+            }, 2000 );
+        } );
+
+        var render = function(data) {
+            if( $( '#cardlist' ).children().length > 0 ){
+                util.templateRenderInsertBefore( 'tp-card', {
+                    list: data
+                }, $( '#cardlist' ).children().eq( 0 ) )
+            } else {
+                util.templateRender( 'tp-card', {
+                    list: data
+                }, $( '#cardlist' ) )
+            }
+            $( document.body ).pullToRefreshDone();
+        }
+    } )
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->
