@@ -1,0 +1,399 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>会员数据</title>
+</head>
+
+<body>
+    <!--end:header-->
+    <style>
+    </style>
+    <div>
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                    目标管理
+                    <div class="weui-navbar__item-line"></div>
+                </a>
+                <a class="weui-navbar__item" href="#tab2">
+                    运营指标
+                    <div class="weui-navbar__item-line"></div>
+                </a>
+                <a class="weui-navbar__item" href="#tab3">
+                    自定义报表
+                    <div class="weui-navbar__item-line"></div>
+                </a>
+                <a class="weui-navbar__item" href="#tab4">
+                    活动分析
+                    <div class="weui-navbar__item-line"></div>
+                </a>
+            </div>
+            <div class="weui-tab__bd">
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+                        <div class="f-14">
+                            <span data-key="start_date1">0000-00-00</span>至
+                            <span data-key="end_date1">0000-00-00</span>
+                        </div>
+                        <div class="f-14">
+                            <span class="drop-search" data-drop="date">
+                                本月
+                                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+                            </span>
+                        </div>
+                        <div class="f-14">
+                            <span class="drop-search" data-drop="store">
+                                正佳广场
+                                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="drop-search-content p-15" data-dropcontent="date">
+                        <div id="gbt1"></div>
+                        <div class="mt-5">
+                            <input class="weui-input date-sinput" id="date1" type="text">
+                            <span class="f-14 ml-5 mr-5">至</span>
+                            <input class="weui-input date-sinput" id="date2" type="text">
+                        </div>
+                        <div class="mt-10" style="height: 29px;">
+                            <a href="javascript:;" id="search_1" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+                            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+                        </div>
+                    </div>
+                    <div class="drop-search-content p-15" data-dropcontent="store">
+                        <div class="label f-14 pt-5 pb-5">选择区域</div>
+                        <div id="gbt2"></div>
+                        <div class="label f-14 pt-5 pb-5">选择门店</div>
+                        <div id="gbt3"></div>
+                        <div class="mt-10" style="height: 29px;">
+                            <a href="javascript:;" id="search_2" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+                            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+                        </div>
+                    </div>
+                    <div class="container-body p-10">
+                        <div id="gbt4" class="p-a" style="right: 15px;">
+
+                        </div>
+                        <div class="mb-15">
+                            <div class="label mb-5">开卡目标</div>
+                            <div class="flex flex-between flex-align-center">
+                                <div style="line-height: 24px;">
+                                    <span class="f-26 a-text" data-key="count1">0</span>
+                                    <span class="f-18 p-r" style="top: -2px;">/</span>
+                                    <span class="f-20" data-key="total1">0</span>
+                                </div>
+                                <div data-key="bar1">0%</div>
+                            </div>
+                            <div id="bar1"></div>
+                        </div>
+                        <div class="mb-15">
+                            <div class="label mb-5">普卡升级银卡</div>
+                            <div class="flex flex-between flex-align-center">
+                                <div style="line-height: 24px;">
+                                    <span class="f-26 a-text" data-key="count2">0</span>
+                                    <span class="f-18 p-r" style="top: -2px;">/</span>
+                                    <span class="f-20" data-key="total2">0</span>
+                                </div>
+                                <div data-key="bar2">0%</div>
+                            </div>
+                            <div id="bar2"></div>
+                        </div>
+                        <div class="mb-15">
+                            <div class="label mb-5">银卡升级金卡</div>
+                            <div class="flex flex-between flex-align-center">
+                                <div style="line-height: 24px;">
+                                    <span class="f-26 a-text" data-key="count3">0</span>
+                                    <span class="f-18 p-r" style="top: -2px;">/</span>
+                                    <span class="f-20" data-key="total3">0</span>
+                                </div>
+                                <div data-key="bar3">0%</div>
+                            </div>
+                            <div id="bar3"></div>
+                        </div>
+                        <div>
+                            <div class="label mb-5">会员等级</div>
+                            <div>
+                                <div id="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-body p-10 mb-10">
+                        <div class="flex flex-between mb-20">
+                            <div class="label">生日人数</div>
+                            <div class="f-20 label" data-key="birthday_count">0</div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">生日回访数</div>
+                                <div class="value" data-key="birthday_rvisit_count">0</div>
+                            </div>
+                            <div>
+                                <div class="title">生日总消费金额</div>
+                                <div class="value">
+                                    <i class="iconfont icon-renminbi"></i>
+                                    <span data-key="birthday_total">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">生日回访后到店</div>
+                                <div class="value" data-key="birthday_rvisit_store_count">0</div>
+                            </div>
+                            <div>
+                                <div class="title">回访到店率</div>
+                                <div class="value">
+                                    <i class="iconfont icon-renminbi"></i>
+                                    <span data-key="birthday_rvisit_ratio">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="weui-tab__bd-item">
+                    运营指标
+                </div>
+                <div id="tab3" class="weui-tab__bd-item">
+                    自定义报表
+                </div>
+                <div id="tab4" class="weui-tab__bd-item">
+                    活动分析
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script type="text/javascript" src="./../../../script/echarts.simple.min.js"></script>
+<script>
+    $( function () {
+        /* page1 */
+        var Mock = {
+            count1: 134,
+            total1: 360,
+            bar1: '30%',
+            count2: 67,
+            total2: 100,
+            bar2: '50%',
+            count3: 4,
+            total3: 30,
+            bar3: '80%',
+            birthday_count: 365,
+            birthday_rvisit_count: 130,
+            birthday_total: 22890,
+            birthday_rvisit_store_count: 65,
+            birthday_rvisit_ratio: '19.6%',
+            member_level: [
+                { name: '粉丝', value: 100000 },
+                { name: '普卡', value: 350000 },
+                { name: '银卡', value: 250000 },
+                { name: '金卡', value: 150000 },
+                { name: '黑卡', value: 150000 }
+            ]
+        }
+        var bar1 = $( '#bar1' ).bar( { height: 10, background: '#eeeeee' } )
+        var bar2 = $( '#bar2' ).bar( { height: 10, background: '#eeeeee' } )
+        var bar3 = $( '#bar3' ).bar( { height: 10, background: '#eeeeee' } )
+
+        bar1.setValue( Mock.bar1 )
+        bar2.setValue( Mock.bar2 )
+        bar3.setValue( Mock.bar2 )
+
+        //生成按钮组
+        var gbt1 = $( '#gbt1' ).buttonTab( {
+            width: 60,
+            buttons: [
+                { id: 0, text: '本月' },
+                { id: 1, text: '上月' },
+                { id: 2, text: '前月' }
+            ]
+        } )
+        var gbt2 = $( '#gbt2' ).buttonTab( {
+            width: 60,
+            buttons: []
+        } )
+        gbt2.loadData( [
+            { id: 0, text: '全部' },
+            { id: 1, text: '华南区' },
+            { id: 2, text: '华中区' },
+            { id: 3, text: '华北区' }
+        ] )
+
+        var gbt3 = $( '#gbt3' ).buttonTab( {
+            // width: 60,
+            buttons: []
+        } )
+        gbt3.loadData( [
+            { id: 0, text: '正佳广场店' },
+            { id: 1, text: '体育西店' },
+            { id: 2, text: '林和西店' }
+        ] )
+
+        var gbt4 = $( '#gbt4' ).buttonTab( {
+            width: 50,
+            buttons: [
+                { id: 0, text: '本月' },
+                { id: 1, text: '上月' },
+                { id: 2, text: '前月' }
+            ],
+            onchange: function ( e ) {
+                // e is button's id
+                console.log( e )
+            }
+        } ).setValue( 0 )
+
+        $( "#date1" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
+        $( "#date2" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
+
+        $( '#chart' ).css( {
+            width: $( window ).width() - 40,
+            height: ( $( window ).width() - 40 ) * 0.67
+        } )
+        var myChart = echarts.init( document.getElementById( 'chart' ) );
+        drawPie( Mock.member_level )
+
+        $( '#search_1' ).on( 'click', function () {
+            util.render( {
+                start_date1: $( "#date1" ).val(),
+                end_date1: $( "#date2" ).val()
+            } )
+            $( this ).parents( '.drop-search-content' ).hide()
+        } )
+
+        $( '#search_2' ).on( 'click', function () {
+            //选择区域
+            console.log( '选择区域: %s', gbt2.getValue() )
+            //选择门店
+            console.log( '选择门店: %s', gbt3.getValue() )
+            $( this ).parents( '.drop-search-content' ).hide()
+        } )
+        //
+        util.render( {
+            count1: Mock.count1,
+            total1: Mock.total1,
+            bar1: Mock.bar1,
+            count2: Mock.count2,
+            total2: Mock.total2,
+            bar2: Mock.bar2,
+            count3: Mock.count3,
+            total3: Mock.total3,
+            bar3: Mock.bar3,
+            birthday_count: Mock.birthday_count,
+            birthday_rvisit_count: Mock.birthday_rvisit_count,
+            birthday_total: util.num2Money( Mock.birthday_total ),
+            birthday_rvisit_store_count: Mock.birthday_rvisit_store_count,
+            birthday_rvisit_ratio: Mock.birthday_rvisit_ratio
+        } )
+
+        function drawPie( pdata ) {
+            var data = pdata
+            data_name = [];
+            for ( var n in data ) {
+                data[n].name = data[n].name + ' ' + util.num2Money( data[n].value );
+                data_name.push( data[n].name )
+            }
+            option = {
+                tooltip: {
+                    show: false
+                },
+                color: ['#ffcc01', '#24a4ff', '#b246e0', '#6fce6e', '#ef534f'],
+                legend: {
+                    orient: 'vertical',
+                    top: 'center',
+                    right: 0,
+                    data: data_name,
+                    textStyle: {
+                        color: "#333",
+                        fontWeight: 'normal',
+                        fontFamily: 'PingFang SC'
+                    }
+                },
+                series: [
+                    {
+                        name: '',
+                        type: 'pie',
+                        center: ['32%', '50%'],
+                        radius: ['50%', '85%'],
+                        avoidLabelOverlap: false,
+                        hoverAnimation: false,
+                        animation: false,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'inner',
+                                formatter: function ( params ) {
+                                    //params.percent
+                                    if ( params.percent < 10 ) {
+                                        return '';
+                                    } else {
+                                        return params.percent.toFixed( 1 ) + '%'
+                                    }
+                                },
+                                textStyle: {
+                                    fontSize: '12'
+                                }
+                            },
+                            emphasis: {
+                                show: true,
+                                position: 'inside',
+                                formatter: function ( params ) {
+                                    //params.percent
+                                    if ( params.percent < 10 ) {
+                                        return '';
+                                    } else {
+                                        return params.percent.toFixed( 1 ) + '%'
+                                    }
+                                },
+                                textStyle: {
+                                    fontSize: '12'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data: data
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption( option );
+            //
+        }
+    } )
+</script>
+<!--start:footer-->
+
+</html>
+<!--end:footer-->

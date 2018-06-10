@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>teeapp</title>
+    <title>会员</title>
 </head>
 
 <body>
@@ -94,9 +94,9 @@
     <div class="full-page p-r">
         <div class="header">
             <div class="flex flex-between flex-align-center pt-10 pb-10">
-                <div>开卡目标
+                <a href="./../report/index.html">开卡目标
                     <i class="iconfont icon-arrowr f-18 p-r" style="top: 2px;"></i>
-                </div>
+                </a>
                 <div class="flex flex-align-center">
                     <div class="mr-5" data-key="today">0000-00-00</div>
                     <div id="bar1"></div>
@@ -107,11 +107,11 @@
                     <span class="f-26 a-text" data-key="count">0</span>
                     <span class="f-18 p-r" style="top: -2px;">/</span>
                     <span class="f-20" data-key="total">0</span>
-                    <span class="ml-10">查看店员
-                        <i class="iconfont icon-arrow-right f-18 p-r" style="top: 1px;"></i>
+                    <span class="ml-10">
+                        <a href="./activeCard.html">查看店员<i class="iconfont icon-arrow-right f-16"></i></a>
                     </span>
                 </div>
-                <div data-key="ratio1">0%</div>
+                <div data-key="bar2">0%</div>
             </div>
             <div id="bar2"></div>
             <div class="flex pt-15 pb-10">
@@ -150,8 +150,8 @@
             <div class="birthday-list p-10">
                 <div class="flex flex-between">
                     <div class="label">本周生日会员</div>
-                    <div class="link">查看详情
-                        <i class="iconfont icon-arrow-right f-18"></i>
+                    <div class="link">
+                        查看详情<i class="iconfont icon-arrow-right f-18"></i>
                     </div>
                 </div>
                 <div id="bmems" class="flex pt-10">
@@ -277,7 +277,7 @@
         {{/each}}  
     </script>
 
-    <!-- 生日会员模版 -->
+    <!-- 新消费顾客模版 -->
     <script id="tp-customer" type="text/html">  
         {{each list as imgs index}}  
         <div class="inline-block t-center">
@@ -301,8 +301,8 @@
     $( function () {
         var Mock = {
             today: '2018-06-08',
-            bar1: 30,
-            bar2: 50,
+            bar1: '30%',
+            bar2: '50%',
             count: 120,
             total: 200,
             py_num: 2,
@@ -310,7 +310,6 @@
             yj_num: 5,
             yj_total: 10,
             birthday_num: 8,
-            ratio1: '60.2%',
             ratio2: '38%',
             customer: [],
             birthday_mem: [
@@ -353,7 +352,7 @@
             yj_num: Mock.yj_num,
             yj_total: Mock.yj_total,
             birthday_num: Mock.birthday_num,
-            ratio1: Mock.ratio1,
+            bar2: Mock.bar2,
             ratio2: Mock.ratio2,
             task_num: Mock.task_num,
             task_birthday_num: Mock.task_birthday_num,
@@ -369,6 +368,8 @@
         util.templateRender( 'tp-customer', {
             list: Mock.customer
         }, $( '#customers' ) )
+
+        $('html, body').css('background', '#fff')
     } )
 </script>
 

@@ -1,6 +1,7 @@
 var watch = require( 'node-watch' );
 var fs = require( "fs" );
 var random = randomString( 8 );
+var title = require('./filename')
 
 console.log( 'build html starting......\n' )
 
@@ -65,7 +66,14 @@ function buildhtml( path, xpath, callback ) {
                                 }
                             }
                         }
-                        //console.log( 'newhtml: %s', temphtml)
+                        
+                        //替换title
+                        if ( typeof title[path + '/' + filename] != 'undefined' ) {
+                            //console.log( title[path + '/' + filename] )
+                            temphtml = temphtml.replace( /\<%=title%\>/, title[path + '/' + filename])
+                            //console.log( temphtml.match( /\<%\=title%\>/g ) )
+                        }
+                        //console.log(temphtml)
                         console.log( 'page: %s \nbuild complete\n', path + '/' + filename )
                         fs.writeFile( path + '/' + filename, temphtml, 'utf8', function ( err ) {
                             if ( err ) {

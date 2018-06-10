@@ -16,6 +16,16 @@ $( function () {
             $( '[data-dropcontent="' + dropcontent + '"]' ).hide()
         }
     } )
+
+    $( '.drop-search' ).on( 'click', function () {
+        $( '.drop-search-content' ).hide()
+        var dropcontent = $( this ).data( 'drop' )
+        $( '[data-dropcontent="' + dropcontent + '"]' ).show()
+    } )
+    
+    $( '.cancle-search' ).on( 'click', function () {
+        $( this ).parents('.drop-search-content').hide()
+    })
 } );
 
 // 进度条
@@ -24,13 +34,14 @@ $( function () {
         this.$element = ele
         this.defaults = {
             height: '20',
-            color: '#ffcc01'
+            color: '#ffcc01',
+            background: '#fff'
         }
         this.options = $.extend( {}, this.defaults, opt )
     }
 
     var template = function () {
-        return `<div class="bar" style="height: {height}px;width: {width}px;border-radius: {radius}px;background: #fff;">
+        return `<div class="bar" style="height: {height}px;width: {width}px;border-radius: {radius}px;background-color: {background};">
             <div class="value" style="width: 0%;height: {height}px;border-radius: {radius}px;background: {vcolor} "></div>
         </div>`
     }
@@ -42,7 +53,8 @@ $( function () {
                 height: this.options.height,
                 width: this.options.width,
                 radius: this.options.height / 2,
-                vcolor: this.options.color
+                vcolor: this.options.color,
+                background: this.options.background
             } ) )
             if ( !this.options.width ) {
                 this.$element.find( '.bar' ).css( {
@@ -52,7 +64,7 @@ $( function () {
         },
         setValue: function ( v ) {
             this.$element.find( '.value' ).css( {
-                width: v + '%'
+                width: v
             } )
         }
     }
@@ -78,13 +90,14 @@ $( function () {
                 { id: 2, text: '按钮三' },
                 { id: 3, text: '按钮四' },
                 { id: 4, text: '按钮五' }
-            ]
+            ],
+            onchange: null
         }
         this.options = $.extend( {}, this.defaults, opt )
     }
 
     var template = function ( data ) {
-        var btn = `<div class="btn-checker">`
+        var btn = `<div class="btn-checker clearfix">`
         for ( var i = 0; i < data.length; i++ ) {
             btn += util.format( `<div class="btn-checker-item" data-value="{id}">{text}</div>`, {
                 id: data[i].id,
@@ -127,6 +140,9 @@ $( function () {
                         $( this ).addClass( 'active' )
                     }
                 }
+                if ( self.options.onchange ) {
+                    self.options.onchange( self.getValue() )
+                }    
             } )
             return this
         },
@@ -169,6 +185,11 @@ $( function () {
                 var select = this.$element.find( '.btn-checker-item.active' ).data( 'value' )
             }
             return select
+        },
+        loadData: function (data) {
+            this.options.buttons = data
+            this.$element.empty()
+            this.init()
         }
     }
     $.fn.buttonTab = function ( options ) {
@@ -202,7 +223,7 @@ var util = {
         ele.append( html )
     },
     templateRenderInsertBefore: function ( id, data, ele ) {
-        var html = template( id, data );
+        var html = template( id, data );    
         $( html ).insertBefore( ele );
     },
     //字符串格式化
@@ -211,6 +232,12 @@ var util = {
         return str.replace( reg, function ( match, name ) {
             return param[name];
         } );
+    },
+    //数字转千分位
+    num2Money: function ( str ) {
+        return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
+            return s + ','
+        })  
     },
     toUtf8: function ( str ) {
         var out, i, len, c;

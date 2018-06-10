@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>teeapp</title>
+    <title>导购开卡目标</title>
 </head>
 
 <body>
@@ -34,10 +34,10 @@
         }
         .card { padding: 10px 5px; }
         .card:not(:last-child) {
-            border-bottom: 1px solid #ececec;
+            border-bottom: 1px solid #e5e5e5;
         }
     </style>
-    <div class="pt-15" ontouchstart>
+    <div class="pt-15 content-block" ontouchstart>
         <div class="weui-pull-to-refresh__layer">
             <div class='weui-pull-to-refresh__arrow'></div>
             <div class='weui-pull-to-refresh__preloader'></div>
@@ -53,15 +53,15 @@
     <script id="tp-card" type="text/html">  
         {{each list as m index}}  
         <div class="card flex flex-align-center">
-            <img class="mem-birthday mr-10" src="./../../../image/CRM/m4.jpeg" alt="">
+            <img class="mem-birthday mr-10" src="{{m.img}}" alt="">
             <div class="flex-1 flex flex-between">
                 <div class="f-14">
-                    <div >{{m.name}} <span class="txt-l"> | {{m.job}}</span></div>
+                    <div >{{m.name}} <span class="txt-d"> | {{m.job}}</span></div>
                     <div>
                         <i class="iconfont icon-shouji"></i>
-                        <span class="txt-l">{{m.phone}}</span>
+                        <span class="txt-d">{{m.phone}}</span>
                     </div>
-                    <div>会员数: <span class="txt-l">{{m.members}}</span></div>
+                    <div>会员数: <span class="txt-d">{{m.members}}</span></div>
                 </div>
                 <div class="t-right">
                     <div>
@@ -93,11 +93,11 @@
     $( function () {
         var Mock = {
             list: [
-                { name: '钟文', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
-                { name: '李国涛', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
-                { name: '张丽', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
-                { name: '李金明', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
-                { name: '陈赫', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' }
+                { name: '钟文', img: './../../../image/CRM/m1.jpeg', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '李国涛', img: './../../../image/CRM/m4.jpeg', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '张丽', img: './../../../image/CRM/m5.jpeg', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '李金明', img: './../../../image/CRM/m6.jpeg', job: '店员', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' },
+                { name: '陈赫', img: './../../../image/CRM/m1.jpeg', job: '店长', phone: '13812312345', members: 193, count: 45, total: 120, ratio: '31.3%' }
             ]
         }
         //模版渲染
@@ -109,7 +109,7 @@
             // 模拟分页加载
             setTimeout( function () {
                 var tdata = [
-                    { name: '季杰', job: '店长', phone: '13812312345', members: 193, count: 45, total: 200, ratio: '50.3%' }
+                    { name: '季杰', img: './../../../image/CRM/m1.jpeg', job: '店长', phone: '13812312345', members: 193, count: 45, total: 200, ratio: '50.3%' }
                 ]
                 render( tdata)
             }, 2000 );
