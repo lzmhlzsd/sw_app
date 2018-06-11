@@ -22,10 +22,10 @@ $( function () {
         var dropcontent = $( this ).data( 'drop' )
         $( '[data-dropcontent="' + dropcontent + '"]' ).show()
     } )
-    
+
     $( '.cancle-search' ).on( 'click', function () {
-        $( this ).parents('.drop-search-content').hide()
-    })
+        $( this ).parents( '.drop-search-content' ).hide()
+    } )
 } );
 
 // 进度条
@@ -142,7 +142,7 @@ $( function () {
                 }
                 if ( self.options.onchange ) {
                     self.options.onchange( self.getValue() )
-                }    
+                }
             } )
             return this
         },
@@ -151,7 +151,7 @@ $( function () {
                 if ( data instanceof Array ) {
                     var ele = this.$element.find( '.btn-checker-item' )
                     ele.each( function () {
-                        if ( data.indexOf($( this ).data( 'value' )) > -1 ) {
+                        if ( data.indexOf( $( this ).data( 'value' ) ) > -1 ) {
                             $( this ).addClass( 'active' )
                         }
                     } )
@@ -186,7 +186,7 @@ $( function () {
             }
             return select
         },
-        loadData: function (data) {
+        loadData: function ( data ) {
             this.options.buttons = data
             this.$element.empty()
             this.init()
@@ -199,6 +199,71 @@ $( function () {
     }
 } )( jQuery );
 
+// 表格
+; ( function ( $ ) {
+    var Table = function ( ele, opt ) {
+        this.$element = ele
+        this.defaults = {
+            // cols: [
+            //     { filed: 'filed0', width: '15%', title: '' },
+            //     { filed: 'filed1', width: '15%', format: function ( v ) { return v + '%' }, title: '金额' },
+            //     { filed: 'filed2', width: '15%', title: '占比' },
+            //     { filed: 'filed3', width: '15%', title: '单数' },
+            //     { filed: 'filed4', width: '15%', title: '客单价' },
+            //     { filed: 'filed5', width: '25%', title: '客单件' }
+            // ],
+            // data: [
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            // ]
+            cols: [],
+            data: []
+        }
+        this.options = $.extend( {}, this.defaults, opt )
+    }
+    var template_thead = function ( cols ) {
+        var html = `<table class="sw-table"><thead><tr>`
+        for ( var i = 0; i < cols.length; i++ ) {
+            html += `<th style="width:` + cols[i].width + `">` + cols[i].title + `</th>`
+        }
+        html += '</tr></thead><tbody></tbody></table>'
+        return html
+    }
+
+    var template_tbody = function ( data, that ) {
+        var html = ``
+        for ( var i = 0; i < data.length; i++ ) {
+            html += `<tr>`
+            for ( var j = 0; j < that.options.cols.length; j++ ) {
+                if ( typeof that.options.cols[j].format != 'undefined' ) {
+                    html += `<td>` + that.options.cols[j].format(data[i][that.options.cols[j].filed]) + `</td>`
+                } else { 
+                    html += `<td>` + data[i][that.options.cols[j].filed] + `</td>`
+                }
+                
+            }
+            html += `</tr>`
+        }
+        return html
+    }
+
+
+    Table.prototype = {
+        init: function () {
+            var self = this
+            this.$element.append( template_thead( this.options.cols ) )
+
+            this.setData( this.options.data )
+        },
+        setData: function ( data ) {
+            this.$element.find( 'tbody' ).html( template_tbody( data, this ) )
+        }
+    }
+    $.fn.table = function ( options ) {
+        var table = new Table( this, options )
+        table.init()
+        return table
+    }
+} )( jQuery );
 var util = {
     //数据渲染
     render: function ( obj ) {
@@ -223,7 +288,7 @@ var util = {
         ele.append( html )
     },
     templateRenderInsertBefore: function ( id, data, ele ) {
-        var html = template( id, data );    
+        var html = template( id, data );
         $( html ).insertBefore( ele );
     },
     //字符串格式化
@@ -237,7 +302,7 @@ var util = {
     num2Money: function ( str ) {
         return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
             return s + ','
-        })  
+        } )
     },
     toUtf8: function ( str ) {
         var out, i, len, c;

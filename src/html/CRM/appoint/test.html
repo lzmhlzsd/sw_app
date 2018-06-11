@@ -1,0 +1,100 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title><%=title%></title>
+</head>
+
+<body>
+<!--end:header-->
+<style>
+
+</style>
+<div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label for="date" class="weui-label">手机</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="mobile" type="text" value="画画">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    $(function() {
+        $( "#mobile" ).select( {
+            title: "您的爱好",
+            items: [
+                {
+                    title: "画画",
+                    value: 1,
+                    description: "额外的数据1"
+                },
+                {
+                    title: "打球",
+                    value: 2,
+                    description: "额外的数据2"
+                },
+                {
+                    title: "唱歌",
+                    value: 3,
+                    description: "额外的数据3"
+                },
+                {
+                    title: "游泳",
+                    value: 4,
+                    description: "额外的数据4"
+                },
+                {
+                    title: "健身",
+                    value: 5,
+                    description: "额外的数据5"
+                },
+                {
+                    title: "睡觉",
+                    value: 6,
+                    description: "额外的数据6"
+                },
+            ],
+            beforeClose: function ( values, titles ) {
+                if ( values.indexOf( "6" ) !== -1 ) {
+                    $.toast( "不能选睡觉", "cancel" );
+                    return false;
+                }
+                return true;
+            },
+            onChange: function ( d ) {
+                console.log( this, d );
+            },
+            onClose: function ( d ) {
+                console.log( 'close' )
+            }
+        } );
+        
+        $( "#mobile" ).picker( "setValue", "618活动优惠券" );
+    })
+</script>
+<!--start:footer-->
+</html>
+<!--end:footer-->

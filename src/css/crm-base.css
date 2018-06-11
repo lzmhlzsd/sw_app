@@ -288,3 +288,11 @@ div {
     font-family: 'iconfont';
     color: #ffcc01;
 }
+
+.sw-table {
+    width: 100%;
+}
+.sw-table th,
+.sw-table td {
+    text-align: left;
+}

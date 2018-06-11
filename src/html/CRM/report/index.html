@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <!--end:header-->
+<!--end:header-->
     <style>
     </style>
     <div>
         <div class="weui-tab">
             <div class="weui-navbar">
-                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                <a class="weui-navbar__item" href="#tab1">
                     目标管理
                     <div class="weui-navbar__item-line"></div>
                 </a>
@@ -27,7 +27,7 @@
                     运营指标
                     <div class="weui-navbar__item-line"></div>
                 </a>
-                <a class="weui-navbar__item" href="#tab3">
+                <a class="weui-navbar__item  weui-bar__item--on" href="#tab3">
                     自定义报表
                     <div class="weui-navbar__item-line"></div>
                 </a>
@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="weui-tab__bd">
-                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <div id="tab1" class="weui-tab__bd-item ">
                     <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
                         <div class="f-14">
                             <span data-key="start_date1">0000-00-00</span>至
@@ -79,9 +79,7 @@
                         </div>
                     </div>
                     <div class="container-body p-10">
-                        <div id="gbt4" class="p-a" style="right: 15px;">
-
-                        </div>
+                        <div id="gbt4" class="p-a" style="right: 15px;"></div>
                         <div class="mb-15">
                             <div class="label mb-5">开卡目标</div>
                             <div class="flex flex-between flex-align-center">
@@ -158,8 +156,58 @@
                         </div>
                     </div>
                 </div>
-                <div id="tab2" class="weui-tab__bd-item">
-                    运营指标
+                <div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+                        <div class="f-14">
+                            <span data-key="start_date2">0000-00-00</span>至
+                            <span data-key="end_date2">0000-00-00</span>
+                        </div>
+                        <div class="f-14">
+                            <span class="drop-search" data-drop="date2">
+                                本月
+                                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+                            </span>
+                        </div>
+                        <div class="f-14">
+                            <span class="drop-search" data-drop="store2">
+                                正佳广场
+                                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="drop-search-content p-15" data-dropcontent="date2">
+                        <div id="gbt5"></div>
+                        <div class="mt-5">
+                            <input class="weui-input date-sinput" id="date3" type="text">
+                            <span class="f-14 ml-5 mr-5">至</span>
+                            <input class="weui-input date-sinput" id="date4" type="text">
+                        </div>
+                        <div class="mt-10" style="height: 29px;">
+                            <a href="javascript:;" id="search_3" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+                            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+                        </div>
+                    </div>
+                    <div class="drop-search-content p-15" data-dropcontent="store2">
+                        <div class="label f-14 pt-5 pb-5">选择区域</div>
+                        <div id="gbt6"></div>
+                        <div class="label f-14 pt-5 pb-5">选择门店</div>
+                        <div id="gbt7"></div>
+                        <div class="mt-10" style="height: 29px;">
+                            <a href="javascript:;" id="search_4" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+                            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+                        </div>
+                    </div>
+                    <div class="container-body p-10">
+                        <div>
+                            <div>会员等级</div>
+                            <div></div>
+                        </div>
+                        <div>
+                            <div>总金额</div>
+                            <div><i class="iconfont icon-renminbi"></i>199,999</div>
+                        </div>
+                        <div id="table1"></div>
+                    </div>
                 </div>
                 <div id="tab3" class="weui-tab__bd-item">
                     自定义报表
@@ -291,7 +339,7 @@
         $( '#search_2' ).on( 'click', function () {
             //选择区域
             console.log( '选择区域: %s', gbt2.getValue() )
-            //选择门店
+            //选择/*  */门店
             console.log( '选择门店: %s', gbt3.getValue() )
             $( this ).parents( '.drop-search-content' ).hide()
         } )
@@ -312,6 +360,91 @@
             birthday_rvisit_store_count: Mock.birthday_rvisit_store_count,
             birthday_rvisit_ratio: Mock.birthday_rvisit_ratio
         } )
+
+        /* page2 */
+        //生成按钮组
+        var gbt5 = $( '#gbt5' ).buttonTab( {
+            width: 60,
+            buttons: [
+                { id: 0, text: '本月' },
+                { id: 1, text: '上月' },
+                { id: 2, text: '前月' }
+            ]
+        } )
+        var gbt6 = $( '#gbt6' ).buttonTab( {
+            width: 60,
+            buttons: []
+        } )
+        gbt6.loadData( [
+            { id: 0, text: '全部' },
+            { id: 1, text: '华南区' },
+            { id: 2, text: '华中区' },
+            { id: 3, text: '华北区' }
+        ] )
+
+        var gbt7 = $( '#gbt7' ).buttonTab( {
+            // width: 60,
+            buttons: []
+        } )
+        gbt7.loadData( [
+            { id: 0, text: '正佳广场店' },
+            { id: 1, text: '体育西店' },
+            { id: 2, text: '林和西店' }
+        ] )
+        $( "#date3" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
+        $( "#date4" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
+        $( '#search_3' ).on( 'click', function () {
+            util.render( {
+                start_date2: $( "#date3" ).val(),
+                end_date2: $( "#date4" ).val()
+            } )
+            $( this ).parents( '.drop-search-content' ).hide()
+        } )
+
+        $( '#search_4' ).on( 'click', function () {
+            //选择区域
+            console.log( '选择区域: %s', gbt6.getValue() )
+            //选择/*  */门店
+            console.log( '选择门店: %s', gbt7.getValue() )
+            $( this ).parents( '.drop-search-content' ).hide()
+        } )
+
+        $('#table1').table({
+            cols: [
+                { filed: 'filed0', width: '16%', title: '' },
+                { filed: 'filed1', width: '20%', format: function ( v ) { 
+                    return util.num2Money(v) 
+                }, title: '金额' },
+                { filed: 'filed2', width: '16%', format: function ( v ) {
+                    return v + '%'
+                },title: '占比' },
+                { filed: 'filed3', width: '16%', title: '单数' },
+                { filed: 'filed4', width: '16%', format: function ( v ) {
+                    return util.num2Money( v )
+                },  title: '客单价' },
+                { filed: 'filed5', width: '16%', title: '客单件' }
+            ],
+            data: [
+                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            ]
+        })
+        /* page3 */
+
+        /* page4 */
 
         function drawPie( pdata ) {
             var data = pdata
@@ -394,6 +527,5 @@
     } )
 </script>
 <!--start:footer-->
-
 </html>
 <!--end:footer-->
