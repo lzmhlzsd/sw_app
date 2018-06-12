@@ -21,7 +21,9 @@ div {
 .flex-align-center {
     align-items: center;
 }
-
+.flex-justify-center {
+    justify-content: center;
+}
 .content-block {
     background-color: #fff;
 }
@@ -88,11 +90,12 @@ div {
 }
 
 .date-sinput {
-    width: 62px;
+    width: 101px;
     background-color: #fdfdfd;
     font-size: 12px;
-    padding: 3px 15px;
-    line-height: 12px;
+    padding: 4px 8px;
+    line-height: 18px;
+    height: 18px;
     border: 1px solid #cdcdcd;
     border-radius: 0;
 }
@@ -110,9 +113,10 @@ div {
 }
 .t-table .title {
     font-size: 14px;
+    padding: 10px 0 5px;
 }
 .t-table .value {
-    font-size: 26px;
+    font-size: 28px;
     color: #888;
 }
 /* weui css */
@@ -295,4 +299,54 @@ div {
 .sw-table th,
 .sw-table td {
     text-align: left;
+    font-size: 14px;
+}
+
+.sw-select {
+    display: flex;
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative;
+}
+.sw-select input {
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: 0;
+    border-width: 0;
+    font-size: 12px;
+    line-height: 12px;
+    width: inherit;
+    box-sizing: border-box;
+    border: 1px solid #cdcdcd;
+    -webkit-appearance: none;
+}
+.sw-select input:focus {
+    outline: none;
+}
+.sw-select > div {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 19px;
+}
+.sw-select .iconfont {
+    font-size: 12px;
+    color: #888;
+    transform: scale(0.75);
+}
+.sw-select .icon-shangsanjiao {
+    position: absolute;
+    top: 0px;
+    right: 3px;
+}
+.sw-select .icon-xiasanjiao {
+    position: absolute;
+    bottom: 0px;
+    right: 3px;
+}
+.fixed-table-box .table-cell {
+    padding-left: 5px !important;
 }

@@ -1,0 +1,272 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title><%=title%></title>
+</head>
+
+<body>
+<!--end:header-->
+<link rel="stylesheet" type="text/css" href="./../../../css/fixedTable.css">
+    <style>
+        a {color: red !important; }
+        .fixed-table-box{
+            width: 350px;
+            margin: 50px auto;
+        }
+        /*内容了表格主体内容有纵向滚动条*/
+        /* .fixed-table-box>.fixed-table_body-wraper{
+            max-height: 260px;
+        } */
+        /*为了让两侧固定列能够同步表格主体内容滚动*/
+        /* .fixed-table_fixed>.fixed-table_body-wraper{
+            max-height: 240px;
+        } */
+
+        .w-1{
+            width: 100px;
+        }
+        .w-2{
+            width: 100px;
+        }
+        .w-3{
+            width: 100px;
+        }
+        .w-4{
+            width: 100px;
+        }
+        .w-5{
+            width: 100px;
+        }
+        .w-6{
+            width: 100px;
+        }
+        .btns{
+            text-align: center;
+        }
+        .btns button{
+            padding: 10px 20px;
+        }
+
+    </style>
+    <div>
+    <div class="fixed-table-box row-col-fixed">
+        <!-- 表头 start -->
+        <div class="fixed-table_header-wraper">
+            <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                <thead>
+                    <tr>
+                        <th class="w-1" data-fixed="true">
+                            <div class="table-cell">日期</div>
+                        </th>
+                        <th class="w-2">
+                            <div class="table-cell">姓名</div>
+                        </th>
+                        <th class="w-3">
+                            <div class="table-cell">省份</div>
+                        </th>
+                        <th class="w-4">
+                            <div class="table-cell">市区</div>
+                        </th>
+                        <th class="w-5">
+                            <div class="table-cell">地址</div>
+                        </th>
+                        <th class="w-6">
+                            <div class="table-cell">邮编</div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- 表头 end -->
+        <!-- 表格内容 start -->
+        <div class="fixed-table_body-wraper">
+            <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td class="w-1">
+                            <div class="table-cell">2016</div>
+                        </td>
+                        <td class="w-2">
+                            <div class="table-cell">王小虎</div>
+                        </td>
+                        <td class="w-3">
+                            <div class="table-cell">上海</div>
+                        </td>
+                        <td class="w-4">
+                            <div class="table-cell">普陀区</div>
+                        </td>
+                        <td class="w-5">
+                            <div class="table-cell">AVDS</div>
+                        </td>
+                        <td class="w-6">
+                            <div class="table-cell">200333</div>
+                        </td>
+                    </tr>
+<tr>
+    <td class="w-1">
+        <div class="table-cell">2016</div>
+    </td>
+    <td class="w-2">
+        <div class="table-cell">王小虎</div>
+    </td>
+    <td class="w-3">
+        <div class="table-cell">上海</div>
+    </td>
+    <td class="w-4">
+        <div class="table-cell">普陀区</div>
+    </td>
+    <td class="w-5">
+        <div class="table-cell">AVDS</div>
+    </td>
+    <td class="w-6">
+        <div class="table-cell">200333</div>
+    </td>
+</tr><tr>
+    <td class="w-1">
+        <div class="table-cell">2016</div>
+    </td>
+    <td class="w-2">
+        <div class="table-cell">王小虎</div>
+    </td>
+    <td class="w-3">
+        <div class="table-cell">上海</div>
+    </td>
+    <td class="w-4">
+        <div class="table-cell">普陀区</div>
+    </td>
+    <td class="w-5">
+        <div class="table-cell">AVDS</div>
+    </td>
+    <td class="w-6">
+        <div class="table-cell">200333</div>
+    </td>
+</tr><tr>
+    <td class="w-1">
+        <div class="table-cell">2016</div>
+    </td>
+    <td class="w-2">
+        <div class="table-cell">王小虎</div>
+    </td>
+    <td class="w-3">
+        <div class="table-cell">上海</div>
+    </td>
+    <td class="w-4">
+        <div class="table-cell">普陀区</div>
+    </td>
+    <td class="w-5">
+        <div class="table-cell">AVDS</div>
+    </td>
+    <td class="w-6">
+        <div class="table-cell">200333</div>
+    </td>
+</tr><tr>
+    <td class="w-1">
+        <div class="table-cell">2016</div>
+    </td>
+    <td class="w-2">
+        <div class="table-cell">王小虎</div>
+    </td>
+    <td class="w-3">
+        <div class="table-cell">上海</div>
+    </td>
+    <td class="w-4">
+        <div class="table-cell">普陀区</div>
+    </td>
+    <td class="w-5">
+        <div class="table-cell">AVDS</div>
+    </td>
+    <td class="w-6">
+        <div class="table-cell">200333</div>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 表格内容 end -->
+    
+        <!-- 固定列 start -->
+        <div class="fixed-table_fixed fixed-table_fixed-left">
+            <div class="fixed-table_header-wraper">
+                <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                    <thead>
+                        <tr>
+                            <th class="w-1">
+                                <div class="table-cell">日期</div>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+    
+            <div class="fixed-table_body-wraper">
+                <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="w-1">
+                                <div class="table-cell">2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-1">
+                                <div class="table-cell">2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-1">
+                                <div class="table-cell">2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-1">
+                                <div class="table-cell">2016</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-1">
+                                <div class="table-cell">2016</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 固定列 end -->
+    </div>
+
+
+    <div id="testtable1"></div>
+    <div id="testtable2"></div>
+    </div>
+
+
+<!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+<script type="text/javascript" src="./../../../script/fixedTable.js"></script>
+<script>
+    //初始化FixedTable
+        // $( ".fixed-table-box" ).fixedTable();
+        $('#testtable1').swFixedTable()
+        $( '#testtable2' ).swFixedTable()
+
+        // $( ".fixed-table-box" ).fixedTable();
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

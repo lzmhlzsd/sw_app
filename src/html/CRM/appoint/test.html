@@ -15,18 +15,1667 @@
 <body>
 <!--end:header-->
 <style>
+    .sw-select {
+        display: flex;
+        border-radius: 5px;
+        background-color: #fff;
+        position: relative;
+    }
+    .sw-select input {
+        flex: 1;
+        padding: 6px 10px;
+        border-radius: 5px;
+        border-width: 0;
+        font-size: 14px;
+        width: inherit;
+        box-sizing: border-box;
+        border: 1px solid #cdcdcd;
+        -webkit-appearance: none; /* 消除框内阴影 */
+    }
+    .sw-select input:focus {
+        outline: none;
+    }
+    .sw-select > div {
+        display: flex;
+        flex-direction: column;
+        padding: 0 8px;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 19px;
+    }
+    .sw-select .iconfont {
+        font-size: 12px;
+        color: #888;
+    }
+    .sw-select .icon-shangsanjiao {
+        position: absolute;
+        top: 1px;
+        right: 3px;
+    }
+    .sw-select .icon-xiasanjiao {
+        position: absolute;
+        bottom: 1px;
+        right: 3px;
+    }
 
+
+.s-table-wrapper {
+    position: relative;
+    border: 1px solid #dddee1;
+    border-bottom: 0;
+    border-right: 0;
+}
+.s-table {
+    width: inherit;
+    height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    color: #495060;
+    font-size: 12px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.s-table:after, .s-table:before {
+    content: "";
+    position: absolute;
+    background-color: #dddee1;
+}
+.s-table:before {
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.s-table-header {
+    overflow: hidden;
+}
+.s-table table {
+    table-layout: fixed;
+}
+.s-table-border td, .s-table-border th {
+    border-right: 1px solid #e9eaec;
+}
+.s-table th {
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #f8f8f9;
+}
+.s-table td, .s-table th {
+    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9eaec;
+}
+.s-table-hidden {
+    visibility: hidden;
+}
+th .s-table-cell {
+    display: inline-block;
+    word-wrap: normal;
+    vertical-align: middle;
+}
+.s-table-hidden {
+    visibility: hidden;
+}
+.s-table-cell {
+    padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+}
+.s-table-overflowX {
+    overflow-x: scroll;
+}
+.s-table-fixed, .s-table-fixed-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+}
+.s-table-fixed-right:before, .s-table-fixed:before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #dddee1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 4;
+}
+.s-table-fixed-header {
+    overflow: hidden;
+}
+.s-table-fixed-body {
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
 </style>
-<div>
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label for="date" class="weui-label">手机</label>
+<div class="p-20">
+    <div class="sw-select" style="width: 200px;">
+        <input id="mobile" type="text" value="画画">
+        <div>
+            <i class="iconfont icon-shangsanjiao"></i>
+            <i class="iconfont icon-xiasanjiao"></i>
+        </div>
+    </div>
+    <div class="s-table-wrapper" style="width: 300px;">
+        <div class="s-table s-table-border">
+            <div class="s-table-header">
+                <table cellspacing="0" cellpadding="0" border="0" style="width: 600px;">
+                    <colgroup>
+                        <col width="100"></col>
+                        <col width="100"></col>
+                        <col width="200"></col>
+                        <col width="100"></col>
+                        <col width="100"></col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="s-table-hidden">列1</th>
+                            <th>列2</th>
+                            <th>列3</th>
+                            <th>列4</th>
+                            <th>列5</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" id="mobile" type="text" value="画画">
+            <div class="s-table-body s-table-overflowX">
+                <table cellspacing="0" cellpadding="0" border="0" style="width: 600px;">
+                    <colgroup>
+                        <col width="100"></col>
+                        <col width="100"></col>
+                        <col width="200"></col>
+                        <col width="100"></col>
+                        <col width="100"></col>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td class="s-table-hidden">v1</td>
+                            <td>v2</td>
+                            <td>v3</td>
+                            <td>v4</td>
+                            <td class="s-table-hidden">v5</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table-hidden">v1</td>
+                            <td>v2</td>
+                            <td>v3</td>
+                            <td>v4</td>
+                            <td class="s-table-hidden">v5</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table-hidden">v1</td>
+                            <td>v2</td>
+                            <td>v3</td>
+                            <td>v4</td>
+                            <td class="s-table-hidden">v5</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table-hidden">v1</td>
+                            <td>v2</td>
+                            <td>v3</td>
+                            <td>v4</td>
+                            <td class="s-table-hidden">v5</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table-hidden">v1</td>
+                            <td>v2</td>
+                            <td>v3</td>
+                            <td>v4</td>
+                            <td class="s-table-hidden">v5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-table-fixed" style="width: 100px;">
+                <div class="s-table-fixed-header">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 100px;">
+                        <colgroup>
+                            <col width="100"></col>
+                            <col width="100"></col>
+                            <col width="200"></col>
+                            <col width="100"></col>
+                            <col width="100"></col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>列1</th>
+                                <th class="s-table-hidden">列2</th>
+                                <th class="s-table-hidden">列3</th>
+                                <th class="s-table-hidden">列4</th>
+                                <th class="s-table-hidden">列5</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="s-table-fixed-body">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 100px;">
+                        <colgroup>
+                            <col width="100"></col>
+                            <col width="100"></col>
+                            <col width="200"></col>
+                            <col width="100"></col>
+                            <col width="100"></col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>v1</td>
+                                <td class="s-table-hidden">v2</td>
+                                <td class="s-table-hidden">v3</td>
+                                <td class="s-table-hidden">v4</td>
+                                <td class="s-table-hidden">v5</td>
+                            </tr>
+                            <tr>
+                                <td>v1</td>
+                                <td class="s-table-hidden">v2</td>
+                                <td class="s-table-hidden">v3</td>
+                                <td class="s-table-hidden">v4</td>
+                                <td class="s-table-hidden">v5</td>
+                            </tr>
+                            <tr>
+                                <td>v1</td>
+                                <td class="s-table-hidden">v2</td>
+                                <td class="s-table-hidden">v3</td>
+                                <td class="s-table-hidden">v4</td>
+                                <td class="s-table-hidden">v5</td>
+                            </tr>
+                            <tr>
+                                <td>v1</td>
+                                <td class="s-table-hidden">v2</td>
+                                <td class="s-table-hidden">v3</td>
+                                <td class="s-table-hidden">v4</td>
+                                <td class="s-table-hidden">v5</td>
+                            </tr>
+                            <tr>
+                                <td>v1</td>
+                                <td class="s-table-hidden">v2</td>
+                                <td class="s-table-hidden">v3</td>
+                                <td class="s-table-hidden">v4</td>
+                                <td class="s-table-hidden">v5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
+
+    <style>
+.ivu-table-wrapper {
+    position: relative;
+    border: 1px solid #dddee1;
+    border-bottom: 0;
+    border-right: 0;
+}
+.ivu-table {
+    width: inherit;
+    height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    color: #495060;
+    font-size: 12px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.ivu-table:after, .ivu-table:before {
+    content: "";
+    position: absolute;
+    background-color: #dddee1;
+}
+.ivu-table:before {
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.ivu-table-header {
+    overflow: hidden;
+}
+.ivu-table table {
+    table-layout: fixed;
+}
+.ivu-table-border td, .ivu-table-border th {
+    border-right: 1px solid #e9eaec;
+}
+.ivu-table th {
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #f8f8f9;
+}
+.ivu-table td, .ivu-table th {
+    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9eaec;
+}
+.ivu-table-hidden {
+    visibility: hidden;
+}
+th .ivu-table-cell {
+    display: inline-block;
+    word-wrap: normal;
+    vertical-align: middle;
+}
+.ivu-table-hidden {
+    visibility: hidden;
+}
+.ivu-table-cell {
+    padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+}
+.ivu-table-overflowX {
+    overflow-x: scroll;
+}
+.ivu-table-fixed, .ivu-table-fixed-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 6px -2px rgba(0,0,0,.2);
+}
+.ivu-table-fixed-right:before, .ivu-table-fixed:before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #dddee1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 4;
+}
+.ivu-table-fixed-header {
+    overflow: hidden;
+}
+.ivu-table-fixed-body {
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+    </style>
+    <div class="ivu-table-wrapper" style="width: 550px;">
+        <div class="ivu-table ivu-table-border">
+            <!---->
+            <div class="ivu-table-header">
+                <table cellspacing="0" cellpadding="0" border="0" style="width: 821px;">
+                    <colgroup>
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="200">
+                        <col width="100">
+                        <col width="120">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <span class="">Name</span>
+                                </div>
+                            </th>
+                            <th class="">
+                                <div class="ivu-table-cell">
+                                    <span class="">Age</span>
+                                </div>
+                            </th>
+                            <th class="">
+                                <div class="ivu-table-cell">
+                                    <span class="">Province</span>
+                                </div>
+                            </th>
+                            <th class="">
+                                <div class="ivu-table-cell">
+                                    <span class="">City</span>
+                                </div>
+                            </th>
+                            <th class="">
+                                <div class="ivu-table-cell">
+                                    <span class="">Address</span>
+                                </div>
+                            </th>
+                            <th class="">
+                                <div class="ivu-table-cell">
+                                    <span class="">Postcode</span>
+                                </div>
+                            </th>
+                            <th class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <span class="">Action</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="ivu-table-body ivu-table-overflowX">
+                <table cellspacing="0" cellpadding="0" border="0" style="width: 821px;">
+                    <colgroup>
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="100">
+                        <col width="200">
+                        <col width="100">
+                        <col width="120">
+                    </colgroup>
+                    <tbody class="ivu-table-tbody">
+                        <tr class="ivu-table-row">
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>John Brown</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>18</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>America</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>New York</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>New York No. 1 Lake Park</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>100000</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <div>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>View</span>
+                                        </button>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>Edit</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!---->
+                        <tr class="ivu-table-row">
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Jim Green</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>24</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>America</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Washington, D.C.</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Washington, D.C. No. 1 Lake Park</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>100000</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <div>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>View</span>
+                                        </button>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>Edit</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!---->
+                        <tr class="ivu-table-row">
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Joe Black</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>30</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Australian</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Sydney</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Sydney No. 1 Lake Park</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>100000</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <div>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>View</span>
+                                        </button>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>Edit</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!---->
+                        <tr class="ivu-table-row">
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Jon Snow</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>26</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Canada</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Ottawa</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>Ottawa No. 2 Lake Park</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="">
+                                <div class="ivu-table-cell">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <span>100000</span>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </td>
+                            <td class="ivu-table-hidden">
+                                <div class="ivu-table-cell ivu-table-hidden">
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <!---->
+                                    <div>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>View</span>
+                                        </button>
+                                        <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                            <!---->
+                                            <!---->
+                                            <span>Edit</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!---->
+                    </tbody>
+                </table>
+            </div>
+            <div class="ivu-table-tip" style="display: none;">
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td style="width: 821px;">
+                                <span>暂无筛选结果</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ivu-table-fixed" style="width: 100px;">
+                <div class="ivu-table-fixed-header">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 100px;">
+                        <colgroup>
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <col width="120">
+                            <!---->
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Name</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Age</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Province</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">City</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Address</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Postcode</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Action</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <!---->
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="ivu-table-fixed-body">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 100px;">
+                        <colgroup>
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <col width="120">
+                        </colgroup>
+                        <tbody class="ivu-table-tbody">
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>John Brown</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>18</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>America</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>New York</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>New York No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Jim Green</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>24</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>America</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Washington, D.C.</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Washington, D.C. No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Joe Black</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>30</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Australian</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Sydney</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Sydney No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Jon Snow</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>26</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Canada</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Ottawa</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Ottawa No. 2 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="ivu-table-fixed-right" style="width: 120px; right: 0px;">
+                <div class="ivu-table-fixed-header">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 120px; right: 0px;">
+                        <colgroup>
+                            <col width="120">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <!---->
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Action</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Name</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Age</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Province</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">City</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Address</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <th class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <span class="">Postcode</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </th>
+                                <!---->
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="ivu-table-fixed-body">
+                    <table cellspacing="0" cellpadding="0" border="0" style="width: 120px; right: 0px;">
+                        <colgroup>
+                            <col width="120">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                        </colgroup>
+                        <tbody class="ivu-table-tbody">
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>John Brown</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>18</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>America</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>New York</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>New York No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Jim Green</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>24</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>America</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Washington, D.C.</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Washington, D.C. No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Joe Black</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>30</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Australian</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Sydney</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Sydney No. 1 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                            <tr class="ivu-table-row">
+                                <td class="">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>View</span>
+                                            </button>
+                                            <button type="button" class="ivu-btn ivu-btn-text ivu-btn-small">
+                                                <!---->
+                                                <!---->
+                                                <span>Edit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Jon Snow</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>26</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Canada</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Ottawa</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>Ottawa No. 2 Lake Park</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                                <td class="ivu-table-hidden">
+                                    <div class="ivu-table-cell">
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <span>100000</span>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </td>
+                            </tr>
+                            <!---->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="ivu-table-fixed-right-header" style="width: 0px; height: 41px;"></div>
+            <!---->
+        </div>
+        <!---->
+        <object tabindex="-1" type="text/html" data="about:blank" style="display: block; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none; padding: 0px; margin: 0px; opacity: 0; z-index: -1000; pointer-events: none;"></object>
     </div>
 </div>
 

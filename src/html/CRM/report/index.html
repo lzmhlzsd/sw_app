@@ -14,12 +14,13 @@
 
 <body>
 <!--end:header-->
+<link rel="stylesheet" type="text/css" href="./../../../css/fixedTable.css">
     <style>
     </style>
     <div>
         <div class="weui-tab">
             <div class="weui-navbar">
-                <a class="weui-navbar__item" href="#tab1">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
                     目标管理
                     <div class="weui-navbar__item-line"></div>
                 </a>
@@ -27,7 +28,7 @@
                     运营指标
                     <div class="weui-navbar__item-line"></div>
                 </a>
-                <a class="weui-navbar__item  weui-bar__item--on" href="#tab3">
+                <a class="weui-navbar__item" href="#tab3">
                     自定义报表
                     <div class="weui-navbar__item-line"></div>
                 </a>
@@ -37,7 +38,8 @@
                 </a>
             </div>
             <div class="weui-tab__bd">
-                <div id="tab1" class="weui-tab__bd-item ">
+                <!-- 目标管理 -->
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
                     <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
                         <div class="f-14">
                             <span data-key="start_date1">0000-00-00</span>至
@@ -149,14 +151,14 @@
                             <div>
                                 <div class="title">回访到店率</div>
                                 <div class="value">
-                                    <i class="iconfont icon-renminbi"></i>
                                     <span data-key="birthday_rvisit_ratio">0%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <!-- 运营指标 -->
+                <div id="tab2" class="weui-tab__bd-item">
                     <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
                         <div class="f-14">
                             <span data-key="start_date2">0000-00-00</span>至
@@ -197,23 +199,189 @@
                             <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
                         </div>
                     </div>
+                    <div class="container-body pt-15 pr-10 pb-10 pl-10">
+                        <div id="gbt8"></div>
+                    </div>
                     <div class="container-body p-10">
-                        <div>
-                            <div>会员等级</div>
-                            <div></div>
-                        </div>
-                        <div>
+                        <div class="pb-10 label">会员等级</div>
+                        <div class="flex flex-between mb-5">
                             <div>总金额</div>
-                            <div><i class="iconfont icon-renminbi"></i>199,999</div>
+                            <div><i class="iconfont icon-renminbi"></i><span data-key="member_level_amount">0</span></div>
                         </div>
                         <div id="table1"></div>
                     </div>
+                    <div class="container-body p-10">
+                        <div class="pb-10 label">生命周期</div>
+                        <div class="flex flex-between  mb-5">
+                            <div>总金额</div>
+                            <div><i class="iconfont icon-renminbi"></i><span data-key="life_cycle_amount">0</span></div>
+                        </div>
+                        <div id="table2"></div>
+                    </div>
+                    <div class="container-body p-10">
+                        <div class="pb-10 label">新老会员</div>
+                        <div class="flex flex-between mb-5">
+                            <div>总金额</div>
+                            <div><i class="iconfont icon-renminbi"></i><span data-key="new_old_member_amount">0</span></div>
+                        </div>
+                        <div id="table3"></div>
+                    </div>
+                    <div class="container-body p-10 mb-10">
+                        <div class="pb-10 label">会员及非会员</div>
+                        <div class="flex flex-between mb-5">
+                            <div>总金额</div>
+                            <div><i class="iconfont icon-renminbi"></i><span data-key="member_unmember_amount">0</span></div>
+                        </div>
+                        <div id="table4"></div>
+                    </div>
                 </div>
+                <!-- 自定义报表 -->
                 <div id="tab3" class="weui-tab__bd-item">
-                    自定义报表
+                    <div class="flex flex-justify-center pt-10 pr-10 pl-10">
+                        <div class="flex flex-align-center pr-10 pl-10">
+                            <div class="f-14 mr-5">纵轴</div>
+                            <div class="sw-select" style="width: 120px;">
+                                <input id="xaxis" type="text" value="">
+                                <div>
+                                    <i class="iconfont icon-shangsanjiao"></i>
+                                    <i class="iconfont icon-xiasanjiao"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-align-center pr-10 pl-10">
+                            <div class="f-14 mr-5">横轴</div>
+                            <div class="sw-select" style="width: 120px;">
+                                <input id="yaxis" type="text" value="">
+                                <div>
+                                    <i class="iconfont icon-shangsanjiao"></i>
+                                    <i class="iconfont icon-xiasanjiao"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-body p-10 mb-10">
+                        <div id="table5"></div>
+                    </div>
                 </div>
+                <!-- 活动分析 -->
                 <div id="tab4" class="weui-tab__bd-item">
-                    活动分析
+                    <div class="container-body p-10 mb-10">
+                        <div class="flex flex-align-center mb-10">
+                            <div class="f-14" style="width: 60px;">优惠券</div>
+                            <div class="sw-select" style="width: 120px;">
+                                <input id="coupon" type="text" value="">
+                                <div>
+                                    <i class="iconfont icon-shangsanjiao"></i>
+                                    <i class="iconfont icon-xiasanjiao"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-align-center mb-10">
+                            <div class="f-14" style="width: 60px;">时间</div>
+                            <div>
+                                <input class="weui-input date-sinput" id="date5" type="text">
+                                <span class="f-14 ml-5 mr-5">至</span>
+                                <input class="weui-input date-sinput" id="date6" type="text">
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">推送数量</div>
+                                <div class="value" data-key="ts_count">0</div>
+                            </div>
+                            <div>
+                                <div class="title">领取数量</div>
+                                <div class="value" data-key="lq_count">0</div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">核销数量</div>
+                                <div class="value" data-key="hx_count">0</div>
+                            </div>
+                            <div>
+                                <div class="title">核销率</div>
+                                <div class="value">
+                                    <i class="iconfont icon-renminbi"></i>
+                                    <span data-key="hx_ratio">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">券收益占活动比例</div>
+                                <div class="value">
+                                    <span data-key="qsy_ratio">0%</span>
+                                </div>
+                            </div>
+                            <div class="t-center">
+                                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 30px;">未消费会员</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-body p-10 mb-10">
+                        <div class="flex flex-align-center mb-10">
+                            <div class="f-14" style="width: 60px;">促销活动</div>
+                            <div class="sw-select" style="width: 120px;">
+                                <input id="sales" type="text" value="">
+                                <div>
+                                    <i class="iconfont icon-shangsanjiao"></i>
+                                    <i class="iconfont icon-xiasanjiao"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">金额</div>
+                                <div class="value" data-key="hd_amount">0</div>
+                            </div>
+                            <div>
+                                <div class="title">折扣</div>
+                                <div class="value" data-key="hd_sales">0</div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">占比</div>
+                                <div class="value">
+                                    <span data-key="hd_ratio">0%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="title">同比</div>
+                                <div class="value">
+                                    <span data-key="hd_ratio_t">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">单数</div>
+                                <div class="value" data-key="list_count">0</div>
+                            </div>
+                            <div>
+                                <div class="title">单数同比</div>
+                                <div class="value">
+                                    <span data-key="list_ratio_t">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t-table">
+                            <div>
+                                <div class="title">客单价</div>
+                                <div class="value">
+                                    <i class="iconfont icon-renminbi"></i>
+                                    <span data-key="unit_price">0</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="title">客单价同比</div>
+                                <div class="value">
+                                    <span data-key="unit_price_ratio_t">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -231,9 +399,15 @@
 <!--end:script-->
 
 <script type="text/javascript" src="./../../../script/echarts.simple.min.js"></script>
+<script type="text/javascript" src="./../../../script/fixedTable.js"></script>
 <script>
     $( function () {
-        /* page1 */
+        $('.weui-navbar__item').on('click', function() {
+            console.log('weui-navbar__item')
+            setTimeout(() => {
+                $( ".fixed-table-box" ).fixedTable();
+            }, 50);
+        })
         var Mock = {
             count1: 134,
             total1: 360,
@@ -249,6 +423,23 @@
             birthday_total: 22890,
             birthday_rvisit_store_count: 65,
             birthday_rvisit_ratio: '19.6%',
+            member_level_amount: 20000,
+            life_cycle_amount: 38797,
+            new_old_member_amount: 34526,
+            member_unmember_amount: 98765,
+            ts_count: 100,
+            lq_count: 200,
+            hx_count: 300,
+            hx_ratio: '86.9%',
+            qsy_ratio: '36.9%',
+            hd_amount: 2983,
+            hd_sales: 0.95,
+            hd_ratio: '67.9%',
+            hd_ratio_t: '87.3%',
+            list_count: 9808,
+            list_ratio_t: '98.9%',
+            unit_price: 2930,
+            unit_price_ratio_t: '87.2%',
             member_level: [
                 { name: '粉丝', value: 100000 },
                 { name: '普卡', value: 350000 },
@@ -257,6 +448,7 @@
                 { name: '黑卡', value: 150000 }
             ]
         }
+        /* 目标管理 */
         var bar1 = $( '#bar1' ).bar( { height: 10, background: '#eeeeee' } )
         var bar2 = $( '#bar2' ).bar( { height: 10, background: '#eeeeee' } )
         var bar3 = $( '#bar3' ).bar( { height: 10, background: '#eeeeee' } )
@@ -358,10 +550,27 @@
             birthday_rvisit_count: Mock.birthday_rvisit_count,
             birthday_total: util.num2Money( Mock.birthday_total ),
             birthday_rvisit_store_count: Mock.birthday_rvisit_store_count,
-            birthday_rvisit_ratio: Mock.birthday_rvisit_ratio
+            birthday_rvisit_ratio: Mock.birthday_rvisit_ratio,
+            member_level_amount: util.num2Money(Mock.member_level_amount),
+            life_cycle_amount: util.num2Money(Mock.life_cycle_amount),
+            new_old_member_amount: util.num2Money(Mock.new_old_member_amount),
+            member_unmember_amount: util.num2Money(Mock.member_unmember_amount),
+            ts_count: Mock.ts_count,
+            lq_count: Mock.lq_count,
+            hx_count: Mock.hx_count,
+            hx_ratio: Mock.hx_ratio,
+            qsy_ratio: Mock.qsy_ratio,
+            hd_amount: Mock.hd_amount,
+            hd_sales: Mock.hd_sales,
+            hd_ratio: Mock.hd_ratio,
+            hd_ratio_t: Mock.hd_ratio_t,
+            list_count: Mock.list_count,
+            list_ratio_t: Mock.list_ratio_t,
+            unit_price: Mock.unit_price,
+            unit_price_ratio_t: Mock.unit_price_ratio_t,
         } )
 
-        /* page2 */
+        /* 运营指标 */
         //生成按钮组
         var gbt5 = $( '#gbt5' ).buttonTab( {
             width: 60,
@@ -391,6 +600,25 @@
             { id: 1, text: '体育西店' },
             { id: 2, text: '林和西店' }
         ] )
+
+        var gbt8 = $( '#gbt8' ).buttonTab( {
+            buttons: [],
+            onchange: function ( e ) {
+                //模拟表格加载新数据，总金额表格为例
+                table1.setData([
+                    { filed0: 'test' + e, filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+                ])
+                
+            }
+        } )
+        gbt8.loadData( [
+            { id: 0, text: '全部' },
+            { id: 1, text: '00年代' },
+            { id: 2, text: '95年代' },
+            { id: 3, text: '90年代' },
+            { id: 4, text: '85年代' },
+            { id: 5, text: '80年代及以上' }
+        ] ).setValue(0)
         $( "#date3" ).calendar( {
             dateFormat: 'yyyy-mm-dd',
             onChange: function ( p, values, displayValues ) {
@@ -419,33 +647,271 @@
             $( this ).parents( '.drop-search-content' ).hide()
         } )
 
-        $('#table1').table({
+        var table1 = $('#table1').swFixedTable({
             cols: [
-                { filed: 'filed0', width: '16%', title: '' },
-                { filed: 'filed1', width: '20%', format: function ( v ) { 
-                    return util.num2Money(v) 
+                { filed: 'filed0', width: 80, title: '' },
+                { filed: 'filed1', width: 100, format: function ( v ) { 
+                    return '<i class="iconfont icon-renminbi"></i>' + util.num2Money(v) 
                 }, title: '金额' },
-                { filed: 'filed2', width: '16%', format: function ( v ) {
+                { filed: 'filed2', width: 80, format: function ( v ) {
                     return v + '%'
                 },title: '占比' },
-                { filed: 'filed3', width: '16%', title: '单数' },
-                { filed: 'filed4', width: '16%', format: function ( v ) {
+                { filed: 'filed3', width: 80, title: '单数' },
+                { filed: 'filed4', width: 80, format: function ( v ) {
                     return util.num2Money( v )
                 },  title: '客单价' },
-                { filed: 'filed5', width: '16%', title: '客单件' }
+                { filed: 'filed5', width: 80, title: '客单件' }
             ],
             data: [
                 { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
-                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
-                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
-                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
-                { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+                { filed0: '银卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '金卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '黑卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
             ]
         })
-        /* page3 */
 
-        /* page4 */
+        $( '#table2' ).swFixedTable( {
+            cols: [
+                { filed: 'filed0', width: 80, title: '' },
+                {
+                    filed: 'filed1', width: 100, format: function ( v ) {
+                        return '<i class="iconfont icon-renminbi"></i>' + util.num2Money( v )
+                    }, title: '金额'
+                },
+                {
+                    filed: 'filed2', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '占比'
+                },
+                { filed: 'filed3', width: 80, title: '单数' },
+                {
+                    filed: 'filed4', width: 80, format: function ( v ) {
+                        return util.num2Money( v )
+                    }, title: '客单价'
+                },
+                { filed: 'filed5', width: 80, title: '客单件' }
+            ],
+            data: [
+                { filed0: '消费会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '忠诚会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '睡眠会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '消费转睡眠', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '忠诚转睡眠', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            ]
+        } )
 
+        $( '#table3' ).swFixedTable( {
+            cols: [
+                { filed: 'filed0', width: 80, title: '' },
+                {
+                    filed: 'filed1', width: 100, format: function ( v ) {
+                        return '<i class="iconfont icon-renminbi"></i>' + util.num2Money( v )
+                    }, title: '金额'
+                },
+                {
+                    filed: 'filed2', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '占比'
+                },
+                { filed: 'filed3', width: 80, title: '单数' },
+                {
+                    filed: 'filed4', width: 80, format: function ( v ) {
+                        return util.num2Money( v )
+                    }, title: '客单价'
+                },
+                { filed: 'filed5', width: 80, title: '客单件' }
+            ],
+            data: [
+                { filed0: '新会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '老会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            ]
+        } )
+
+        $( '#table4' ).swFixedTable( {
+            cols: [
+                { filed: 'filed0', width: 80, title: '' },
+                {
+                    filed: 'filed1', width: 100, format: function ( v ) {
+                        return '<i class="iconfont icon-renminbi"></i>' + util.num2Money( v )
+                    }, title: '金额'
+                },
+                {
+                    filed: 'filed2', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '占比'
+                },
+                { filed: 'filed3', width: 80, title: '单数' },
+                {
+                    filed: 'filed4', width: 80, format: function ( v ) {
+                        return util.num2Money( v )
+                    }, title: '客单价'
+                },
+                { filed: 'filed5', width: 80, title: '客单件' }
+            ],
+            data: [
+                { filed0: '会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+                { filed0: '非会员', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            ]
+        } )
+        /* 自定义报表 */
+        $( "#xaxis" ).select( {
+            title: "选择纵轴",
+            items: [
+                {
+                    title: "会员等级",
+                    value: 1
+                },
+                {
+                    title: "年代",
+                    value: 2
+                },
+                {
+                    title: "生命周期",
+                    value: 3
+                },
+                {
+                    title: "新老会员",
+                    value: 4
+                },
+                {
+                    title: "会员,非会员",
+                    value: 5
+                }
+            ],
+            onChange: function ( d ) {
+                console.log( this, d );
+            },
+            onClose: function ( d ) {
+                console.log( 'close' )
+            }
+        } );
+        $( "#yaxis" ).select( {
+            title: "选择横轴",
+            items: [
+                {
+                    title: "年代",
+                    value: 1
+                },
+                {
+                    title: "会员等级",
+                    value: 2
+                },
+                {
+                    title: "生命周期",
+                    value: 3
+                },
+                {
+                    title: "新老会员",
+                    value: 4
+                },
+                {
+                    title: "会员,非会员",
+                    value: 5
+                }
+            ],
+            onChange: function ( d ) {
+                console.log( this, d );
+            },
+            onClose: function ( d ) {
+                console.log( 'close' )
+            }
+        } );
+        $( '#table5' ).swFixedTable( {
+            cols: [
+                { filed: 'filed0', width: 80, title: '占比' },
+                {
+                    filed: 'filed1', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '00年代'
+                },
+                {
+                    filed: 'filed2', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '95年代'
+                },
+                {
+                    filed: 'filed3', width: 80, format: function ( v ) {
+                        return v + '%'
+                    }, title: '90年代'
+                },
+                {
+                    filed: 'filed4', width: 80, format: function ( v ) {
+                        return util.num2Money( v )
+                    }, title: '85年代'
+                },
+                {
+                    filed: 'filed5', width: 100, format: function ( v ) {
+                        return v + '%'
+                    }, title: '80年代及以上'
+                },
+            ],
+            data: [
+                { filed0: '普卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+                { filed0: '银卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+                { filed0: '金卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+                { filed0: '黑卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+                { filed0: '全部', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' }
+            ]
+        } )
+        /* 活动分析 */
+        $( "#coupon" ).select( {
+            title: "选择优惠券",
+            items: [
+                {
+                    title: "汇总",
+                    value: 1
+                },
+                {
+                    title: "618活动优惠券",
+                    value: 2
+                },
+                {
+                    title: "全场8折优惠券",
+                    value: 3
+                }
+            ],
+            onChange: function ( d ) {
+                console.log( this, d );
+            },
+            onClose: function ( d ) {
+                console.log( 'close' )
+            }
+        } );
+        $( "#sales" ).select( {
+            title: "选择促销活动",
+            items: [
+                {
+                    title: "汇总",
+                    value: 1
+                },
+                {
+                    title: "年中促销活动",
+                    value: 2
+                },
+                {
+                    title: "双11促销",
+                    value: 3
+                }
+            ],
+            onChange: function ( d ) {
+                console.log( this, d );
+            },
+            onClose: function ( d ) {
+                console.log( 'close' )
+            }
+        } );
+        $( "#date5" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
+        $( "#date6" ).calendar( {
+            dateFormat: 'yyyy-mm-dd',
+            onChange: function ( p, values, displayValues ) {
+                console.log( values, displayValues );
+            }
+        } );
         function drawPie( pdata ) {
             var data = pdata
             data_name = [];

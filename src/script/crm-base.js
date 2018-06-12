@@ -114,7 +114,9 @@ $( function () {
             this.$element.append( template( this.options.buttons ) )
 
             this.$element.find( '.btn-checker-item' ).css( {
-                'width': this.options.width + 'px',
+                //'width': this.options.width + 'px',
+                'min-width': '60px',
+                'padding': '0 5px',
                 'height': '26px',
                 'margin': '0 5px 5px 0',
                 'border': '1px solid #cdcdcd',
@@ -190,6 +192,7 @@ $( function () {
             this.options.buttons = data
             this.$element.empty()
             this.init()
+            return this
         }
     }
     $.fn.buttonTab = function ( options ) {
@@ -235,11 +238,11 @@ $( function () {
             html += `<tr>`
             for ( var j = 0; j < that.options.cols.length; j++ ) {
                 if ( typeof that.options.cols[j].format != 'undefined' ) {
-                    html += `<td>` + that.options.cols[j].format(data[i][that.options.cols[j].filed]) + `</td>`
-                } else { 
+                    html += `<td>` + that.options.cols[j].format( data[i][that.options.cols[j].filed] ) + `</td>`
+                } else {
                     html += `<td>` + data[i][that.options.cols[j].filed] + `</td>`
                 }
-                
+
             }
             html += `</tr>`
         }
@@ -262,6 +265,124 @@ $( function () {
         var table = new Table( this, options )
         table.init()
         return table
+    }
+} )( jQuery );
+
+// fixedTable
+; ( function ( $ ) {
+    var SwFixedTable = function ( ele, opt ) {
+        this.$element = ele
+        this.width = 0
+        this.defaults = {
+            // cols: [
+            //     { filed: 'filed0', width: 100, title: '' },
+            //     { filed: 'filed1', width: 100, format: function ( v ) { return v + '%' }, title: '金额' },
+            //     { filed: 'filed2', width: 100, title: '占比' },
+            //     { filed: 'filed3', width: 100, title: '单数' },
+            //     { filed: 'filed4', width: 100, title: '客单价' },
+            //     { filed: 'filed5', width: 100, title: '客单件' }
+            // ],
+            // data: [
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 },
+            //     { filed0: '普卡', filed1: 199999, filed2: '16.0', filed3: 352, filed4: 1999, filed5: 1.2 }
+            // ]
+            cols: [],
+            data: []
+        }
+        this.options = $.extend( {}, this.defaults, opt )
+    }
+    //表头
+    var fixed_table_header_wraper = function ( cols, that ) {
+        var html = `<div class="fixed-table_header-wraper">
+                        <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0" style="width: `+ that.width + `px;">
+                            <thead><tr>`
+        for ( var i = 0; i < cols.length; i++ ) {
+            if ( i == 0 ) {
+                html += `<th style="width:` + cols[i].width + `px;" data-fixed="true"><div class="table-cell">` + cols[i].title + `</div></th>`
+            } else {
+                html += `<th style="width:` + cols[i].width + `px;"><div class="table-cell">` + cols[i].title + `</div></th>`
+            }
+
+        }
+        html += '</tr></thead></table></div>'
+        return html
+    }
+    //表格内容
+    var fixed_table_body_wraper = function ( data, that ) {
+        var html = `<div class="fixed-table_body-wraper">
+                        <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0" style="width: `+ that.width + `px;">
+                            <tbody>`
+        for ( var i = 0; i < data.length; i++ ) {
+            html += `<tr>`
+            for ( var j = 0; j < that.options.cols.length; j++ ) {
+                if ( typeof that.options.cols[j].format != 'undefined' ) {
+                    html += `<td style="width:` + that.options.cols[j].width + `px;"><div class="table-cell">` + that.options.cols[j].format( data[i][that.options.cols[j].filed] ) + `</div></td>`
+                } else {
+                    html += `<td style="width:` + that.options.cols[j].width + `px;"><div class="table-cell">` + data[i][that.options.cols[j].filed] + `</div></td>`
+                }
+
+            }
+            html += `</tr>`
+        }
+        html += `</tbody></table></div>`
+        return html
+    }
+    //固定列
+    var fixed_table_fixed = function ( cols, data, that ) {
+        var html = `<div class="fixed-table_fixed fixed-table_fixed-left">
+                        <div class="fixed-table_header-wraper">
+                            <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                                <thead><tr>`
+        
+        html += `<th style="width:` + cols[0].width + `px;"><div class="table-cell">` + cols[0].title + `</div></th>`
+
+        html += `</tr></thead></table></div>`
+        html += `<div class="fixed-table_body-wraper">
+                    <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>`
+        for ( var i = 0; i < data.length; i++ ) {
+            html += `<tr>`
+            html += `<td style="width:` + that.options.cols[0].width + `px;"><div class="table-cell">` + data[i][that.options.cols[0].filed] + `</div></td>`
+            html += `</tr>`
+        }
+
+        html += `</tbody></table></div></div>`
+        return html
+    }
+
+
+
+    SwFixedTable.prototype = {
+        init: function () {
+            if ( this.options.cols.length == 0 ) {
+                console.error( 'the swfixedtable options cols is null' )
+                return
+            }
+            //计算总宽度
+            this.width = 0
+            for ( var k = 0; k < this.options.cols.length; k++ ) {
+                this.width += this.options.cols[k].width
+            }
+            this.$element.append( `<div class="fixed-table-box row-col-fixed">` + fixed_table_header_wraper( this.options.cols, this ) +
+                fixed_table_body_wraper( this.options.data, this ) +
+                fixed_table_fixed( this.options.cols, this.options.data, this ) + `</div>` )
+
+            $( ".fixed-table-box" ).fixedTable();
+        },
+        setData: function ( data ) {
+            this.$element.empty();
+            this.options.data = data;
+            this.init()
+        }
+    }
+
+    $.fn.swFixedTable = function ( options ) {
+        var swFixedTable = new SwFixedTable( this, options )
+        swFixedTable.init( 0 )
+        return swFixedTable
     }
 } )( jQuery );
 var util = {
