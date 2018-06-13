@@ -91,7 +91,7 @@ div {
 }
 
 .date-sinput {
-    width: 101px;
+    width: 90px;
     background-color: #fdfdfd;
     font-size: 12px;
     padding: 4px 8px;
@@ -99,6 +99,11 @@ div {
     height: 18px;
     border: 1px solid #cdcdcd;
     border-radius: 0;
+}
+
+.date-rinput {
+    width: 75px;
+    text-align: center;
 }
 
 .t-table {
@@ -146,6 +151,31 @@ div {
 .dash-line {
     border-top: 1px dashed #e8e8e8;
     margin: 10px 0;
+}
+.filter-dialog {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+}
+.filter-dialog .filter-dialog-body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 76px;
+    left: 0;
+    padding: 15px;
+    overflow-y: auto;
+}
+.filter-dialog .filter-dialog-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+.filter-dialog .filter-dialog-footer .weui-btn {
+    margin: 0 20px;
 }
 /* weui css */
 .weui-grids.no-border:before {

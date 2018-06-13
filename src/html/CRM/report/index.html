@@ -400,6 +400,7 @@
 
 <script type="text/javascript" src="./../../../script/echarts.simple.min.js"></script>
 <script type="text/javascript" src="./../../../script/fixedTable.js"></script>
+
 <script>
     $( function () {
         $('.weui-navbar__item').on('click', function() {
@@ -915,7 +916,7 @@
         function drawPie( pdata ) {
             var data = pdata
             data_name = [];
-            for ( var n in data ) {
+            for ( var n=0; n < data.length; n++ ) {
                 data[n].name = data[n].name + ' ' + util.num2Money( data[n].value );
                 data_name.push( data[n].name )
             }

@@ -27,17 +27,17 @@ $( function () {
         $( this ).parents( '.drop-search-content' ).hide()
     } )
 
-    $( '.cancle-modal' ).on( 'click', function () {
-        var modal = $( this ).data( 'modal' )
-        util.hideModal(modal)
-    } )
+    // $( '.cancle-modal' ).on( 'click', function () {
+    //     var modal = $( this ).data( 'modal' )
+    //     util.hideModal(modal)
+    // } )
 
-    var canScroll = false
-    $( ".modal" ).on( 'touchmove', function ( e ) {
-        if ( !canScroll ) {
-            e.preventDefault()
-        }
-    } )
+    // var canScroll = false
+    // $( ".modal" ).on( 'touchmove', function ( e ) {
+    //     if ( !canScroll ) {
+    //         e.preventDefault()
+    //     }
+    // } )
 } );
 
 // 进度条
@@ -492,7 +492,8 @@ var util = {
     },
     //数字转千分位
     num2Money: function ( str ) {
-        if ( !str ) {
+        //console.log('num2Money params is: %s', str)
+        if ( typeof str != 'undefined' && new Number( str ) instanceof Number  ) {
             return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
                 return s + ','
             } )

@@ -1,0 +1,228 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>活动分析</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+    </style>
+    <div>
+        <div class="container-body p-10 mb-10">
+            <div class="flex flex-align-center mb-10">
+                <div class="label" style="width: 70px;">优惠券</div>
+                <div class="sw-select" style="width: 108px;">
+                    <input id="coupon" type="text" value="">
+                    <div>
+                        <i class="iconfont icon-shangsanjiao"></i>
+                        <i class="iconfont icon-xiasanjiao"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-align-center mb-10">
+                <div class="label" style="width: 70px;">时间</div>
+                <div>
+                    <input class="weui-input date-sinput" id="date5" type="text">
+                    <span class="f-14 ml-5 mr-5">至</span>
+                    <input class="weui-input date-sinput" id="date6" type="text">
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">推送数量</div>
+                    <div class="value" data-key="ts_count">0</div>
+                </div>
+                <div>
+                    <div class="title">领取数量</div>
+                    <div class="value" data-key="lq_count">0</div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">核销数量</div>
+                    <div class="value" data-key="hx_count">0</div>
+                </div>
+                <div>
+                    <div class="title">核销率</div>
+                    <div class="value">
+                        <i class="iconfont icon-renminbi"></i>
+                        <span data-key="hx_ratio">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">券收益占活动比例</div>
+                    <div class="value">
+                        <span data-key="qsy_ratio">0%</span>
+                    </div>
+                </div>
+                <div class="t-center">
+                    <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 30px;">未消费会员</a>
+                </div>
+            </div>
+        </div>
+        <div class="container-body p-10 mb-10">
+            <div class="flex flex-align-center mb-10">
+                <div class="label" style="width: 70px;">促销活动</div>
+                <div class="sw-select" style="width: 120px;">
+                    <input id="sales" type="text" value="">
+                    <div>
+                        <i class="iconfont icon-shangsanjiao"></i>
+                        <i class="iconfont icon-xiasanjiao"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">金额</div>
+                    <div class="value" data-key="hd_amount">0</div>
+                </div>
+                <div>
+                    <div class="title">折扣</div>
+                    <div class="value" data-key="hd_sales">0</div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">占比</div>
+                    <div class="value">
+                        <span data-key="hd_ratio">0%</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="title">同比</div>
+                    <div class="value">
+                        <span data-key="hd_ratio_t">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">单数</div>
+                    <div class="value" data-key="list_count">0</div>
+                </div>
+                <div>
+                    <div class="title">单数同比</div>
+                    <div class="value">
+                        <span data-key="list_ratio_t">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="t-table">
+                <div>
+                    <div class="title">客单价</div>
+                    <div class="value">
+                        <i class="iconfont icon-renminbi"></i>
+                        <span data-key="unit_price">0</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="title">客单价同比</div>
+                    <div class="value">
+                        <span data-key="unit_price_ratio_t">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var Mock = {
+        ts_count: 100,
+        lq_count: 200,
+        hx_count: 300,
+        hx_ratio: '86.9%',
+        qsy_ratio: '36.9%',
+        hd_amount: 2983,
+        hd_sales: 0.95,
+        hd_ratio: '67.9%',
+        hd_ratio_t: '87.3%',
+        list_count: 9808,
+        list_ratio_t: '98.9%',
+        unit_price: 2930,
+        unit_price_ratio_t: '87.2%'
+    }
+
+    util.render( {
+        ts_count: Mock.ts_count,
+        lq_count: Mock.lq_count,
+        hx_count: Mock.hx_count,
+        hx_ratio: Mock.hx_ratio,
+        qsy_ratio: Mock.qsy_ratio,
+        hd_amount: Mock.hd_amount,
+        hd_sales: Mock.hd_sales,
+        hd_ratio: Mock.hd_ratio,
+        hd_ratio_t: Mock.hd_ratio_t,
+        list_count: Mock.list_count,
+        list_ratio_t: Mock.list_ratio_t,
+        unit_price: Mock.unit_price,
+        unit_price_ratio_t: Mock.unit_price_ratio_t
+    } )
+
+    $( "#coupon" ).select( {
+        title: "选择优惠券",
+        items: [
+            { title: "汇总", value: 1 },
+            { title: "618活动优惠券", value: 2 },
+            { title: "全场8折优惠券", value: 3 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
+    $( "#sales" ).select( {
+        title: "选择促销活动",
+        items: [
+            { title: "汇总", value: 1 },
+            { title: "年中促销活动", value: 2 },
+            { title: "双11促销", value: 3 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
+    $( "#date5" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+    $( "#date6" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

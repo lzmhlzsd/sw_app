@@ -1,0 +1,137 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>查询条件</title>
+</head>
+
+<body>
+    <!--end:header-->
+
+    <style>
+    </style>
+    <div class="filter-dialog" style="height: 100%;">
+        <div class="filter-dialog-body">
+            <div class="label mb-10">性别</div>
+            <div id="gbt1"></div>
+            <div class="dash-line"></div>
+            <div class="label mb-10">会员等级</div>
+            <div id="gbt2"></div>
+            <div class="dash-line"></div>
+            <div class="label mb-10">R最近消费时间</div>
+            <div id="gbt3"></div>
+            <div class="dash-line"></div>
+            <div class="label mb-10">F消费频次</div>
+            <div id="gbt4"></div>
+            <div class="dash-line"></div>
+            <div class="label mb-10">M消费金额</div>
+            <div id="gbt5"></div>
+            <div class="dash-line"></div>
+        </div>
+        <div class="filter-dialog-footer">
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary ok-modal" style="margin-top: 0;">确定</a>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-modal" data-modal="filter-box" style="margin-top: 0;">取消</a>
+        </div>
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var gbt1 = $( '#gbt1' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '男' },
+            { id: 1, text: '女' },
+            { id: 2, text: '未知' }
+        ],
+        onchange: function ( e ) {
+            console.log( e )
+        }
+    } ).setValue( 0 )
+
+    var gbt2 = $( '#gbt2' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '普卡' },
+            { id: 1, text: '银卡' },
+            { id: 2, text: '金卡' }
+        ],
+        onchange: function ( e ) {
+            console.log( e )
+        }
+    } ).setValue( 0 )
+
+    var gbt3 = $( '#gbt3' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '0' },
+            { id: 1, text: '1-2' },
+            { id: 2, text: '3-3' },
+            { id: 3, text: '4-6' },
+            { id: 4, text: '7-11' },
+            { id: 5, text: '>=12' }
+        ],
+        onchange: function ( e ) {
+            console.log( e )
+        }
+    } ).setValue( 0 )
+
+    var gbt4 = $( '#gbt4' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '0' },
+            { id: 1, text: '1-1' },
+            { id: 2, text: '2-2' },
+            { id: 3, text: '3-3' },
+            { id: 4, text: '4-4' },
+            { id: 5, text: '>=5' }
+        ],
+        onchange: function ( e ) {
+            console.log( e )
+        }
+    } ).setValue( 0 )
+
+    var gbt5 = $( '#gbt5' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '<600' },
+            { id: 1, text: '600-1499' },
+            { id: 2, text: '1500-2900' },
+            { id: 3, text: '3000-4999' },
+            { id: 4, text: '5000-5999' },
+            { id: 5, text: '>=6000' }
+        ],
+        onchange: function ( e ) {
+            console.log( e )
+        }
+    } ).setValue( 0 )
+
+    $( '.ok-modal' ).on( 'click', function () {
+
+    } )
+
+    $( '.cancel-modal' ).on( 'click', function () {
+
+    } )
+</script>
+
+<!--start:footer-->
+
+</html>
+<!--end:footer-->

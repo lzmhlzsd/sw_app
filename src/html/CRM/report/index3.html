@@ -1,0 +1,133 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>自定义报表</title>
+</head>
+
+<body>
+<!--end:header-->
+    <link rel="stylesheet" type="text/css" href="./../../../css/fixedTable.css">
+    <style>
+    </style>
+    <div>
+        <div class="flex flex-justify-center pt-10 pr-10 pl-10">
+            <div class="flex flex-align-center pr-10 pl-10">
+                <div class="f-14 mr-5">纵轴</div>
+                <div class="sw-select" style="width: 120px;">
+                    <input id="xaxis" type="text" value="">
+                    <div>
+                        <i class="iconfont icon-shangsanjiao"></i>
+                        <i class="iconfont icon-xiasanjiao"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-align-center pr-10 pl-10">
+                <div class="f-14 mr-5">横轴</div>
+                <div class="sw-select" style="width: 120px;">
+                    <input id="yaxis" type="text" value="">
+                    <div>
+                        <i class="iconfont icon-shangsanjiao"></i>
+                        <i class="iconfont icon-xiasanjiao"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-body p-10 mb-10">
+            <div id="table"></div>
+        </div>
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+<script type="text/javascript" src="./../../../script/fixedTable.js"></script>
+<script>
+    $( "#xaxis" ).select( {
+        title: "选择纵轴",
+        items: [
+            { title: "会员等级", value: 1 },
+            { title: "年代", value: 2 },
+            { title: "生命周期", value: 3 },
+            { title: "新老会员", value: 4 },
+            { title: "会员,非会员", value: 5 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
+    $( "#yaxis" ).select( {
+        title: "选择横轴",
+        items: [
+            { title: "年代", value: 1 },
+            { title: "会员等级", value: 2 },
+            { title: "生命周期", value: 3 },
+            { title: "新老会员", value: 4 },
+            { title: "会员,非会员", value: 5 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
+    var table = $( '#table' ).swFixedTable( {
+        cols: [
+            { filed: 'filed0', width: 80, title: '占比' },
+            {
+                filed: 'filed1', width: 80, format: function ( v ) {
+                    return v + '%'
+                }, title: '00年代'
+            },
+            {
+                filed: 'filed2', width: 80, format: function ( v ) {
+                    return v + '%'
+                }, title: '95年代'
+            },
+            {
+                filed: 'filed3', width: 80, format: function ( v ) {
+                    return v + '%'
+                }, title: '90年代'
+            },
+            {
+                filed: 'filed4', width: 80, format: function ( v ) {
+                    return util.num2Money( v )
+                }, title: '85年代'
+            },
+            {
+                filed: 'filed5', width: 100, format: function ( v ) {
+                    return v + '%'
+                }, title: '80年代及以上'
+            },
+        ],
+        data: [
+            { filed0: '普卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+            { filed0: '银卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+            { filed0: '金卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+            { filed0: '黑卡', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' },
+            { filed0: '全部', filed1: '16.3', filed2: '16.0', filed3: '16.0', filed4: '16.0', filed5: '16.0' }
+        ]
+    } )
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

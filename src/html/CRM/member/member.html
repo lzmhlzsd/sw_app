@@ -12,8 +12,8 @@
     <title>会员列表</title>
 </head>
 
-<body >
-    <!--end:header-->
+<body>
+<!--end:header-->
 
     <style>
         .mem-birthday {
@@ -49,22 +49,6 @@
             right: 0;
             background: #efeff5;
             z-index: 9999;
-        }
-        .filter-box {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            /* width: 250px; */
-            background-color: #fff;
-            z-index: 99999;
-        }
-        .filter-box .btns {
-            height: 29px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
         }
     </style>
     <div class="fixed-header">
@@ -111,37 +95,6 @@
     <div class="weui-loadmore">
         <i class="weui-loading"></i>
         <span class="weui-loadmore__tips">正在加载</span>
-    </div>
-    <div class="modal" data-modal="filter-box"></div>
-    <div class="filter-box modal-content" data-modalcontent="filter-box">
-        <div class="p-r" style="height: 100%;">
-            <div class="p-15" style="overflow: auto;
-                position: absolute;
-                bottom: 60px;
-                top: 0;
-                left: 0;
-                right: 0;">
-                <div class="label mb-10">性别</div>
-                <div id="gbt1"></div>
-                <div class="dash-line"></div>
-                <div class="label mb-10">会员等级</div>
-                <div id="gbt2"></div>
-                <div class="dash-line"></div>
-                <div class="label mb-10">R最近消费时间</div>
-                <div id="gbt3"></div>
-                <div class="dash-line"></div>
-                <div class="label mb-10">F消费频次</div>
-                <div id="gbt4"></div>
-                <div class="dash-line"></div>
-                <div class="label mb-10">M消费金额</div>
-                <div id="gbt5"></div>
-                <div class="dash-line"></div>
-            </div>
-            <div class="p-a btns mb-15">
-                <a href="javascript:;" id="search" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
-                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-modal" data-modal="filter-box" style="margin-top: 0;">取消</a>
-            </div>
-        </div>
     </div>
     <!-- 会员模版 -->
     <script id="tp-card" type="text/html">  
@@ -334,83 +287,15 @@
             onchange: function ( e ) {
                 console.log( e )
                 // 模拟弹出模态框
-                util.showModal( 'filter-box' )
+
             }
         } )
 
         //filter group btns
-        var gbt1 = $( '#gbt1' ).buttonTab( {
-            width: 50,
-            buttons: [
-                { id: 0, text: '男' },
-                { id: 1, text: '女' },
-                { id: 2, text: '未知' }
-            ],
-            onchange: function ( e ) {
-                console.log( e )
-            }
-        } ).setValue( 0 )
-
-        var gbt2 = $( '#gbt2' ).buttonTab( {
-            width: 50,
-            buttons: [
-                { id: 0, text: '普卡' },
-                { id: 1, text: '银卡' },
-                { id: 2, text: '金卡' }
-            ],
-            onchange: function ( e ) {
-                console.log( e )
-            }
-        } ).setValue( 0 )
-
-        var gbt3 = $( '#gbt3' ).buttonTab( {
-            width: 50,
-            buttons: [
-                { id: 0, text: '0' },
-                { id: 1, text: '1-2' },
-                { id: 2, text: '3-3' },
-                { id: 3, text: '4-6' },
-                { id: 4, text: '7-11' },
-                { id: 5, text: '>=12' }
-            ],
-            onchange: function ( e ) {
-                console.log( e )
-            }
-        } ).setValue( 0 )
-
-        var gbt4 = $( '#gbt4' ).buttonTab( {
-            width: 50,
-            buttons: [
-                { id: 0, text: '0' },
-                { id: 1, text: '1-1' },
-                { id: 2, text: '2-2' },
-                { id: 3, text: '3-3' },
-                { id: 4, text: '4-4' },
-                { id: 5, text: '>=5' }
-            ],
-            onchange: function ( e ) {
-                console.log( e )
-            }
-        } ).setValue( 0 )
-
-        var gbt5 = $( '#gbt5' ).buttonTab( {
-            width: 50,
-            buttons: [
-                { id: 0, text: '<600' },
-                { id: 1, text: '600-1499' },
-                { id: 2, text: '1500-2900' },
-                { id: 3, text: '3000-4999' },
-                { id: 4, text: '5000-5999' },
-                { id: 5, text: '>=6000' }
-            ],
-            onchange: function ( e ) {
-                console.log( e )
-            }
-        } ).setValue( 0 )
+        
 
 
         $( document.body ).infinite().on( "infinite", function () {
-            return
             if ( loading ) return;
             loading = true;
             setTimeout( function () {
@@ -435,15 +320,11 @@
             //alert('查询')
             util.hideModal( 'filter-box' )
         })
-        // 弹出model: filter-box 为data-modal的属性值 
-        
-
     } )
 
     
 </script>
 
 <!--start:footer-->
-
 </html>
 <!--end:footer-->
