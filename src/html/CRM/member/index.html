@@ -270,11 +270,15 @@
     </div>
     <!-- 生日会员模版 -->
     <script id="tp-bmem" type="text/html">  
+        {{if list.length > 0}}
         {{each list as imgs index}}  
         <div class="flex-1 t-center">
             <img class="mem-birthday" src="{{imgs.img}}" alt="">
         </div>
         {{/each}}  
+        {{else}}
+        <div class="t-center pt-15" style="width: 100%;height: 77px;color: #888;">本周无生日会员</div>
+        {{/if}}
     </script>
 
     <!-- 新消费顾客模版 -->

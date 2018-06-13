@@ -1,0 +1,107 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>会员</title>
+</head>
+
+<body>
+    <!--end:header-->
+
+    <style>
+
+    </style>
+    <div>
+        <div class="flex">
+            <div>
+                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
+            </div>
+            <div class="flex-1">
+                <div class="flex">
+                    <div class="flex-1">
+                        <div></div>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 会员模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex flex-align-center">
+            <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
+            <div class="flex-1 f-14">
+                <div>
+                    {{m.name}} 
+                    <span class="txt-d"> | </span>
+                    <span>{{m.type}}</span>
+                    <span class="txt-d"> | </span> 
+                    <i class="iconfont icon-shengri"></i> 
+                    <span>{{m.birthday}}</span>
+                    <!-- #ff7579 #30aee8-->
+                    <span class="p-r" style="top: -2px;">
+                        <span class="p-r" style="display: inline-block; top: 5px;">
+                            <i class="iconfont icon-message f-24" style="color: #bbb;"></i> 
+                            <span class="p-a f-12" style="color: #fff;bottom: 8px;
+                            display: block;
+                            height: 20px;
+                            width: 100%;
+                            text-align: center;">{{m.fw}}</span>
+                        </span>
+                        <span class="p-r" style="display: inline-block; top: 2px;">
+                            <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i> 
+                            <span class="p-a f-12" style="color: #fff;display: block;
+                            bottom: 4px;
+                            height: 20px;
+                            width: 100%;
+                            text-align: center;">{{m.xf}}</span>
+                        </span>
+                    </span>
+                </div>
+                <div>
+                    <i class="iconfont icon-shouji"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                </div>
+                <div class="flex flex-between">
+                    <div class="bqs">
+                        {{each m.labels as lb index}}  
+                        <span class="weui-badge c-badge">{{lb}}</span>
+                        {{/each}}
+                    </div>
+                    <div>
+                        <i class="iconfont icon-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+
+</script>
+
+<!--start:footer-->
+
+</html>
+<!--end:footer-->
