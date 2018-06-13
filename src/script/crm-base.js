@@ -492,9 +492,15 @@ var util = {
     },
     //数字转千分位
     num2Money: function ( str ) {
-        return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
-            return s + ','
-        } )
+        if ( !str ) {
+            return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
+                return s + ','
+            } )
+        } else {
+            console.error('num2Money error, this params str is undefined')
+            return 'undefined'
+        }
+        
     },
     toUtf8: function ( str ) {
         var out, i, len, c;
