@@ -26,6 +26,18 @@ $( function () {
     $( '.cancle-search' ).on( 'click', function () {
         $( this ).parents( '.drop-search-content' ).hide()
     } )
+
+    $( '.cancle-modal' ).on( 'click', function () {
+        var modal = $( this ).data( 'modal' )
+        util.hideModal(modal)
+    } )
+
+    var canScroll = false
+    $( ".modal" ).on( 'touchmove', function ( e ) {
+        if ( !canScroll ) {
+            e.preventDefault()
+        }
+    } )
 } );
 
 // 进度条
@@ -336,7 +348,7 @@ $( function () {
                         <div class="fixed-table_header-wraper">
                             <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
                                 <thead><tr>`
-        
+
         html += `<th style="width:` + cols[0].width + `px;"><div class="table-cell">` + cols[0].title + `</div></th>`
 
         html += `</tr></thead></table></div>`
@@ -385,6 +397,57 @@ $( function () {
         return swFixedTable
     }
 } )( jQuery );
+
+// switch
+; ( function ( $ ) {
+    var SwitchBtn = function ( ele, opt ) {
+        this.$element = ele
+        this.width = 0
+        this.defaults = {
+            trueValue: 1,
+            falseValue: 0,
+            openText: '开启',
+            closeText: '关闭'
+        }
+        this.options = $.extend( {}, this.defaults, opt )
+    }
+    var template = function ( options ) {
+        return util.format( `<span class="sw-switch sw-switch-large sw-switch-checked">
+                                <input type="hidden" value="true">
+                                <span class="sw-switch-inner">
+                                    <span>{openText}</span>
+                                </span>
+                            </span>`, options )
+    }
+
+    SwitchBtn.prototype = {
+        init: function () {
+            var self = this
+            this.$element.append( template( this.options ) )
+            this.$element.find( '.sw-switch' ).on( 'click', function () {
+                if ( $( this ).hasClass( 'sw-switch-checked' ) ) {
+                    $( this ).removeClass( 'sw-switch-checked' )
+                    $( this ).find( 'input' ).val( self.options.falseValue )
+                    $( this ).find( '.sw-switch-inner span' ).html( self.options.closeText )
+                } else {
+                    $( this ).addClass( 'sw-switch-checked' )
+                    $( this ).find( 'input' ).val( self.options.trueValue )
+                    $( this ).find( '.sw-switch-inner span' ).html( self.options.openText )
+                }
+                if ( self.options.onchange ) {
+                    self.options.onchange( $( this ).find( 'input' ).val() )
+                }
+            })
+        }
+    }
+
+    $.fn.switchBtn = function ( options ) {
+        var switchBtn = new SwitchBtn( this, options )
+        switchBtn.init()
+        return switchBtn
+    }
+} )( jQuery );
+
 var util = {
     //数据渲染
     render: function ( obj ) {
@@ -411,6 +474,14 @@ var util = {
     templateRenderInsertBefore: function ( id, data, ele ) {
         var html = template( id, data );
         $( html ).insertBefore( ele );
+    },
+    showModal: function (modal) {
+        $( '[data-modal="' + modal + '"]' ).addClass( 'open' )
+        $( '[data-modalcontent="' + modal + '"]' ).addClass( 'open' )
+    },
+    hideModal: function ( modal ) {
+        $( '[data-modal="' + modal + '"]' ).removeClass( 'open' )
+        $( '[data-modalcontent="' + modal + '"]' ).removeClass( 'open' )
     },
     //字符串格式化
     format: function ( str, param ) {
