@@ -28,17 +28,35 @@
             <div class="label mb-10">R最近消费时间</div>
             <div id="gbt3"></div>
             <div class="dash-line"></div>
-            <div class="label mb-10">F消费频次</div>
+            <div class="flex flex-between mb-10">
+                <div class="label">F消费频次</div>
+                <div class="sw-select" style="width: 120px;">
+                    <input id="date1" type="text" value="">
+                    <div>
+                        <i class="iconfont icon-shangsanjiao"></i>
+                        <i class="iconfont icon-xiasanjiao"></i>
+                    </div>
+                </div>
+            </div>
             <div id="gbt4"></div>
             <div class="dash-line"></div>
-            <div class="label mb-10">M消费金额</div>
-            <div id="gbt5"></div>
-            <div class="dash-line"></div>
+            <div class="flex flex-between mb-10"></div>
+            <div class="label">M消费金额</div>
+            <div class="sw-select" style="width: 120px;">
+                <input id="date1" type="text" value="">
+                <div>
+                    <i class="iconfont icon-shangsanjiao"></i>
+                    <i class="iconfont icon-xiasanjiao"></i>
+                </div>
+            </div>
         </div>
-        <div class="filter-dialog-footer">
-            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary ok-modal" style="margin-top: 0;">确定</a>
-            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-modal" data-modal="filter-box" style="margin-top: 0;">取消</a>
-        </div>
+        <div id="gbt5"></div>
+        <div class="dash-line"></div>
+    </div>
+    <div class="filter-dialog-footer">
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary ok-modal" style="margin-top: 0;">确定</a>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-modal" data-modal="filter-box" style="margin-top: 0;">取消</a>
+    </div>
     </div>
 
     <!--start:script-->
@@ -121,6 +139,37 @@
             console.log( e )
         }
     } ).setValue( 0 )
+
+
+    $( "#date1" ).select( {
+        title: "选择时间段",
+        items: [
+            { title: "三个月", value: 1 },
+            { title: "半年", value: 2 },
+            { title: "一年", value: 3 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
+
+    $( "#date2" ).select( {
+        title: "选择时间段",
+        items: [
+            { title: "三个月", value: 1 },
+            { title: "半年", value: 2 },
+            { title: "一年", value: 3 }
+        ],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function ( d ) {
+            console.log( 'close' )
+        }
+    } );
 
     $( '.ok-modal' ).on( 'click', function () {
 
