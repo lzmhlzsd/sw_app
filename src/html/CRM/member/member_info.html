@@ -16,75 +16,259 @@
     <!--end:header-->
 
     <style>
+        .mem-birthday {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+        }
 
+        .weui-navbar__item {
+            color: #a2a2a2;
+            background-color: #f0f0f0;
+        }
+
+        .weui-navbar__item.weui-bar__item--on {
+            color: #666;
+            background-color: #fff;
+        }
+
+        .weui-navbar__item.weui-bar__item--on .iconfont {
+            color: #ffc107;
+        }
+
+        body {
+            background-color: #fff;
+        }
     </style>
-    <div>
-        <div class="flex">
-            <div>
-                <img class="mem-birthday" src="./../../../image/CRM/m1.jpeg" alt="">
+    <div style="background-color: #fff;padding-bottom: 60px;">
+        <div class="p-10">
+            <div class="flex">
+                <div class="pl-10 pr-10 t-center">
+                    <div id="mem-info" class="p-r">
+                        
+                    </div>
+                    <span class="weui-badge c-badge" data-key="card_type"></span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex">
+                        <div class="flex-1">
+                            <div class="f-14" data-key="name"></div>
+                            <div class="f-14">
+                                <i class="iconfont icon-shengri"></i>
+                                <span class="txt-d" data-key="birthday"></span>
+                            </div>
+                            <div class="f-14">
+                                <i class="iconfont icon-rili"></i>
+                                <span class="txt-d" data-key="stime"></span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="f-14">
+                                <i class="iconfont icon-user"></i>
+                                <span class="txt-d" data-key="guide"></span>
+                            </div>
+                            <div class="f-14">
+                                <i class="iconfont icon-leijishouyi"></i>
+                                <span class="txt-d" data-key="total"></span>
+                            </div>
+                            <div class="f-14">
+                                <i class="iconfont icon-shouji"></i>
+                                <span class="txt-d" data-key="phone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-14">
+                        <i class="iconfont icon-shangdian"></i>
+                        <span class="txt-d" data-key="store"></span>
+                    </div>
+                    <div class="f-14">
+                        <i class="iconfont icon-cardb"></i>
+                        <span class="txt-d" data-key="card"></span>
+                    </div>
+                    <div class="f-14">
+                        <i class="iconfont icon-dingwei"></i>
+                        <span class="txt-d" data-key="address"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="f-14 pt-5 pb-5 pr-10 pl-10">
+                无备注
+                <i class="iconfont icon-edit" style="color: #28b6f6;"></i>
+            </div>
+            <div class="pt-10 pb-10" style="border-top: 1px solid #e8e8e8;border-bottom: 1px solid #e8e8e8;">
+                <div class="flex">
+                    <div class="flex-1 t-center">
+                        <div class="f-14">
+                            优惠券
+                            <i class="iconfont icon-arrowr f-14 p-r" style="top: 2px;"></i>
+                        </div>
+                        <div class="f-18 pt-5">
+                            <span data-key="coupon_num"></span>个
+                        </div>
+                    </div>
+                    <div class="flex-1 t-center" style="border-right: 1px solid #e8e8e8; border-left: 1px solid #e8e8e8;">
+                        <div class="f-14">
+                            客单价
+                        </div>
+                        <div class="pt-5">
+                            <i class="iconfont icon-renminbi"></i>
+                            <span class="f-18" data-key="price"></span>
+                        </div>
+                    </div>
+                    <div class="flex-1 t-center">
+                        <div class="f-14">
+                            累计消费金额
+                            <i class="iconfont icon-arrowr f-14 p-r" style="top: 2px;"></i>
+                        </div>
+                        <div class="f-18 pt-5" data-key="total_amount"></div>
+                    </div>
+                </div>
+                <div class="f-14 t-center pt-10" style="color: #e51c23;">
+                    上次消费：<span data-key="last_buy"></span>
+                </div>
+            </div>
+
+            <div class="p-10">
+                <div class="label">标签</div>
+                <span id="label-list" class="label-list">
+                </span>
+                <span class="weui-badge c-badge c-btn">
+                    <i class="iconfont icon-add f-12"></i>
+                    添加新标签
+                </span>
+            </div>
+        </div>
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                    <i class="iconfont icon-jilu"></i>
+                    消费记录
+                </a>
+                <a class="weui-navbar__item" href="#tab2">
+                    <i class="iconfont icon-shoucang"></i>
+                    收藏商品
+                </a>
+                <a class="weui-navbar__item" href="#tab3">
+                    <i class="iconfont icon-huifang f-18"></i>
+                    回访记录
+                </a>
+            </div>
+            <div class="weui-tab__bd">
+                <div id="tab1" class="weui-tab__bd-item p-10 weui-tab__bd-item--active">
+                    <div id="buy-list"></div>
+                </div>
+                <div id="tab2" class="weui-tab__bd-item p-10">
+                    <div id="goods-list"></div>
+                </div>
+                <div id="tab3" class="weui-tab__bd-item p-10">
+                    <div id="visit-list"></div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-footer flex">
+            <div class="flex-1">
+                <i class="iconfont icon-phone"></i>
+                打电话
             </div>
             <div class="flex-1">
-                <div class="flex">
-                    <div class="flex-1">
-                        <div></div>
-                    </div>
-                    <div class="flex-1"></div>
-                </div>
-                <div></div>
+                <i class="iconfont icon-duanxin"></i>
+                发短信
             </div>
         </div>
     </div>
 
-    <!-- 会员模版 -->
-    <script id="tp-card" type="text/html">  
-        {{each list as m index}}  
-        <div class="card flex flex-align-center">
-            <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
-            <div class="flex-1 f-14">
-                <div>
-                    {{m.name}} 
-                    <span class="txt-d"> | </span>
-                    <span>{{m.type}}</span>
-                    <span class="txt-d"> | </span> 
-                    <i class="iconfont icon-shengri"></i> 
-                    <span>{{m.birthday}}</span>
-                    <!-- #ff7579 #30aee8-->
-                    <span class="p-r" style="top: -2px;">
-                        <span class="p-r" style="display: inline-block; top: 5px;">
-                            <i class="iconfont icon-message f-24" style="color: #bbb;"></i> 
-                            <span class="p-a f-12" style="color: #fff;bottom: 8px;
-                            display: block;
-                            height: 20px;
-                            width: 100%;
-                            text-align: center;">{{m.fw}}</span>
-                        </span>
-                        <span class="p-r" style="display: inline-block; top: 2px;">
-                            <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i> 
-                            <span class="p-a f-12" style="color: #fff;display: block;
-                            bottom: 4px;
-                            height: 20px;
-                            width: 100%;
-                            text-align: center;">{{m.xf}}</span>
-                        </span>
-                    </span>
+
+    <!-- 个人信息模版 -->
+    <script id="tp-usrinfo" type="text/html">
+        <img class="mem-birthday" src="{{img}}" alt="">
+        {{if sex == 1}}
+        <div class="mem p-a" style="right: 0;top: 58px;">
+            <i class="iconfont icon-nan"></i>
+        </div>
+        {{else}}
+        <div class="women p-a" style="right: 0;top: 58px;">
+            <i class="iconfont icon-nv"></i>
+        </div>
+        {{/if}}
+    </script>
+
+    <!-- 标签模版 -->
+    <script id="tp-labels" type="text/html">
+        {{each list as data index}}
+        <span class="weui-badge c-badge">{{data.name}}</span>
+        {{/each}}
+    </script>
+    <!-- 消费记录模版 -->
+    <script id="tp-buylist" type="text/html">
+        {{each list as data index}}
+        <div class="flex">
+            <div class="time-axis t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
+                <div>{{data.stime}}</div>
+                <div class="txt-d">{{data.datetime}}</div>
+                <div>{{data.store}}</div>
+            </div>
+            <div class="flex-1 flex p-5">
+                <div class="mr-5">
+                    <img src="{{data.img}}" alt="" width="80px;">
                 </div>
-                <div>
-                    <i class="iconfont icon-shouji"></i>
-                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
-                </div>
-                <div class="flex flex-between">
-                    <div class="bqs">
-                        {{each m.labels as lb index}}  
-                        <span class="weui-badge c-badge">{{lb}}</span>
-                        {{/each}}
-                    </div>
-                    <div>
-                        <i class="iconfont icon-arrow-right"></i>
-                    </div>
+                <div class="flex-1">
+                    <div class="f-14">{{data.name}}</div>
+                    <div class="f-14 txt-d">{{data.xh}}</div>
+                    <div class="f-14 txt-a">¥{{data.price}}</div>
+                    <div class="f-14 txt-d">{{data.gk}}</div>
                 </div>
             </div>
         </div>
         {{/each}}  
+    </script>
+    <!-- 收藏商品模版 -->
+    <script id="tp-goods" type="text/html">
+        {{each list as data index}}
+        <div class="flex p-5">
+            <div class="mr-5">
+                <img src="{{data.img}}" alt="" width="80px;">
+            </div>
+            <div class="flex-1">
+                <div class="f-14">{{data.name}}</div>
+                <div class="f-14 txt-d">{{data.xh}}</div>
+                <div class="f-14 txt-a">¥{{data.price}}</div>
+                <div class="f-14 txt-d">{{data.gk}}</div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
+    <!-- 回访记录模版 -->
+    <script id="tp-visit" type="text/html">
+        {{each list as data index}}
+        <div class="flex">
+            <div class="time-axis t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
+                <div>{{data.stime}}</div>
+                <div class="txt-d">{{data.datetime}}</div>
+            </div>
+            <div class="flex-1 flex flex-align-center p-5">
+                <div class="flex-1 ml-10">
+                    <div class="f-14">{{data.name}}</div>
+                    <div class="f-14 txt-d">{{data.xh}}</div>
+                    <div class="f-14 txt-a">¥{{data.price}}</div>
+                    <div class="f-14 txt-d">{{data.gk}}</div>
+                </div>
+                <div class="f-14">
+                    <!-- <i class="iconfont icon-circle f-18"></i> -->
+                    {{if data.to_store == 1}}
+                    <span class="weui-badge c-badge flex flex-align-center" style="background: #e4e4e2;">
+                        <i class="iconfont icon-circle f-18"></i>
+                        <span>到店</span>
+                    </span>
+                    {{else}}
+                    <span class="weui-badge c-badge  flex flex-align-center">
+                        <i class="iconfont icon-check f-18"></i>
+                        <span>到店</span>
+                    </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
     </script>
     <!--start:script-->
 </body>
@@ -98,7 +282,155 @@
 <!--end:script-->
 
 <script>
+    var Mock = {
+        name: '张小红',
+        sex: 1,  // 1 男  2 女
+        img: './../../../image/CRM/m1.jpeg',
+        card_type: '普卡',
+        guide: '导购名称',
+        birthday: '1988-05-01',
+        total: 1999,
+        stime: '2个月前',
+        phone: '13812312345',
+        store: '正佳广场',
+        card: '正佳广场',
+        address: '广州市天河区天河南二路六运七街1号',
+        coupon_num: 5,
+        price: 3450,
+        total_amount: 56380,
+        last_buy: '5天前',
+        labels: [
+            { name: '喜欢的品牌：Cabbeen' },
+            { name: '休闲系列' },
+            { name: '衬衫' },
+            { name: '喜欢的颜色：白色 蓝色' },
+            { name: '尺码：L' }
+        ],
+        buy_list: [
+            { 
+                stime: '6天前',
+                datetime: '2018-05-08',
+                store: '正佳广场',
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            }, {
+                stime: '6天前',
+                datetime: '2018-05-08',
+                store: '正佳广场',
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            }, {
+                stime: '6天前',
+                datetime: '2018-05-08',
+                store: '正佳广场',
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            }
+        ],
+        col_goods: [
+            {   
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            },
+            {
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            },
+            {
+                img: './../../../image/CRM/a1.png',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰'
+            }
+        ],
+        visit: [
+            {
+                stime: '一个月前',
+                datetime: '04-01',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰',
+                to_store: 1
+            },
+            {
+                stime: '一个月前',
+                datetime: '04-01',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰',
+                to_store: 0
+            },
+            {
+                stime: '一个月前',
+                datetime: '04-01',
+                name: '2018韩版男款夏季衬衫...',
+                xh: 'GS1782193',
+                price: 129,
+                gk: 'L 格子灰',
+                to_store: 1
+            }
+        ]
+    }
 
+    //数据渲染
+    util.render( {
+        name: Mock.name,
+        card_type: Mock.card_type,
+        guide: Mock.guide,
+        birthday: Mock.birthday,
+        total: Mock.total,
+        stime: Mock.stime,
+        phone: Mock.phone,
+        store: Mock.store,
+        card: Mock.card,
+        address: Mock.address,
+        coupon_num: Mock.coupon_num,
+        price:  util.num2Money(Mock.price),
+        total_amount: util.num2Money(Mock.total_amount),
+        last_buy: Mock.last_buy
+    } )
+
+    //模版渲染
+    util.templateRender( 'tp-usrinfo', {
+        sex: Mock.sex,
+        img: Mock.img
+    }, $( '#mem-info' ) )
+
+    util.templateRender( 'tp-labels', {
+        list: Mock.labels
+    }, $( '#label-list' ) )
+
+    util.templateRender( 'tp-buylist', {
+        list: Mock.buy_list
+    }, $( '#buy-list' ) )
+
+    util.templateRender( 'tp-goods', {
+        list: Mock.col_goods
+    }, $( '#goods-list' ) )
+
+    util.templateRender( 'tp-visit', {
+        list: Mock.visit
+    }, $( '#visit-list' ) )
+
+    
 </script>
 
 <!--start:footer-->

@@ -18,6 +18,9 @@ div {
 .flex-between {
     justify-content: space-between;
 }
+.flex-direction-col {
+    flex-direction: column;
+}
 .flex-align-center {
     align-items: center;
 }
@@ -38,6 +41,7 @@ div {
     font-weight: 600; }
 .a-text { color: #ffcc01; }
 
+.txt-a { color: #ff9800 };
 .txt-w { color: #333; }
 .txt-n { color: #666; }
 .txt-d { color: #999; }
@@ -177,6 +181,76 @@ div {
 .filter-dialog .filter-dialog-footer .weui-btn {
     margin: 0 20px;
 }
+.fixed-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+.fixed-footer > div {
+    background-color: #fff;
+    border-top: 1px solid #e8e8e8;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 5px;
+    text-align: center;
+}
+.women {
+    width:20px;
+    height:20px;
+    border-radius: 10px;
+    background-color: #ff3f80;
+    text-align: center;
+}
+.women .iconfont {
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    top: -2px;
+}
+.mem {
+    width:20px;
+    height:20px;
+    border-radius: 10px;
+    background-color: #483fff;
+    text-align: center;
+}
+.mem .iconfont {
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    top: -2px;
+}
+
+.time-axis {
+    position: relative;
+    border-right: 2px solid #ffc107;
+}
+
+.time-axis:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #ffc107;
+    position: absolute;
+    top: 44px;
+    right: -6px;
+}
+.time-axis div {
+    font-size: 14px;
+}
+.time-axis > div {
+    padding-right: 10px;
+}
+
+.c-btn {
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+}
+
 /* weui css */
 .weui-grids.no-border:before {
     border-top-width: 0;
