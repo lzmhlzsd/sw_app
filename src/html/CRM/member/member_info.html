@@ -9,11 +9,11 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>会员</title>
+    <title>会员详情</title>
 </head>
 
 <body>
-    <!--end:header-->
+<!--end:header-->
 
     <style>
         .mem-birthday {
@@ -45,7 +45,7 @@
             <div class="flex">
                 <div class="pl-10 pr-10 t-center">
                     <div id="mem-info" class="p-r">
-                        
+
                     </div>
                     <span class="weui-badge c-badge" data-key="card_type"></span>
                 </div>
@@ -124,7 +124,8 @@
                     </div>
                 </div>
                 <div class="f-14 t-center pt-10" style="color: #e51c23;">
-                    上次消费：<span data-key="last_buy"></span>
+                    上次消费：
+                    <span data-key="last_buy"></span>
                 </div>
             </div>
 
@@ -156,12 +157,24 @@
             <div class="weui-tab__bd">
                 <div id="tab1" class="weui-tab__bd-item p-10 weui-tab__bd-item--active">
                     <div id="buy-list"></div>
+                    <div class="weui-loadmore">
+                        <i class="weui-loading"></i>
+                        <span class="weui-loadmore__tips">正在加载</span>
+                    </div>
                 </div>
                 <div id="tab2" class="weui-tab__bd-item p-10">
                     <div id="goods-list"></div>
+                    <div class="weui-loadmore">
+                        <i class="weui-loading"></i>
+                        <span class="weui-loadmore__tips">正在加载</span>
+                    </div>
                 </div>
                 <div id="tab3" class="weui-tab__bd-item p-10">
                     <div id="visit-list"></div>
+                    <div class="weui-loadmore">
+                        <i class="weui-loading"></i>
+                        <span class="weui-loadmore__tips">正在加载</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,7 +220,7 @@
                 <div class="txt-d">{{data.datetime}}</div>
                 <div>{{data.store}}</div>
             </div>
-            <div class="flex-1 flex p-5">
+            <div class="flex-1 flex pt-10 pb-10 pr-5 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
                 <div class="mr-5">
                     <img src="{{data.img}}" alt="" width="80px;">
                 </div>
@@ -224,7 +237,7 @@
     <!-- 收藏商品模版 -->
     <script id="tp-goods" type="text/html">
         {{each list as data index}}
-        <div class="flex p-5">
+        <div class="flex pt-10 pb-10 pr-5 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
             <div class="mr-5">
                 <img src="{{data.img}}" alt="" width="80px;">
             </div>
@@ -245,12 +258,12 @@
                 <div>{{data.stime}}</div>
                 <div class="txt-d">{{data.datetime}}</div>
             </div>
-            <div class="flex-1 flex flex-align-center p-5">
+            <div class="flex-1 flex flex-align-center pt-10 pb-10 pr-5 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
                 <div class="flex-1 ml-10">
-                    <div class="f-14">{{data.name}}</div>
-                    <div class="f-14 txt-d">{{data.xh}}</div>
-                    <div class="f-14 txt-a">¥{{data.price}}</div>
-                    <div class="f-14 txt-d">{{data.gk}}</div>
+                    <div class="f-14">{{data.tx1}}</div>
+                    <div class="f-14 txt-d"><i class="iconfont icon-huifang f-20"></i>{{data.tx2}}</div>
+                    <div class="f-14 txt-d" style="padding-left: 2px;"><i class="iconfont icon-kaixin f-14"></i> {{data.tx3}}</div>
+                    <div class="f-14 txt-d"><i class="iconfont icon-pj f-14"></i>{{data.tx4}}</div>
                 </div>
                 <div class="f-14">
                     <!-- <i class="iconfont icon-circle f-18"></i> -->
@@ -282,6 +295,7 @@
 <!--end:script-->
 
 <script>
+    var loading;
     var Mock = {
         name: '张小红',
         sex: 1,  // 1 男  2 女
@@ -307,7 +321,7 @@
             { name: '尺码：L' }
         ],
         buy_list: [
-            { 
+            {
                 stime: '6天前',
                 datetime: '2018-05-08',
                 store: '正佳广场',
@@ -337,7 +351,7 @@
             }
         ],
         col_goods: [
-            {   
+            {
                 img: './../../../image/CRM/a1.png',
                 name: '2018韩版男款夏季衬衫...',
                 xh: 'GS1782193',
@@ -363,28 +377,28 @@
             {
                 stime: '一个月前',
                 datetime: '04-01',
-                name: '2018韩版男款夏季衬衫...',
-                xh: 'GS1782193',
-                price: 129,
-                gk: 'L 格子灰',
+                tx1: '服务人员:顾问名称',
+                tx2: '电话回访-接听或有回复',
+                tx3: '愿意到店(2018-04-08)',
+                tx4: '邀请到店，可以接收',
                 to_store: 1
             },
             {
                 stime: '一个月前',
                 datetime: '04-01',
-                name: '2018韩版男款夏季衬衫...',
-                xh: 'GS1782193',
-                price: 129,
-                gk: 'L 格子灰',
+                tx1: '服务人员:顾问名称',
+                tx2: '电话回访-接听或有回复',
+                tx3: '愿意到店(2018-04-08)',
+                tx4: '邀请到店，可以接收',
                 to_store: 0
             },
             {
                 stime: '一个月前',
                 datetime: '04-01',
-                name: '2018韩版男款夏季衬衫...',
-                xh: 'GS1782193',
-                price: 129,
-                gk: 'L 格子灰',
+                tx1: '服务人员:顾问名称',
+                tx2: '电话回访-接听或有回复',
+                tx3: '愿意到店(2018-04-08)',
+                tx4: '邀请到店，可以接收',
                 to_store: 1
             }
         ]
@@ -403,8 +417,8 @@
         card: Mock.card,
         address: Mock.address,
         coupon_num: Mock.coupon_num,
-        price:  util.num2Money(Mock.price),
-        total_amount: util.num2Money(Mock.total_amount),
+        price: util.num2Money( Mock.price ),
+        total_amount: util.num2Money( Mock.total_amount ),
         last_buy: Mock.last_buy
     } )
 
@@ -430,10 +444,58 @@
         list: Mock.visit
     }, $( '#visit-list' ) )
 
-    
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            console.log( 'load' )
+            var id = $( '.weui-tab__bd-item--active' ).attr( 'id' )
+            switch ( id ) {
+                case 'tab1':
+                    util.templateRenderAppend( 'tp-buylist', {
+                        list: [{
+                            stime: '6天前',
+                            datetime: '2018-05-08',
+                            store: '正佳广场',
+                            img: './../../../image/CRM/a1.png',
+                            name: 'test...',
+                            xh: 'GS1782193',
+                            price: 129,
+                            gk: 'L 格子灰'
+                        }]
+                    }, $( '#buy-list' ) )
+                    break;
+                case 'tab2':
+                    util.templateRenderAppend( 'tp-goods', {
+                        list: [{
+                            img: './../../../image/CRM/a1.png',
+                            name: 'test...',
+                            xh: 'GS1782193',
+                            price: 129,
+                            gk: 'L 格子灰'
+                        }]
+                    }, $( '#goods-list' ) )
+                    break;
+                case 'tab3':
+                    util.templateRenderAppend( 'tp-visit', {
+                        list: [{
+                            stime: '一个月前',
+                            datetime: '04-01',
+                            tx1: '服务人员:顾问名称',
+                            tx2: '电话回访-接听或有回复',
+                            tx3: '愿意到店(2018-04-08)',
+                            tx4: '邀请到店，可以接收',
+                            to_store: 1
+                        }]
+                    }, $( '#visit-list' ) )
+                    break;
+            }
+
+            loading = false;
+        }, 2000 );
+    } );
 </script>
 
 <!--start:footer-->
-
 </html>
 <!--end:footer-->

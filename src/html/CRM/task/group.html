@@ -1,0 +1,106 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>固定分组</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+    </style>
+    <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>左滑列表</p>
+                </div>
+                <div class="weui-cell__ft">向左滑动试试</div>
+            </div>
+        </div>
+        <div class="weui-cell__ft">
+            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>左滑列表</p>
+                </div>
+                <div class="weui-cell__ft">向左滑动试试</div>
+            </div>
+        </div>
+        <div class="weui-cell__ft">
+            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
+        </div>
+    </div>
+    <div id="group-list" class="p-10">
+    </div>
+    <script id="tp-group" type="text/html">
+        {{each list as m index}}
+        <div class="group-item" data-id="{{m.id}}">
+            <div class="f-14">{{m.name}}</div>
+            <div>
+                <span class="f-14 txt-d">{{m.count}}</span>
+                <i class="iconfont icon-arrow-right"></i>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var Mock = {
+        list: [
+            { id: 1, name: '全部会员', count: 13673 },
+            { id: 2, name: '普卡', count: 13673 },
+            { id: 3, name: '银卡', count: 13673 },
+            { id: 4, name: '金卡', count: 13673 },
+            { id: 5, name: '黑卡', count: 13673 },
+            { id: 6, name: '注册会员', count: 13673 },
+            { id: 7, name: '消费会员', count: 13673 },
+            { id: 8, name: '忠诚会员', count: 13673 },
+            { id: 9, name: '睡眠会员', count: 13673 },
+            { id: 10, name: '注册会员转变为睡眠会员', count: 13673 },
+            { id: 11, name: '消费会员转变为睡眠会员', count: 13673 },
+            { id: 12, name: '忠诚会员转变为睡眠会员', count: 13673 },
+            { id: 13, name: '新会员', count: 13673 },
+            { id: 14, name: '老会员', count: 13673 },
+            { id: 15, name: '本月生日会员', count: 13673 },
+            { id: 16, name: '当日生日会员', count: 13673 },
+            { id: 17, name: '普卡升银卡', count: 13673 },
+            { id: 18, name: '银卡升金卡', count: 13673 },
+            { id: 19, name: '新贵族(首单5000以上)', count: 13673 }
+        ]
+    }
+
+    util.templateRender( 'tp-group', {
+        list: Mock.list
+    }, $( '#group-list' ) )
+
+    $('.group-item').on('click', function() {
+        console.log($(this).data('id'))
+    })
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

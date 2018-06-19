@@ -9,22 +9,28 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>任务分配</title>
+    <title>自定义分组</title>
 </head>
 
 <body>
 <!--end:header-->
 
-<style>
-
-</style>
-<div>
-    test
-    <div id="btng" class="clearfix"></div>
-    <button id="get">button</button>
-</div>
-
-<!--start:script-->
+    <style>
+    </style>
+    <div id="group-list" class="p-10">
+    </div>
+    <script id="tp-group" type="text/html">
+        {{each list as m index}}
+        <div class="group-item" data-id="{{m.id}}">
+            <div class="f-14">{{m.name}}</div>
+            <div>
+                <span class="f-14 txt-d">{{m.count}}</span>
+                <i class="iconfont icon-arrow-right"></i>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
@@ -36,13 +42,20 @@
 <!--end:script-->
 
 <script>
-    $(function() {
-        var bts = $('#btng').buttonTab().setValue(1)
+    var Mock = {
+        list: [
+            { id: 1, name: '自定义分组1', count: 13673 },
+            { id: 2, name: '自定义分组2', count: 13673 }
+        ]
+    }
 
-        $('#get').on('click', function(){
-            console.log( bts.getValue() )
-        })
-    })
+    util.templateRender( 'tp-group', {
+        list: Mock.list
+    }, $( '#group-list' ) )
+
+    $( '.group-item' ).on( 'click', function () {
+        console.log( $( this ).data( 'id' ) )
+    } )
 </script>
 
 <!--start:footer-->

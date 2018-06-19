@@ -251,6 +251,16 @@ div {
     background-color: #fff;
 }
 
+.group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    padding: 8px 10px;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
 /* weui css */
 .weui-grids.no-border:before {
     border-top-width: 0;
