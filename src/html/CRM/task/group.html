@@ -16,42 +16,34 @@
 <!--end:header-->
 
     <style>
+        .weui-cell_swiped .weui-cell__bd {
+            border-radius: 5px;
+        }
+
+        .weui-swiped-btn {
+            margin-left: 5px;
+            border-radius: 5px;
+        }
     </style>
-    <div class="weui-cell weui-cell_swiped">
-        <div class="weui-cell__bd">
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <p>左滑列表</p>
-                </div>
-                <div class="weui-cell__ft">向左滑动试试</div>
-            </div>
-        </div>
-        <div class="weui-cell__ft">
-            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
-        </div>
-    </div>
-    <div class="weui-cell weui-cell_swiped">
-        <div class="weui-cell__bd">
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <p>左滑列表</p>
-                </div>
-                <div class="weui-cell__ft">向左滑动试试</div>
-            </div>
-        </div>
-        <div class="weui-cell__ft">
-            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
-        </div>
-    </div>
+
     <div id="group-list" class="p-10">
     </div>
     <script id="tp-group" type="text/html">
         {{each list as m index}}
-        <div class="group-item" data-id="{{m.id}}">
-            <div class="f-14">{{m.name}}</div>
-            <div>
-                <span class="f-14 txt-d">{{m.count}}</span>
-                <i class="iconfont icon-arrow-right"></i>
+        <div class="weui-cell weui-cell_swiped mb-5">
+            <div class="weui-cell__bd g-item" data-id="{{m.id}}">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <p>{{m.name}}</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <span class="txt-d">{{m.count}}</span>
+                        <i class="iconfont icon-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-cell__ft">
+                <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout g-item-delete" href="javascript:" data-id="{{m.id}}">删除</a>
             </div>
         </div>
         {{/each}}
@@ -96,9 +88,15 @@
         list: Mock.list
     }, $( '#group-list' ) )
 
-    $('.group-item').on('click', function() {
-        console.log($(this).data('id'))
-    })
+    $( '.weui-cell_swiped' ).swipeout()
+
+    $( '.g-item' ).on( 'click', function () {
+        console.log( $( this ).data( 'id' ) )
+    } )
+
+    $( '.g-item-delete' ).on( 'click', function () {
+        console.log( 'group-item-delete' + $( this ).data( 'id' ) )
+    } )
 </script>
 
 <!--start:footer-->

@@ -1,0 +1,356 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>新建分组</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+    </style>
+    <div id="group-form" style="padding-bottom: 60px;">
+        <div class="weui-cells weui-cells_form" style="margin-top: 0;">
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">分组名称</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input form-filed" name="group_name" type="text" placeholder="请输入自定义分组名称">
+                </div>
+            </div>
+        </div>
+        <div class="pt-10 pr-10 pl-10">
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">折扣率</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content">
+                    <div class="flex flex-align-center pt-10 pb-10">
+                        <input type="number" name="discount1" class="sw-input form-filed">
+                        <span class="pl-5 pr-5">-</span>
+                        <input type="number" name="discount2" class="sw-input form-filed">
+                        <span class="f-12 ml-5 txt-d">请填写(0-1)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">客单价</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content">
+                    <div class="flex flex-align-center pt-10 pb-10">
+                        <div class="sw-input-icon-before">
+                            <i class="iconfont icon-renminbi"></i>
+                            <input type="number" name="price1" class="form-filed">
+                        </div>
+                        <span class="pl-5 pr-5">-</span>
+                        <div class="sw-input-icon-before">
+                            <i class="iconfont icon-renminbi"></i>
+                            <input type="number" name="price2" class="form-filed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">年代</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content pt-10 pb-10">
+                    <input type="text" hidden name="years" class="form-filed">
+                    <div id="radio-list-year"></div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">商品</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content">
+                    <div class="weui-cells">
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">品牌</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="brand">
+                                    <option value="1">请选择</option>
+                                    <option value="2">品牌1</option>
+                                    <option value="3">品牌2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">季节</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="season">
+                                    <option value="1">请选择</option>
+                                    <option value="2">春装</option>
+                                    <option value="3">夏装</option>
+                                    <option value="4">秋装</option>
+                                    <option value="5">冬装</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">系列</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="series">
+                                    <option value="1">请选择</option>
+                                    <option value="2">系列一</option>
+                                    <option value="3">系列二</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">大类</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="big_class">
+                                    <option value="1">请选择</option>
+                                    <option value="2">大类一</option>
+                                    <option value="3">大类二</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">中类</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="middle_class">
+                                    <option value="1">请选择</option>
+                                    <option value="2">中类一</option>
+                                    <option value="3">中类二</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">小类</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="small_class">
+                                    <option value="1">请选择</option>
+                                    <option value="2">小类一</option>
+                                    <option value="3">小类二</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">颜色</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="color">
+                                    <option value="1">请选择</option>
+                                    <option value="2">红</option>
+                                    <option value="3">黄</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">尺码</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="size">
+                                    <option value="1">请选择</option>
+                                    <option value="2">L</option>
+                                    <option value="3">S</option>
+                                    <option value="4">M</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
+                            <div class="weui-cell__hd">
+                                <label for="" class="weui-label">款号</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <select class="weui-select txt-d form-filed" name="k_number">
+                                    <option value="1">请选择</option>
+                                    <option value="2">款号一</option>
+                                    <option value="3">款号二</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">入会时长</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content pt-10 pb-10">
+                    <input type="text" hidden name="ltime-type" class="form-filed">
+                    <input type="text" hidden name="ltime-start" class="form-filed">
+                    <input type="text" hidden name="ltime-end" class="form-filed">
+                    <div>
+                        <div class="weui-cells_checkbox" style="display: flex;flex-wrap: wrap;">
+                            <label class="weui-check__label" style="display: flex;align-items: center;margin: 0 10px 10px 0;">
+                                <input type="radio" name="length-time" value="0" class="weui-check" checked="checked">
+                                <i class="weui-icon-checked"></i>
+                                <span>当月</span>
+                            </label>
+                            <label class="weui-check__label" style="display: flex;align-items: center;margin: 0 10px 10px 0;">
+                                <input type="radio" name="length-time" value="1" class="weui-check">
+                                <i class="weui-icon-checked"></i>
+                                <span>当日</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="weui-cells_checkbox" style="display: flex;flex-wrap: wrap;">
+                            <label class="weui-check__label" style="display: flex;align-items: center;">
+                                <input type="radio" name="length-time" value="2" class="weui-check">
+                                <i class="weui-icon-checked"></i>
+                                <span></span>
+                            </label>
+                            <div>
+                                <input class="weui-input sw-input" id="date1" type="text">
+                                <span class="f-14 ml-5 mr-5">至</span>
+                                <input class="weui-input sw-input" id="date2" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">性别</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content pt-10 pb-10">
+                    <input type="text" hidden name="sex" class="form-filed">
+                    <div id="radio-list-sex"></div>
+                </div>
+            </div>
+            <div class="group-item group-drop">
+                <div class="flex flex-between group-drop-item">
+                    <div class="label">积分</div>
+                    <div>
+                        <i class="iconfont icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="group-drop-content">
+                    <div class="flex flex-align-center pt-10 pb-10">
+                        <input type="number" name="integral1" class="sw-input form-filed">
+                        <span class="pl-5 pr-5">-</span>
+                        <input type="number" name="integral2" class="sw-input form-filed">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-footer flex">
+            <div id="submit" class="flex-1 btn" style="background-color: #ffcc01;">
+                已选择：1234人
+            </div>
+        </div>
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    $( '#radio-list-year' ).radioGroup( {
+        data: [
+            { label: '00后', value: 1 },
+            { label: '95后', value: 2 },
+            { label: '90后', value: 3 },
+            { label: '85后', value: 4 },
+            { label: '80后及以前', value: 5 }
+        ],
+        onchange: function ( e ) {
+            $( '[name="years"]' ).val( e )
+        }
+    } )
+
+    $( '#radio-list-sex' ).radioGroup( {
+        data: [
+            { label: '男', value: 1 },
+            { label: '女', value: 2 },
+            { label: '未知', value: 3 }
+        ],
+        onchange: function ( e ) {
+            $( '[name="sex"]' ).val( e )
+        }
+    } )
+
+    $( 'input[name="length-time"]' ).change( function () {
+        var type = $( this ).val()
+        $( '[name="ltime-type"]' ).val( type )
+        if ( type == 0 ) {
+            $( '[name="ltime-start"]' ).val( moment().startOf( 'month' ).format( "YYYY-MM-DD" ) )
+            $( '[name="ltime-end"]' ).val( moment().endOf( 'month' ).format( "YYYY-MM-DD" ) )
+        } else if ( type == 1 ) {
+            $( '[name="ltime-start"]' ).val( moment().format( "YYYY-MM-DD" ) )
+            $( '[name="ltime-end"]' ).val( moment().format( "YYYY-MM-DD" ) )
+        }
+    } )
+
+    $( "#date1" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+            if ( $( 'input[name="length-time"]:checked' ).val() == 2 ) {
+                $( '[name="ltime-start"]' ).val( values )
+            }
+        }
+    } );
+    $( "#date2" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+            if ( $( 'input[name="length-time"]:checked' ).val() == 2 ) {
+                $( '[name="ltime-end"]' ).val( values )
+            }
+        }
+    } );
+
+    $( '#submit' ).on( 'click', function () {
+        console.log( 'submit' )
+        var data = util.getForm( '#group-form' )
+        alert( JSON.stringify( data ) )
+    } )
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

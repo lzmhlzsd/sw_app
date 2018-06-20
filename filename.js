@@ -13,5 +13,10 @@ module.exports = {
     './src/html/CRM/report/filter.html': '查询条件',
     './src/html/CRM/task/index.html': '任务分配',
     './src/html/CRM/task/group.html': '固定分组',
-    './src/html/CRM/task/group2.html': '自定义分组'
+    './src/html/CRM/task/group2.html': '自定义分组',
+    './src/html/CRM/task/new_group.html': '新建分组',
+    './src/html/CRM/task/distribution.html': '任务分配',
+    './src/html/CRM/task/select_group.html': '选择分组',
+    './src/html/CRM/evaluate/index.html': '选择分组',
+    './src/html/CRM/evaluate/reply_index.html': '选择分组'
 }

@@ -96,13 +96,12 @@ div {
 
 .date-sinput {
     width: 90px;
-    background-color: #fdfdfd;
     font-size: 12px;
     padding: 4px 8px;
     line-height: 18px;
     height: 18px;
-    border: 1px solid #cdcdcd;
-    border-radius: 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
 }
 
 .date-rinput {
@@ -187,6 +186,7 @@ div {
     bottom: 0;
     padding: 10px;
     background-color: #f0f0f0;
+    z-index: 9999;
 }
 .fixed-footer > div {
     background-color: #fff;
@@ -250,17 +250,57 @@ div {
     border: 1px solid #e8e8e8;
     background-color: #fff;
 }
-
 .group-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #e8e8e8;
-    border-radius: 5px;
-    padding: 8px 10px;
+    padding: 10px 15px;
     background-color: #fff;
     margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
 }
+.control-text {
+    border-width: 0;
+    font-size: 16px;
+}
+.group-drop .group-drop-content {
+    display: none;
+}
+.group-drop.open .group-drop-content {
+    display: block;
+}
+.sw-input {
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    width: 80px;
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #999;
+    -webkit-appearance: none; /* 方法2 */
+}
+.sw-input-icon-before {
+    position: relative;
+    border: 1px solid #e8e8e8;
+    font-size: 14px;
+    width: 102px;
+    height: 28px;
+    border-radius: 5px;
+}
+.sw-input-icon-before input {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    font-size: 14px;
+    padding: 3px 0;
+    border-width: 0;
+    color: #999;
+    -webkit-appearance: none; /* 方法2 */
+}
+.sw-input-icon-before .iconfont {
+    color: #999;
+}
+/* .sw-input-icon-before .iconfont {
+    position: absolute;
+    top: 2px;
+} */
 /* weui css */
 .weui-grids.no-border:before {
     border-top-width: 0;
@@ -345,6 +385,13 @@ div {
 }
 .weui-loadmore_line .weui-loadmore__tips {
     background-color: #f0f0f0;
+}
+.weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before {
+    content: "\EA06";
+    color: #fed13a;
+}
+.weui-check__label:active{
+    background-color: transparent;
 }
 /* 常用字体类 */
 .f-12 { font-size: 12px !important; }

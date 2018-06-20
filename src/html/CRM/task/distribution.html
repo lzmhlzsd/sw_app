@@ -9,15 +9,16 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>自定义分组</title>
+    <title>任务分配</title>
 </head>
 
 <body>
 <!--end:header-->
 
     <style>
-        .weui-cell_swiped .weui-cell__bd {
+        .weui-cell_swiped > .weui-cell__bd {
             border-radius: 5px;
+            border: 1px solid #e8e8e8;
         }
 
         .weui-swiped-btn {
@@ -25,8 +26,27 @@
             border-radius: 5px;
         }
     </style>
+    <div style="background-color: #fff;">
+        <div class="weui-cells weui-cells_form" style="margin-top: 0;">
+            <div class="weui-cell  weui-cell_access">
+                <div class="weui-cell__hd">
+                    <label for="name" class="weui-label">任务类型</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input t-right txt-d" id="task_type" type="text" value="">
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </div>
+        </div>
+        <div class="p-10">
+            <div class="label p-5">回访对象</div>
+            <div id="group-list">
+            
+            </div>
+            <a href="javascript:;" class="weui-btn weui-btn_primary mt-30">添加分组</a>
+        </div>
 
-    <div id="group-list" class="p-10">
     </div>
     <script id="tp-group" type="text/html">
         {{each list as m index}}
@@ -38,12 +58,8 @@
                     </div>
                     <div class="weui-cell__ft">
                         <span class="txt-d">{{m.count}}</span>
-                        <i class="iconfont icon-arrow-right"></i>
                     </div>
                 </div>
-            </div>
-            <div class="weui-cell__ft">
-                <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout g-item-delete" href="javascript:" data-id="{{m.id}}">删除</a>
             </div>
         </div>
         {{/each}}
@@ -62,24 +78,49 @@
 <script>
     var Mock = {
         list: [
-            { id: 1, name: '自定义分组1', count: 13673 },
-            { id: 2, name: '自定义分组2', count: 13673 }
+            { id: 1, name: '普卡升银卡', count: 13673 }
         ]
     }
+    $( "#task_type" ).select( {
+        title: "选择任务类型",
+        items: [{
+            title: "普升银回访",
+            value: 1
+        },
+        {
+            title: "银升金回访",
+            value: 2
+        },
+        {
+            title: "注册会员回访",
+            value: 3
+        },
+        {
+            title: "消费会员回访",
+            value: 4
+        },
+        {
+            title: "忠诚会员回访",
+            value: 5
+        },
+        {
+            title: "新贵族（首单5000元以上）",
+            value: 6
+        }],
+        onChange: function ( d ) {
+            console.log( this, d );
+        },
+        onClose: function () {
+            console.log( "close" );
+        },
+        onOpen: function () {
+            console.log( "open" );
+        }
+    } );
 
     util.templateRender( 'tp-group', {
         list: Mock.list
     }, $( '#group-list' ) )
-
-    $( '.weui-cell_swiped' ).swipeout()
-
-    $( '.g-item' ).on( 'click', function () {
-        console.log( $( this ).data( 'id' ) )
-    } )
-
-    $( '.g-item-delete' ).on( 'click', function () {
-        console.log( 'g-item-delete' + $( this ).data( 'id' ) )
-    } )
 </script>
 
 <!--start:footer-->

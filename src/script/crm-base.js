@@ -1,5 +1,5 @@
 $( function () {
-    FastClick.attach( document.body );
+    // FastClick.attach( document.body );
 
     $( '.dropdown' ).on( 'click', function () {
         if ( $( this ).find( '.drop-icon' ).hasClass( 'icon-arrow-right' ) ) { //show
@@ -27,6 +27,19 @@ $( function () {
         $( this ).parents( '.drop-search-content' ).hide()
     } )
 
+    $( '.group-drop .group-drop-item' ).on( 'click', function () {
+        if ( $( this ).parent().find( '.icon-arrow-down' ).length > 0 ) {
+            $( this ).parent().find( '.icon-arrow-down' )
+                .addClass( 'icon-arrow-up' )
+                .removeClass( 'icon-arrow-down' )
+            $( this ).parent().addClass( 'open' )
+        } else {
+            $( this ).parent().find( '.icon-arrow-up' )
+                .addClass( 'icon-arrow-down' )
+                .removeClass( 'icon-arrow-up' )
+            $( this ).parent().removeClass( 'open' )
+        }
+    } )
     // $( '.cancle-modal' ).on( 'click', function () {
     //     var modal = $( this ).data( 'modal' )
     //     util.hideModal(modal)
@@ -437,7 +450,7 @@ $( function () {
                 if ( self.options.onchange ) {
                     self.options.onchange( $( this ).find( 'input' ).val() )
                 }
-            })
+            } )
         }
     }
 
@@ -448,6 +461,65 @@ $( function () {
     }
 } )( jQuery );
 
+// radio
+; ( function () {
+    var RadioGroup = function ( ele, opt ) {
+        this.$element = ele
+        this.onchange = $.noop
+        this.defaults = {
+            data: [
+                { label: '选项一', value: 1 },
+                { label: '选项二', value: 2 },
+                { label: '选项三', value: 3 },
+                { label: '选项四', value: 4 },
+                { label: '选项五', value: 5 }
+            ]
+        }
+        this.options = $.extend( {}, this.defaults, opt )
+    }
+
+    var template = function ( data, that ) {
+        var html = `<div class="weui-cells_checkbox" style="display: flex;flex-wrap: wrap;">`
+        for ( var i = 0; i < data.length; i++ ) {
+            if ( i == 0 ) {
+                html += `<label class="weui-check__label" style="display: flex;align-items: center;margin: 0 10px 10px 0;">
+                        <input type="radio" name="{name}" value="` + data[i].value + `" class="weui-check" checked="checked">
+                        <i class="weui-icon-checked"></i>
+                        <span>` + data[i].label + `</span>
+                    </label>`
+            } else {
+                html += `<label class="weui-check__label" style="display: flex;align-items: center;margin: 0 10px 10px 0;">
+                        <input type="radio" name="{name}" value="` + data[i].value + `" class="weui-check">
+                        <i class="weui-icon-checked"></i>
+                        <span>` + data[i].label + `</span>
+                    </label>`
+            }
+        }
+        html += `</div>`
+        return html
+    }
+
+    RadioGroup.prototype = {
+        init: function () {
+            var self = this
+            this.$element.append( util.format( template( this.options.data ), {
+                name: 'radio_' + this.$element[0].id
+            } ) )
+
+            this.$element.find( 'input' ).change( function () {
+                if ( self.options.onchange ) {
+                    self.options.onchange( $( 'input[name="radio_' + this.$element[0].id + '"]:checked' ).val() )
+                }
+            } )
+        }
+    }
+
+    $.fn.radioGroup = function ( options ) {
+        var radioGroup = new RadioGroup( this, options )
+        radioGroup.init()
+        return radioGroup
+    }
+} )( jQuery );
 var util = {
     //数据渲染
     render: function ( obj ) {
@@ -475,7 +547,7 @@ var util = {
         var html = template( id, data );
         $( html ).insertBefore( ele );
     },
-    showModal: function (modal) {
+    showModal: function ( modal ) {
         $( '[data-modal="' + modal + '"]' ).addClass( 'open' )
         $( '[data-modalcontent="' + modal + '"]' ).addClass( 'open' )
     },
@@ -493,15 +565,15 @@ var util = {
     //数字转千分位
     num2Money: function ( str ) {
         //console.log('num2Money params is: %s', str)
-        if ( typeof str != 'undefined' && new Number( str ) instanceof Number  ) {
+        if ( typeof str != 'undefined' && new Number( str ) instanceof Number ) {
             return str.toString().replace( /\d{1,3}(?=(\d{3})+$)/g, function ( s ) {
                 return s + ','
             } )
         } else {
-            console.error('num2Money error, this params str is undefined')
+            console.error( 'num2Money error, this params str is undefined' )
             return 'undefined'
         }
-        
+
     },
     toUtf8: function ( str ) {
         var out, i, len, c;
@@ -521,5 +593,13 @@ var util = {
             }
         }
         return out;
+    },
+    getForm: function ( ele ) {
+        var data = {}
+        var fileds = $( ele ).find( '.form-filed' )
+        for ( var i = 0; i < fileds.length; i++ ){
+            data[$( fileds[i] ).attr( 'name' )] = $( fileds[i] ).val()
+        }
+        return data
     }
 }
