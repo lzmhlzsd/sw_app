@@ -15,6 +15,9 @@ div {
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+input {
+    -webkit-appearance: none; /* 方法2 */
+}
 .flex { display: flex; }
 .flex-between {
     justify-content: space-between;
@@ -268,6 +271,7 @@ div {
 .group-drop.open .group-drop-content {
     display: block;
 }
+
 .sw-input {
     border: 1px solid #e8e8e8;
     border-radius: 5px;
@@ -332,6 +336,30 @@ div {
 .icon-xingxing.active {
     color: #ffc106;
 }
+
+.send {
+    position: relative;
+    /* width: 150px; */
+    max-width: 220px;
+    /* height: 35px; */
+    background: #9bcc65;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.send .arrow {
+    position:absolute;
+    top:5px;
+    right:-16px; /* 圆角的位置需要细心调试哦 */
+    width:0;
+    height:0;
+    font-size:0;
+    border:solid 8px;
+    border-color:#fff #fff #fff #9bcc65;
+}
+
 /* weui css */
 .weui-grids.no-border:before {
     border-top-width: 0;
@@ -404,6 +432,14 @@ div {
 .weui-btn_default {
     background-color: #f0f0f0;
     color: #666;
+}
+.weui-btn_bl {
+    background-color: #9bcc65;
+    color: #fff;
+}
+.weui-btn_bl:not(.weui-btn_disabled):active {
+    color: #fff;
+    background-color: #a8ce7e;
 }
 .weui-search-bar__cancel-btn{
     margin-left: 5px;

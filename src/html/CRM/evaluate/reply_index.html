@@ -13,16 +13,125 @@
 </head>
 
 <body>
-<!--end:header-->
+    <!--end:header-->
 
     <style>
+        body {
+            background: #fff;
+        }
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .fixed-footer > div {
+            height: 39px;
+            background-color: transparent;
+            border-top-width: 0;
+            border-radius: 0;
+            margin: 0 5px;
+            padding: 0;
+        }
+        .fixed-footer > div input {
+            width: 100%;
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            padding: 10px 10px;
+            box-sizing: border-box;
+        }
+        .fixed-footer .weui-btn {
+            height: 100%;
+            line-height: 39px;
+        }
+        #msg-list {
+            background: #fff;
+            flex-direction: column;
+            align-items: flex-end;
+        }
     </style>
-    <div>
-        test
-        <div id="btng" class="clearfix"></div>
-        <button id="get">button</button>
+    <div style="padding-bottom: 60px;">
+        <div class="pt-10 pr-10 pl-10" style="border-bottom: 1px solid #e8e8e8;">
+            <div class="evaluate-info p-10">
+                <div class="flex pb-10">
+                    <div class="p-r" id="usr-info"></div>
+                    <div class="flex-1 pl-15" style="line-height: 20px;">
+                        <div class="flex flex-between">
+                            <div class="f-14">
+                                <span data-key="name"></span>
+                                <span class="txt-d">|</span>
+                                <span class="txt-d" data-key="card"></span>
+                            </div>
+                            <div class="f-14 txt-d" data-key="datetime"></div>
+                        </div>
+                        <div class="flex flex-between">
+                            <div id="star"></div>
+                            <div class="f-14">
+                                <span class="txt-d">总体评分：</span>
+                                <span data-key="t_score">0</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-between">
+                            <div class="f-14">
+                                <i class="iconfont icon-user"></i>
+                                <span class="txt-d" data-key="dg_name"></span>
+                            </div>
+                            <div class="f-14">
+                                <span class="txt-d">服务：</span>
+                                <span data-key="s_score1">0</span>
+                                <span class="txt-d mr-5 ml-5">|</span>
+                                <span class="txt-d">服务：</span>
+                                <span data-key="s_score2">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10" style="background-color: #f7f7f7;">
+                    <div class="pt-10 pb-10 f-14" style="border-bottom: 1px solid #e8e8e8;" data-key="message"></div>
+                </div>
+            </div>
+        </div>
+        <div class="p-r flex p-10" id="msg-list"></div>
+        <div class="fixed-footer flex">
+            <div class="flex-1">
+                <input class="f-14" type="text">
+            </div>
+            <div><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_bl" id="submit">提交</a></div>
+        </div>
     </div>
-
+    <!-- 用户模版 -->
+    <script id="tp-usr" type="text/html">
+        <img class="mem-birthday" src="{{img}}" alt="">
+        {{if sex == 1}}
+        <div class="mem p-a" style="right: 0;top: 40px;">
+            <i class="iconfont icon-nan"></i>
+        </div>
+        {{else}}
+        <div class="women p-a" style="right: 0;top: 40px;">
+            <i class="iconfont icon-nv"></i>
+        </div>
+        {{/if}}
+    </script>
+    <!-- 评价星模版 -->
+    <script id="tp-star" type="text/html">
+        <% for(var i = 0; i < 5; i++){ %>
+            <% if(i < star) { %>
+            <i class="iconfont icon-xingxing active"></i>
+            <% } else { %>
+            <i class="iconfont icon-xingxing"></i>    
+            <% } %> 
+        <% } %>
+    </script>
+    <!-- 消息模版 -->
+    <script id="tp-msg" type="text/html">
+        {{each list as msg index}}
+            <div class="msg mr-10 mb-10">
+            <div class="send">
+                {{msg}}
+                <div class="arrow"></div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -35,15 +144,59 @@
 <!--end:script-->
 
 <script>
-    $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+    var Mock = {
+        img: './../../../image/CRM/m1.jpeg',
+        sex: 1,
+        name: '张旭君',
+        card: '普卡',
+        datetime: '2018-05-01 12:13:14',
+        star: 4,
+        t_score: 4.8,
+        dg_name: '导购名称',
+        s_score1: 5,
+        s_score2: 4,
+        message: '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !',
+        msglist: [
+            '感谢光顾', 
+            '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !',
+            '欢迎再次光临'
+        ]
+    }
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
-        } )
+    $('#submit').on('click', function() {
+        util.templateRenderAppend( 'tp-msg', {
+            list: ['测试消息']
+        }, $( '#msg-list' ) )
+    })
+
+    //数据渲染
+    util.render( {
+        name: Mock.name,
+        card: Mock.card,
+        datetime: Mock.datetime,
+        t_score: Mock.t_score,
+        dg_name: Mock.dg_name,
+        s_score1: Mock.s_score1,
+        s_score2: Mock.s_score2,
+        message: Mock.message
     } )
+    //模版渲染
+    util.templateRender( 'tp-usr', {
+        img: Mock.img,
+        sex: Mock.sex
+    }, $( '#usr-info' ) )
+
+    //模版渲染
+    util.templateRender( 'tp-star', {
+        star: Mock.star
+    }, $( '#star' ) )
+
+    util.templateRender( 'tp-msg', {
+        list: Mock.msglist
+    }, $( '#msg-list' ) )
 </script>
 
 <!--start:footer-->
+
 </html>
 <!--end:footer-->
