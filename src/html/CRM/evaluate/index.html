@@ -1,0 +1,383 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>任务分配</title>
+</head>
+
+<body>
+    <!--end:header-->
+
+    <style>
+        .header {
+            background-color: #373737;
+        }
+
+        .swiper-container {
+            background-color: #fff;
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .swiper-slide {
+            height: 180px;
+            padding: 10px;
+        }
+
+        .set_image_all {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .set_image_all .set_image_item {
+            position: relative;
+            display: inline-block;
+            z-index: 11;
+            visibility: visible;
+        }
+
+        .set_image_all .set_image_top {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+        }
+
+        .set_image_all .set_image_top>div {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .set_image_all .set_image_top>div>img {
+            height: 100%;
+        }
+
+        .grade {
+            vertical-align: top;
+        }
+        .evaluate-info { 
+            margin: 0 10px 10px 10px;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+            background-color: #fff; 
+        }
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+    </style>
+    <div class="header pt-10 pr-10 pl-10">
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <div class="pt-10 pb-10 pr-20 pl-20">
+                        <span>总体评价</span>
+                        <span class="txt-d f-14">(近2个月，不含当月)</span>
+                    </div>
+                    <div class="pt-10 pb-10 t-center" id="star_grade1"></div>
+                    <div class="flex">
+                        <div class="flex-1 t-center">
+                            <div>服务</div>
+                            <div class="f-22 txt-a" data-key="pj_year_service">0</div>
+                        </div>
+                        <div class="flex-1 t-center" style="border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8;">
+                            <div>商品</div>
+                            <div class="f-22 txt-a" data-key="pj_year_goods">0</div>
+                        </div>
+                        <div class="flex-1 t-center">
+                            <div>评价率</div>
+                            <div class="f-22 txt-a" data-key="pj_year_evaluate">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="pt-10 pb-10 pr-20 pl-20">
+                        <span>总体评价</span>
+                        <span class="txt-d f-14">(近2个月，不含当月)</span>
+                    </div>
+                    <div class="pt-10 pb-10 t-center" id="star_grade2"></div>
+                    <div class="flex">
+                        <div class="flex-1 t-center">
+                            <div>服务</div>
+                            <div class="f-22 txt-a" data-key="pj_season_service">08</div>
+                        </div>
+                        <div class="flex-1 t-center" style="border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8;">
+                            <div>商品</div>
+                            <div class="f-22 txt-a" data-key="pj_season_goods">0</div>
+                        </div>
+                        <div class="flex-1 t-center">
+                            <div>评价率</div>
+                            <div class="f-22 txt-a" data-key="pj_season_evaluate">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="pt-10 pb-10 pr-20 pl-20">
+                        <span>总体评价</span>
+                        <span class="txt-d f-14">(近2个月，不含当月)</span>
+                    </div>
+                    <div class="pt-10 pb-10 t-center" id="star_grade3"></div>
+                    <div class="flex">
+                        <div class="flex-1 t-center">
+                            <div>服务</div>
+                            <div class="f-22 txt-a" data-key="pj_month_service"></div>
+                        </div>
+                        <div class="flex-1 t-center" style="border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8;">
+                            <div>商品</div>
+                            <div class="f-22 txt-a" data-key="pj_month_goods"></div>
+                        </div>
+                        <div class="flex-1 t-center">
+                            <div>评价率</div>
+                            <div class="f-22 txt-a" data-key="pj_month_evaluate"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-button-prev-sw">
+                <i class="iconfont icon-arrow-left"></i>
+            </div>
+            <div class="swiper-button-next-sw">
+                <i class="iconfont icon-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+    <div class="pt-10 pb-10 pr-20 pl-20 f-14 txt-d" style="background-color: #fff;">
+        评价列表(近6个月)
+    </div>
+    <div class="evaluate-list pt-10">
+        <div id="evaluate-list"></div>
+    </div>
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+
+    <!-- 评价模版 -->
+    <script id="tp-evaluate" type="text/html">
+        {{each list as m index}}
+        <div class="evaluate-info p-10">
+            <div class="flex pb-10">
+                <div class="p-r">
+                    <img class="mem-birthday" src="{{m.img}}" alt="">
+                    {{if m.sex == 1}}
+                    <div class="mem p-a" style="right: 0;top: 40px;">
+                        <i class="iconfont icon-nan"></i>
+                    </div>
+                    {{else}}
+                    <div class="women p-a" style="right: 0;top: 40px;">
+                        <i class="iconfont icon-nv"></i>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="flex-1 pl-15" style="line-height: 20px;">
+                    <div class="flex flex-between">
+                        <div class="f-14">
+                            <span>{{m.name}}</span>
+                            <span class="txt-d">|</span>
+                            <span class="txt-d">{{m.card}}</span>
+                        </div>
+                        <div class="f-14 txt-d">{{m.datetime}}</div>
+                    </div>
+                    <div class="flex flex-between">
+                        <div>
+                            <% for(var i = 0; i < 5; i++){ %>
+                                <% if(i < m.star) { %>
+                                <i class="iconfont icon-xingxing active"></i>
+                                <% } else { %>
+                                <i class="iconfont icon-xingxing"></i>    
+                                <% } %> 
+                            <% } %>
+                        </div>
+                        <div class="f-14"><span class="txt-d">总体评分：</span>{{m.t_score}}</div>
+                    </div>
+                    <div class="flex flex-between">
+                        <div class="f-14"><i class="iconfont icon-user"></i><span class="txt-d">{{m.dg_name}}</span></div>
+                        <div class="f-14">
+                            <span class="txt-d">服务：</span>{{m.s_score1}}
+                            <span class="txt-d mr-5 ml-5">|</span>
+                            <span class="txt-d">服务：</span>{{m.s_score2}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-10" style="background-color: #f7f7f7;">
+                <div class="pt-10 pb-10 f-14" style="border-bottom: 1px solid #e8e8e8;">{{m.message}}</div>
+                <div class="pt-5 t-right">
+                    <a class="f-14 txt-a" href="#">添加回复+</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script type="text/javascript" src="./../../../script/swiper.js"></script>
+<script type="text/javascript" src="./../../../script/markingSystem.js"></script>
+<script>
+    var loading = false
+    var Mock = {
+        pj_year: {
+            star: 3.8,
+            service: 4.8,
+            goods: 4.9,
+            evaluate: '8%'
+        },
+        pj_season: {
+            star: 3.8,
+            service: 4.8,
+            goods: 4.9,
+            evaluate: '8%'
+        },
+        pj_month: {
+            star: 3.8,
+            service: 4.8,
+            goods: 4.9,
+            evaluate: '8%'
+        },
+        list: [
+            {
+                img: './../../../image/CRM/m1.jpeg',
+                sex: 1,
+                name: '张旭君',
+                card: '普卡',
+                datetime: '2018-05-01 12:13:14',
+                star: 4,
+                t_score: 4.8,
+                dg_name: '导购名称',
+                s_score1: 5,
+                s_score2: 4,
+                message: '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !'
+
+            },
+            {
+                img: './../../../image/CRM/m1.jpeg',
+                sex: 2,
+                name: '张旭君',
+                card: '普卡',
+                datetime: '2018-05-01 12:13:14',
+                star: 3,
+                t_score: 4.8,
+                dg_name: '导购名称',
+                s_score1: 5,
+                s_score2: 4,
+                message: '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !'
+            },
+            {
+                img: './../../../image/CRM/m1.jpeg',
+                sex: 2,
+                name: '张旭君',
+                card: '普卡',
+                datetime: '2018-05-01 12:13:14',
+                star: 3,
+                t_score: 4.8,
+                dg_name: '导购名称',
+                s_score1: 5,
+                s_score2: 4,
+                message: '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !'
+            }
+        ]
+    }
+    $( ".swiper-container" ).swiper();
+    $( "#star_grade1" ).markingSystem( {
+        backgroundImageInitial: './../../../image/CRM/star_hollow.png',
+        backgroundImageOver: './../../../image/CRM/star_solid.png',
+        num: 5,
+        clickEnable: false,
+        havePoint: true,
+        haveGrade: false,
+        grade: Mock.pj_year.star,
+        height: 20,
+        width: 20,
+    } )
+
+    $( "#star_grade2" ).markingSystem( {
+        backgroundImageInitial: './../../../image/CRM/star_hollow.png',
+        backgroundImageOver: './../../../image/CRM/star_solid.png',
+        num: 5,
+        clickEnable: false,
+        havePoint: true,
+        haveGrade: false,
+        grade: Mock.pj_season.star,
+        height: 20,
+        width: 20,
+    } )
+
+    $( "#star_grade3" ).markingSystem( {
+        backgroundImageInitial: './../../../image/CRM/star_hollow.png',
+        backgroundImageOver: './../../../image/CRM/star_solid.png',
+        num: 5,
+        clickEnable: false,
+        havePoint: true,
+        haveGrade: false,
+        grade: Mock.pj_month.star,
+        height: 20,
+        width: 20,
+    } )
+
+    //数据渲染
+    util.render( {
+        pj_year_service: Mock.pj_year.service,
+        pj_year_goods: Mock.pj_year.goods,
+        pj_year_evaluate: Mock.pj_year.evaluate,
+        pj_season_service: Mock.pj_season.service,
+        pj_season_goods: Mock.pj_season.goods,
+        pj_season_evaluate: Mock.pj_season.evaluate,
+        pj_month_service: Mock.pj_month.service,
+        pj_month_goods: Mock.pj_month.goods,
+        pj_month_evaluate: Mock.pj_month.evaluate
+    } )
+
+    //模版渲染
+    util.templateRender( 'tp-evaluate', {
+        list: Mock.list
+    }, $( '#evaluate-list' ) )
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-evaluate', {
+                list: [{
+                    img: './../../../image/CRM/m1.jpeg',
+                    sex: 2,
+                    name: 'test',
+                    card: '普卡',
+                    datetime: '2018-05-01 12:13:14',
+                    star: 3,
+                    t_score: 4.8,
+                    dg_name: '导购名称',
+                    s_score1: 5,
+                    s_score2: 4,
+                    message: '门店导购服务很赞 , 买到了很合适的衣服 , 很好的购物体验 !'
+                }]
+            }, $( '#evaluate-list' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+</script>
+
+<!--start:footer-->
+
+</html>
+<!--end:footer-->

@@ -13,6 +13,7 @@ html,body{
 a { color: #fff; }
 div {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .flex { display: flex; }
 .flex-between {
@@ -301,6 +302,36 @@ div {
     position: absolute;
     top: 2px;
 } */
+.swiper-button-prev-sw{
+    left: -3px;
+    right: auto;
+}
+.swiper-button-next-sw{
+    right: 0px;
+    left: auto;
+}
+.swiper-button-prev-sw,
+.swiper-button-next-sw {
+    position: absolute;
+    top: 50%;
+    width: 27px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    background-size: 27px 44px;
+}
+.swiper-button-prev-sw .iconfont,
+.swiper-button-next-sw .iconfont{
+    font-size: 30px;
+    color: #a7a7a7;
+}
+.icon-xingxing {
+    color: #cdcdcd;
+}
+.icon-xingxing.active {
+    color: #ffc106;
+}
 /* weui css */
 .weui-grids.no-border:before {
     border-top-width: 0;
