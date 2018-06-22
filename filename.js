@@ -3,6 +3,7 @@ module.exports = {
     './src/html/CRM/member/activeCard.html': '导购开卡目标',
     './src/html/CRM/member/member.html': '会员列表',
     './src/html/CRM/member/member_info.html': '会员详情',
+    './src/html/CRM/member/order.html': '订单列表',
     './src/html/CRM/member/filter.html': '查询条件',
     './src/html/CRM/qrcode/index.html': '二维码',
     './src/html/CRM/report/index.html': '会员数据',
@@ -18,5 +19,6 @@ module.exports = {
     './src/html/CRM/task/distribution.html': '任务分配',
     './src/html/CRM/task/select_group.html': '选择分组',
     './src/html/CRM/evaluate/index.html': '评价',
-    './src/html/CRM/evaluate/reply_index.html': '回复评价'
+    './src/html/CRM/evaluate/reply_index.html': '回复评价',
+    './src/html/CRM/appoint/index.html': '预约列表'
 }

@@ -1,0 +1,223 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>预约列表</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .card {
+            padding: 0 5px 10px;
+        }
+
+        .card:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .gk > span {
+            display: inline-block;
+            width: 50%;
+            padding-right: 10px;
+            float: left;
+            box-sizing: border-box;
+        }
+    </style>
+    <div class="pr-10 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+        <span class="p-r" style="top: -2px;">
+            <span class="p-r" style="display: inline-block; top: 5px;">
+                <i class="iconfont icon-message f-24" style="color: #bbb;"></i>
+                <span class="p-a f-12" style="color: #fff; top: 10px; left: 8px;">N</span>
+            </span>
+            <span class="f-12 mr-10">近N天有过访问</span>
+            <span class="p-r" style="display: inline-block; top: 2px;">
+                <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i>
+                <span class="p-a f-12" style="color: #fff; top: 8px; left: 7px;">N</span>
+            </span>
+            <span class="f-12">近N天有过消费(不含注册)</span>
+        </span>
+    </div>
+    <div ontouchstart class="content-block mb-20">
+        <div id="memlist" class="pl-10">
+
+        </div>
+    </div>
+    <!-- <div class="weui-loadmore weui-loadmore_line" style="margin-top: 200px;">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </div> -->
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <!-- 会员模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex">
+            <div>
+                <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
+            </div>
+            <div class="flex-1 f-14">
+                <div class="flex flex-between flex-align-center">
+                    <div>
+                        {{m.name}} 
+                        <span class="txt-d"> | </span>
+                        <span>{{m.type}}</span>
+                    </div>
+                    <div>
+                        <span class="p-r" style="top: -2px;">
+                            <span class="p-r" style="display: inline-block; top: 5px;">
+                                <i class="iconfont icon-message f-24" style="color: #bbb;"></i> 
+                                <span class="p-a f-12" style="color: #fff;bottom: 8px;
+                                display: block;
+                                height: 20px;
+                                width: 100%;
+                                text-align: center;">{{m.fw}}</span>
+                            </span>
+                            <span class="p-r" style="display: inline-block; top: 2px;">
+                                <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i> 
+                                <span class="p-a f-12" style="color: #fff;display: block;
+                                bottom: 4px;
+                                height: 20px;
+                                width: 100%;
+                                text-align: center;">{{m.xf}}</span>
+                            </span>
+                            <span class="weui-badge c-badge">到店</span>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-yuyue"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.datetime}}</span>
+                </div>
+                <div>
+                    <i class="iconfont icon-shouji"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                </div>
+                <div>
+                    <i class="iconfont icon-user"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.dg_name}}</span>
+                </div>
+                <div>
+                    <i class="iconfont icon-lipin"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.lp}}</span>
+                </div>
+                <div class="flex">
+                    <div>
+                        <i class="iconfont icon-leibie"></i>
+                    </div>
+                    <div class="flex-1 gk">
+                        {{each m.t_list as k}}
+                        <span class="txt-d p-r" style="top: -2px;">
+                            <span>{{k.name}}：</span>
+                            <span>{{k.value}}</span>
+                        </span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-align-center">
+                <i class="iconfont icon-arrow-right"></i>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var loading = false
+    var Mock = {
+        list: [
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345',
+                dg_name: '导购名称',
+                lp: '礼品预约',
+                fw: 8,
+                xf: 10,
+                type: 1,
+                t_list: [
+                    { name: '品牌', value: 'Cabbeen' },
+                    { name: '季节', value: '春夏' },
+                    { name: '系列', value: '休闲' },
+                    { name: '种类', value: '中长袖' },
+                    { name: '款号', value: 'JSK839274' }
+                ]
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345',
+                dg_name: '导购名称',
+                lp: '礼品预约',
+                fw: 8,
+                xf: 10,
+                type: 1,
+                t_list: [
+                    { name: '品牌', value: 'Cabbeen' },
+                    { name: '季节', value: '春夏' },
+                    { name: '系列', value: '休闲' },
+                    { name: '种类', value: '中长袖' },
+                    { name: '款号', value: 'JSK839274' }
+                ]
+            }
+        ]
+    }
+    //模版渲染
+    util.templateRender( 'tp-card', {
+        list: Mock.list
+    }, $( '#memlist' ) )
+
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-card', {
+                list: [{
+                    name: 'test',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                }]
+            }, $( '#memlist' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

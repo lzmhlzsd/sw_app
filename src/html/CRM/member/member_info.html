@@ -215,16 +215,18 @@
     <script id="tp-buylist" type="text/html">
         {{each list as data index}}
         <div class="flex">
-            <div class="time-axis t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
-                <div>{{data.stime}}</div>
-                <div class="txt-d">{{data.datetime}}</div>
-                <div>{{data.store}}</div>
+            <div class="time-axis" style="width:110px;">
+                <div class="t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
+                    <div>{{data.stime}}</div>
+                    <div class="txt-d">{{data.datetime}}</div>
+                    <div class="f-12">{{data.store}}</div>
+                </div>
             </div>
-            <div class="flex-1 flex pt-10 pb-10 pr-5 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
-                <div class="mr-5">
+            <div class="flex-1 flex pt-10 pb-10 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
+                <div class="">
                     <img src="{{data.img}}" alt="" width="80px;">
                 </div>
-                <div class="flex-1">
+                <div class="flex-1" style="line-height: 20px;">
                     <div class="f-14">{{data.name}}</div>
                     <div class="f-14 txt-d">{{data.xh}}</div>
                     <div class="f-14 txt-a">¥{{data.price}}</div>
@@ -241,7 +243,7 @@
             <div class="mr-5">
                 <img src="{{data.img}}" alt="" width="80px;">
             </div>
-            <div class="flex-1">
+            <div class="flex-1" style="line-height: 20px;">
                 <div class="f-14">{{data.name}}</div>
                 <div class="f-14 txt-d">{{data.xh}}</div>
                 <div class="f-14 txt-a">¥{{data.price}}</div>
@@ -254,11 +256,13 @@
     <script id="tp-visit" type="text/html">
         {{each list as data index}}
         <div class="flex">
-            <div class="time-axis t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
-                <div>{{data.stime}}</div>
-                <div class="txt-d">{{data.datetime}}</div>
+            <div class="time-axis" style="width:90px;">
+                <div class="t-right pt-5 pb-5 flex flex-direction-col flex-justify-center">
+                    <div>{{data.stime}}</div>
+                    <div class="txt-d">{{data.datetime}}</div>
+                </div>
             </div>
-            <div class="flex-1 flex flex-align-center pt-10 pb-10 pr-5 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
+            <div class="flex-1 flex flex-align-center pt-10 pb-10 pl-5" style="border-bottom: 1px dashed #e8e8e8;">
                 <div class="flex-1 ml-10">
                     <div class="f-14">{{data.tx1}}</div>
                     <div class="f-14 txt-d"><i class="iconfont icon-huifang f-20"></i>{{data.tx2}}</div>
@@ -324,7 +328,7 @@
             {
                 stime: '6天前',
                 datetime: '2018-05-08',
-                store: '正佳广场',
+                store: '广州汕头澄海东里招商路专卖店',
                 img: './../../../image/CRM/a1.png',
                 name: '2018韩版男款夏季衬衫...',
                 xh: 'GS1782193',
@@ -333,7 +337,7 @@
             }, {
                 stime: '6天前',
                 datetime: '2018-05-08',
-                store: '正佳广场',
+                store: '广州汕头澄海东里招商路专卖店',
                 img: './../../../image/CRM/a1.png',
                 name: '2018韩版男款夏季衬衫...',
                 xh: 'GS1782193',

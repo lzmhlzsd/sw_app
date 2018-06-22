@@ -1,0 +1,191 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>订单列表</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+        .order {
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
+    <div class="p-10">
+        <div  id="order-list"></div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    </div>
+
+
+    <!-- 订单模版 -->
+    <script id="tp-order" type="text/html">
+        {{each list as m index}}
+        <div class="order p-10 mb-10">
+            <div class="flex flex-between pt-5">
+                <div>
+                    <span class="label f-14">订单号：</span>
+                    <span class="txt-d">{{m.order_no}}</span>
+                </div>
+                {{if m.status == 1}}
+                <div class="f-14" style="color: #9ccc65;">交易成功</div>
+                {{else}}
+                <div class="f-14" style="color: #e64f1b;">交易失败</div>
+                {{/if}}
+            </div>
+            <div class="flex flex-between pt-5 pb-10" style="border-bottom: 1px solid #e8e8e8;">
+                <div class="f-14 txt-d">{{m.store}}</div>
+                <div class="f-14 txt-d">{{m.datetime}}</div>
+            </div>
+            <div class="flex">
+                <div class="flex-1 t-center">
+                    <div class="f-14 pt-10">订单金额</div>
+                    <div class="f-14 txt-d"><i class="iconfont icon-renminbi p-r" style="top: 1px;"></i>{{m.amount}}</div>
+                </div>
+                <div class="flex-1 t-center">
+                    <div class="f-14 pt-10">客单件</div>
+                    <div class="f-14 txt-d">{{m.count}}个</div>
+                </div>
+                <div class="flex-1 t-center">
+                    <div class="f-14 pt-10">客单价</div>
+                    <div class="f-14 txt-d"><i class="iconfont icon-renminbi p-r" style="top: 1px;"></i>{{m.price}}</div>
+                </div>
+                <div class="flex-1 t-center">
+                    <div class="f-14 pt-10">折扣率</div>
+                    <div class="f-14 txt-d">{{m.discount}}</div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var loading = false
+    var Mock = {
+        list: [
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount:  util.num2Money(1999),
+                count: 2,
+                price: util.num2Money(287),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 0,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            },
+            {
+                order_no: '29384758506866',
+                status: 1,
+                store: '广州天河正佳广场店',
+                datetime: '2018-05-01 12:13:14',
+                amount: util.num2Money( 1999 ),
+                count: 2,
+                price: util.num2Money( 287 ),
+                discount: '88%'
+            }
+        ]
+    }
+
+    //模版渲染
+    util.templateRender( 'tp-order', {
+        list: Mock.list
+    }, $( '#order-list' ) )
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-order', {
+                list: [{
+                    order_no: 'test',
+                    status: 1,
+                    store: '广州天河正佳广场店',
+                    datetime: '2018-05-01 12:13:14',
+                    amount: util.num2Money( 1999 ),
+                    count: 2,
+                    price: util.num2Money( 287 ),
+                    discount: '88%'
+                }]
+            }, $( '#order-list' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->
