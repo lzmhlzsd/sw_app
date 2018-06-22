@@ -70,14 +70,14 @@
                 <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
             </div>
             <div class="flex-1 f-14">
-                <div class="flex flex-between flex-align-center">
+                <div class="flex flex-between" style="align-items: flex-end;">
                     <div>
                         {{m.name}} 
                         <span class="txt-d"> | </span>
                         <span>{{m.type}}</span>
                     </div>
                     <div>
-                        <span class="p-r" style="top: -2px;">
+                        <span class="p-r" style="top: 2px;">
                             <span class="p-r" style="display: inline-block; top: 5px;">
                                 <i class="iconfont icon-message f-24" style="color: #bbb;"></i> 
                                 <span class="p-a f-12" style="color: #fff;bottom: 8px;
@@ -100,23 +100,23 @@
                 </div>
                 <div>
                     <i class="iconfont icon-yuyue"></i>
-                    <span class="txt-d p-r" style="top: -2px;">{{m.datetime}}</span>
+                    <span class="txt-d">{{m.datetime}}</span>
                 </div>
                 <div>
-                    <i class="iconfont icon-shouji"></i>
-                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                    <i class="iconfont icon-shouji f-18"></i>
+                    <span class="txt-d">{{m.phone}}</span>
                 </div>
                 <div>
                     <i class="iconfont icon-user"></i>
-                    <span class="txt-d p-r" style="top: -2px;">{{m.dg_name}}</span>
+                    <span class="txt-d">{{m.dg_name}}</span>
                 </div>
                 <div>
                     <i class="iconfont icon-lipin"></i>
-                    <span class="txt-d p-r" style="top: -2px;">{{m.lp}}</span>
+                    <span class="txt-d">{{m.lp}}</span>
                 </div>
                 <div class="flex">
                     <div>
-                        <i class="iconfont icon-leibie"></i>
+                        <i class="iconfont icon-leibie f-14"></i>
                     </div>
                     <div class="flex-1 gk">
                         {{each m.t_list as k}}

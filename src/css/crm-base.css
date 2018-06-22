@@ -192,6 +192,7 @@ input {
     background-color: #f0f0f0;
     z-index: 9999;
 }
+.fixed-footer > a,
 .fixed-footer > div {
     background-color: #fff;
     border-top: 1px solid #e8e8e8;
@@ -199,6 +200,7 @@ input {
     margin: 0 5px;
     padding: 5px;
     text-align: center;
+    color: #666;
 }
 .women {
     width:20px;
