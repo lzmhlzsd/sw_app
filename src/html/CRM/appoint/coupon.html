@@ -1,0 +1,169 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>优惠券</title>
+</head>
+
+<body>
+    <!--end:header-->
+
+    <style>
+        .coupon-desc {
+            display: none;
+        }
+
+        .coupon.open .coupon-desc {
+            display: block;
+        }
+    </style>
+    <div id="coupon-list"></div>
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <!-- 优惠券模版 -->
+    <script id="tp-coupon" type="text/html">
+        {{each list as m index}}  
+        <div class="p-15 mb-10 coupon" style="background-color: #fff;">
+            <div class="flex">
+                <img src="{{m.img}}" alt="" width="80" height="80">
+                <div class="label pt-5">{{m.name}}</div>
+            </div>
+            <div class="flex flex-between p-5 flex-align-center" 
+            style="border-top: 1px dashed #e8e8e8;border-bottom: 1px dashed #e8e8e8;">
+                <div class="f-12 txt-n" style="height: 25px;line-height: 29px;">有效时间：{{m.datetime}}</div>
+                <div class="f-12 txt-n coupon-open" onclick="tagglecoupon(this)" style="height: 25px;">
+                    使用规则说明<i class="iconfont icon-arrow-down p-r" style="top: 2px;"></i>
+                </div>
+            </div>
+            <div class="f-12 txt-d p-5 coupon-desc">
+                {{each m.desc as d}}  
+                <p>{{d}}</p>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var loading = false
+    var Mock = {
+        list: [
+            {
+                img: './../../../image/CRM/yhj.png',
+                name: '微商城100元',
+                datetime: '2018-05-01至2018-05-31',
+                desc: [
+                    '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                    '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                    '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                    '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                ]
+            },
+            {
+                img: './../../../image/CRM/yhj.png',
+                name: '微商城100元',
+                datetime: '2018-05-01至2018-05-31',
+                desc: [
+                    '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                    '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                    '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                    '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                ]
+            },
+            {
+                img: './../../../image/CRM/yhj.png',
+                name: '微商城100元',
+                datetime: '2018-05-01至2018-05-31',
+                desc: [
+                    '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                    '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                    '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                    '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                ]
+            },
+            {
+                img: './../../../image/CRM/yhj.png',
+                name: '微商城100元',
+                datetime: '2018-05-01至2018-05-31',
+                desc: [
+                    '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                    '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                    '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                    '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                ]
+            },
+            {
+                img: './../../../image/CRM/yhj.png',
+                name: '微商城100元',
+                datetime: '2018-05-01至2018-05-31',
+                desc: [
+                    '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                    '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                    '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                    '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                ]
+            }
+        ]
+    }
+
+    //模版渲染
+    util.templateRender( 'tp-coupon', {
+        list: Mock.list
+    }, $( '#coupon-list' ) )
+
+    function tagglecoupon(e) {
+        if ( $( e ).find( 'i' ).hasClass( 'icon-arrow-down' ) ) {
+            $( e ).parents( '.coupon' ).addClass( 'open' )
+            $( e ).find( 'i' ).removeClass( 'icon-arrow-down' ).addClass( 'icon-arrow-up' )
+        } else {
+            $( e ).parents( '.coupon' ).removeClass( 'open' )
+            $( e ).find( 'i' ).removeClass( 'icon-arrow-up' ).addClass( 'icon-arrow-down' )
+        }
+    }
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-coupon', {
+                list: [{
+                    img: './../../../image/CRM/yhj.png',
+                    name: 'test',
+                    datetime: '2018-05-01至2018-05-31',
+                    desc: [
+                        '1. 凭券到卡宾微商城旗舰店消费满1000元可抵扣100元 , 每单限使用一张;',
+                        '2. 本券与VIP折扣优惠同享 , 不与商城其他活动优惠同享;',
+                        '3. 本券属于一次性使用的优惠券 , 不可提现 , 不设找零 , 截屏无效 , 过期作废;',
+                        '4. 本券使用时间 : 自兑换之日起30天内有效。'
+                    ]
+                }]
+            }, $( '#coupon-list' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+</script>
+
+<!--start:footer-->
+
+</html>
+<!--end:footer-->

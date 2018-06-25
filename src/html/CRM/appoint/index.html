@@ -21,6 +21,7 @@
             height: 60px;
             border-radius: 30px;
         }
+
         .card {
             padding: 0 5px 10px;
         }
@@ -28,12 +29,23 @@
         .card:not(:last-child) {
             border-bottom: 1px solid #e5e5e5;
         }
-        .gk > span {
+
+        .gk>span {
             display: inline-block;
-            width: 50%;
+            min-width: 50%;
             padding-right: 10px;
             float: left;
             box-sizing: border-box;
+        }
+
+        .icon-box {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
     <div class="pr-10 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
@@ -49,6 +61,30 @@
             </span>
             <span class="f-12">近N天有过消费(不含注册)</span>
         </span>
+    </div>
+    <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+        <div class="f-14">
+            <span data-key="start_date">0000-00-00</span>至
+            <span data-key="end_date">0000-00-00</span>
+        </div>
+        <div class="f-14">
+            <span class="drop-search" data-drop="date">
+                本月
+                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+            </span>
+        </div>
+    </div>
+    <div class="drop-search-content p-15" data-dropcontent="date">
+        <div id="gbt"></div>
+        <div class="mt-5">
+            <input class="weui-input date-sinput" id="date1" type="text">
+            <span class="f-14 ml-5 mr-5">至</span>
+            <input class="weui-input date-sinput" id="date2" type="text">
+        </div>
+        <div class="mt-10" style="height: 29px;">
+            <a href="javascript:;" id="search" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+        </div>
     </div>
     <div ontouchstart class="content-block mb-20">
         <div id="memlist" class="pl-10">
@@ -67,14 +103,14 @@
         {{each list as m index}}  
         <div class="card flex">
             <div>
-                <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
+                <img class="mem-birthday mr-10 mt-20" src="{{m.img}}" alt="">
             </div>
             <div class="flex-1 f-14">
                 <div class="flex flex-between" style="align-items: flex-end;">
                     <div>
                         {{m.name}} 
                         <span class="txt-d"> | </span>
-                        <span>{{m.type}}</span>
+                        <span class="txt-d">{{m.card}}</span>
                     </div>
                     <div>
                         <span class="p-r" style="top: 2px;">
@@ -98,29 +134,37 @@
                         </span>
                     </div>
                 </div>
-                <div>
-                    <i class="iconfont icon-yuyue"></i>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-yuyue"></i>
+                    </div>
                     <span class="txt-d">{{m.datetime}}</span>
                 </div>
-                <div>
-                    <i class="iconfont icon-shouji f-18"></i>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-shouji f-18"></i>
+                    </div>
                     <span class="txt-d">{{m.phone}}</span>
                 </div>
-                <div>
-                    <i class="iconfont icon-user"></i>
-                    <span class="txt-d">{{m.dg_name}}</span>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <span class="txt-d" >{{m.dg_name}}</span>
                 </div>
-                <div>
-                    <i class="iconfont icon-lipin"></i>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-lipin f-14"></i>
+                    </div>
                     <span class="txt-d">{{m.lp}}</span>
                 </div>
                 <div class="flex">
-                    <div>
-                        <i class="iconfont icon-leibie f-14"></i>
+                    <div class="icon-box">
+                        <i class="iconfont icon-leibie f-12"></i>
                     </div>
                     <div class="flex-1 gk">
                         {{each m.t_list as k}}
-                        <span class="txt-d p-r" style="top: -2px;">
+                        <span class="txt-d">
                             <span>{{k.name}}：</span>
                             <span>{{k.value}}</span>
                         </span>
@@ -148,7 +192,66 @@
 <script>
     var loading = false
     var Mock = {
+        sdate: moment().startOf( 'month' ).format( "YYYY-MM-DD" ),
+        edate: moment().endOf( 'month' ).format( "YYYY-MM-DD" ),
         list: [
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                card: '普卡',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345',
+                dg_name: '导购名称',
+                lp: '礼品预约',
+                fw: 8,
+                xf: 10,
+                type: 1,
+                t_list: [
+                    { name: '品牌', value: 'Cabbeen' },
+                    { name: '季节', value: '春夏' },
+                    { name: '系列', value: '休闲' },
+                    { name: '种类', value: '中长袖' },
+                    { name: '款号', value: 'JSK839274' }
+                ]
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345',
+                dg_name: '导购名称',
+                lp: '礼品预约',
+                fw: 8,
+                xf: 10,
+                type: 1,
+                t_list: [
+                    { name: '品牌', value: 'Cabbeen' },
+                    { name: '季节', value: '春夏' },
+                    { name: '系列', value: '休闲' },
+                    { name: '种类', value: '中长袖' },
+                    { name: '款号', value: 'JSK839274' }
+                ]
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345',
+                dg_name: '导购名称',
+                lp: '礼品预约',
+                fw: 8,
+                xf: 10,
+                type: 1,
+                t_list: [
+                    { name: '品牌', value: 'Cabbeen' },
+                    { name: '季节', value: '春夏' },
+                    { name: '系列', value: '休闲' },
+                    { name: '种类', value: '中长袖' },
+                    { name: '款号', value: 'JSK839274' }
+                ]
+            },
             {
                 name: '钟文',
                 img: './../../../image/CRM/m1.jpeg',
@@ -194,6 +297,10 @@
         list: Mock.list
     }, $( '#memlist' ) )
 
+    util.render( {
+        start_date: Mock.sdate,
+        end_date: Mock.edate
+    })
 
     $( document.body ).infinite().on( "infinite", function () {
         if ( loading ) return;
@@ -204,11 +311,20 @@
                     name: 'test',
                     img: './../../../image/CRM/m1.jpeg',
                     type: '普卡',
+                    datetime: '2018-05-08 12:08:09',
                     phone: '13812312345',
-                    birthday: '1988-05-01',
-                    fw: 9,
+                    dg_name: '导购名称',
+                    lp: '礼品预约',
+                    fw: 8,
                     xf: 10,
-                    labels: ['近一年消费', '80年代']
+                    type: 1,
+                    t_list: [
+                        { name: '品牌', value: 'Cabbeen' },
+                        { name: '季节', value: '春夏' },
+                        { name: '系列', value: '休闲' },
+                        { name: '种类', value: '中长袖' },
+                        { name: '款号', value: 'JSK839274' }
+                    ]
                 }]
             }, $( '#memlist' ) )
 
@@ -216,6 +332,63 @@
         }, 2000 );
     } );
 
+
+    var gbt = $( '#gbt' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '本月' },
+            { id: 1, text: '次月' }
+        ],
+        onchange: function ( e ) {
+            // e is button's id
+            console.log( e )
+            if ( e == 0 ) {
+                var sdate = moment().startOf( 'month' ).format( "YYYY-MM-DD" )
+                var edate = moment().endOf( 'month' ).format( "YYYY-MM-DD" )
+                $( "#date1" ).val( sdate )
+                $( "#date2" ).val( edate )
+                util.render( {
+                    start_date: sdate,
+                    end_date: edate
+                } )
+            } else if ( e == 1 ) {
+                var sdate = moment().add( 1, 'months' ).startOf( 'month' ).format( "YYYY-MM-DD" )
+                var edate = moment().add( 1, 'months' ).endOf( 'month' ).format( "YYYY-MM-DD" )
+                $( "#date1" ).val( sdate )
+                $( "#date2" ).val( edate )
+                util.render( {
+                    start_date: sdate,
+                    end_date: edate
+                } )
+            }
+        }
+    } ).setValue( 0 )
+
+    $( "#date1" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        value: [moment().startOf( 'month' ).format( "YYYY-MM-DD" )],
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+    $( "#date2" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        value: [moment().endOf( 'month' ).format( "YYYY-MM-DD" )],
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+
+    $( "#date1" ).val( Mock.sdate )
+    $( "#date2" ).val( Mock.edate )
+
+    // $( "#date1" ).calendar( "setValue", [moment().startOf( 'month' ).format( "YYYY-MM-DD" )] );
+    // $( "#date2" ).calendar( "setValue", [moment().endOf( 'month' ).format( "YYYY-MM-DD" )] );
+    $( '#search' ).on( 'click', function () {
+        var sdate = $( "#date1" ).val()
+        var edate = $( "#date2" ).val()
+        console.log( 'sdate: %s, edate: %s', sdate, edate )
+    } )
 </script>
 
 <!--start:footer-->

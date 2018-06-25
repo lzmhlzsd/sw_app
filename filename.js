@@ -20,5 +20,9 @@ module.exports = {
     './src/html/CRM/task/select_group.html': '选择分组',
     './src/html/CRM/evaluate/index.html': '评价',
     './src/html/CRM/evaluate/reply_index.html': '回复评价',
-    './src/html/CRM/appoint/index.html': '预约列表'
+    './src/html/CRM/appoint/index.html': '预约列表',
+    './src/html/CRM/appoint/index2.html': '生日回访',
+    './src/html/CRM/appoint/index3.html': '回访评价',
+    './src/html/CRM/appoint/index4.html': '已访会员',
+    './src/html/CRM/appoint/coupon.html': '优惠券'
 }

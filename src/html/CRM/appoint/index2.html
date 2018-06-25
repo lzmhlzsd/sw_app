@@ -1,0 +1,207 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>生日回访</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .pcard {
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .tboor .btn {
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            margin: 0 5px;
+        }
+    </style>
+    <div>
+        <div class="weui-search-bar flex-1 pr-5 pl-5" id="searchBar">
+            <form class="weui-search-bar__form" action="#" onsubmit="return false;">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                </div>
+                <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+            </form>
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+        </div>
+        <div class="pr-10 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+            <span class="p-r" style="top: -2px;">
+                <span class="p-r" style="display: inline-block; top: 5px;">
+                    <i class="iconfont icon-message f-24" style="color: #bbb;"></i>
+                    <span class="p-a f-12" style="color: #fff; top: 10px; left: 8px;">N</span>
+                </span>
+                <span class="f-12 mr-10">近N天有过访问</span>
+                <span class="p-r" style="display: inline-block; top: 2px;">
+                    <i class="iconfont icon-gongwenbao f-20" style="color: #bbb;"></i>
+                    <span class="p-a f-12" style="color: #fff; top: 8px; left: 7px;">N</span>
+                </span>
+                <span class="f-12">近N天有过消费(不含注册)</span>
+            </span>
+        </div>
+        <div class="p-10" id="hy-list">
+            
+        </div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    </div>
+
+    <!-- 新消费顾客模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="pcard p-10 mb-10">
+            <div class="flex flex-between flex-align-center pt-5">
+                <div class="flex flex-align-center">
+                    <img class="mem-birthday mr-10 " src="./../../../image/CRM/m1.jpeg" alt="">
+                    <span>{{m.name}}</span>
+                    <span class="txt-d">|</span>
+                    <span class="txt-d">{{m.card}}</span>
+                </div>
+                <div class="p-r" style="top: -5px;">
+                    <span class="p-r" style="display: inline-block; top: 5px;">
+                        <i class="iconfont icon-message f-24" style="color: #bbb;"></i>
+                        <span class="p-a f-12" style="color: #fff;bottom: 8px;
+                                                display: block;
+                                                height: 20px;
+                                                width: 100%;
+                                                text-align: center;">{{m.fw}}</span>
+                    </span>
+                    <span class="p-r" style="display: inline-block; top: 2px;">
+                        <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i>
+                        <span class="p-a f-12" style="color: #fff;display: block;
+                                                bottom: 4px;
+                                                height: 20px;
+                                                width: 100%;
+                                                text-align: center;">{{m.xf}}</span>
+                    </span>
+                    <i class="iconfont icon-arrow-right"></i>
+                </div>
+            </div>
+            <div class="tboor flex pt-10" style="margin: 0 -5px;">
+                <div class="btn flex-1">
+                    <i class="iconfont icon-phone txt-d p-r" style="top: 1px;"></i>打电话
+                </div>
+                <div class="btn flex-1">
+                    <i class="iconfont icon-duanxin txt-d p-r" style="top: 1px;"></i>发短信
+                </div>
+                <div class="btn" style="width: 65px;">
+                    <i class="iconfont icon-pj txt-d p-r" style="top: 1px;"></i>评价
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    var loading = false
+    var Mock = {
+        list: [
+            {
+                img: './../../../image/CRM/m1.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9, 
+                xf: 12
+            },
+            {
+                img: './../../../image/CRM/m4.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9,
+                xf: 12
+            },
+            {
+                img: './../../../image/CRM/m5.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9,
+                xf: 12
+            },
+            {
+                img: './../../../image/CRM/m5.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9,
+                xf: 12
+            },
+            {
+                img: './../../../image/CRM/m5.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9,
+                xf: 12
+            },
+            {
+                img: './../../../image/CRM/m5.jpeg',
+                name: '张晓红',
+                card: '普卡',
+                fw: 9,
+                xf: 12
+            }
+        ]
+    }
+
+    //模版渲染
+    util.templateRender( 'tp-card', {
+        list: Mock.list
+    }, $( '#hy-list' ) )
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-card', {
+                list: [{
+                    img: './../../../image/CRM/m4.jpeg',
+                    name: 'test',
+                    card: '普卡',
+                    fw: 9,
+                    xf: 12
+                }]
+            }, $( '#hy-list' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->

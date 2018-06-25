@@ -1,0 +1,188 @@
+<!--start:header-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="./../../../css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
+    <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
+    <title>回访评价</title>
+</head>
+
+<body>
+<!--end:header-->
+
+    <style>
+        .c-item {
+            position: relative;
+            padding: 10px 15px;
+        }
+
+        .c-item::before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px dashed #e5e5e5;
+            color: #e5e5e5;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+            left: 15px;
+            z-index: 2;
+
+        }
+
+        .h-btn {
+            font-size: 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 16px;
+            width: 100px;
+            padding: 2px 8px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .h-btn.btn-1.active {
+            background-color: #ef534f;
+            color: #fff;
+        }
+
+        .h-btn.btn-2.active {
+            background-color: #ffcc01;
+            color: #fff;
+        }
+
+        .h-btn.btn-3.active {
+            background-color: #9bcc65;
+            color: #fff;
+        }
+        .h-btn.btn-1.active .iconfont,
+        .h-btn.btn-2.active .iconfont,
+        .h-btn.btn-3.active .iconfont,
+        .h-btn.btn-1.active span,
+        .h-btn.btn-2.active span,
+        .h-btn.btn-3.active span {
+            color: #fff;
+        }
+        .weui-textarea {
+            border-radius: 5px;
+            border: 1px solid #e8e8e8;
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .weui-cell:before {
+            border-width: 0;
+        }
+    </style>
+    <div style="background-color: #fff;">
+        <div class="c-item flex flex-between">
+            <div>回访方式</div>
+            <div class="weui-cells_checkbox flex">
+                <label class="weui-cell weui-check__label mr-5" style="padding: 0;">
+                    <div class="weui-cell__hd" style="padding: 0;">
+                        <input type="radio" class="weui-check" name="rtype" checked="checked">
+                        <i class="weui-icon-checked"></i>
+                    </div>
+                    <div class="weui-cell__bd p-r" style="top: 2px;">
+                        <p>电话</p>
+                    </div>
+                </label>
+                <label class="weui-cell weui-check__label" style="padding: 0;">
+                    <div class="weui-cell__hd" style="padding: 0;">
+                        <input type="radio" class="weui-check" name="rtype">
+                        <i class="weui-icon-checked"></i>
+                    </div>
+                    <div class="weui-cell__bd p-r" style="top: 2px;">
+                        <p>短信</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="c-item">
+            <div class="pb-5">回访结果</div>
+            <div class="flex flex-justify-center">
+                <div class="h-btn btn-1" data-index="1">
+                    <i class="iconfont icon-kulian txt-l"></i>
+                    <span class="txt-d">拒接</span>
+                </div>
+                <div class="h-btn btn-2" data-index="2">
+                    <i class="iconfont icon-lian-hengxian txt-l"></i>
+                    <span class="txt-d">无意向</span>
+                </div>
+                <div class="h-btn btn-3" data-index="3">
+                    <i class="iconfont icon-biaoqing txt-l"></i>
+                    <span class="txt-d">愿意到店</span>
+                </div>
+            </div>
+        </div>
+        <div class="c-item flex flex-between">
+            <div>预计到店日期</div>
+            <div></div>
+        </div>
+        <div class="weui-cells weui-cells_form" style="margin-top: 0;">
+            <div class="weui-cell  weui-cell_access">
+                <div class="weui-cell__hd">
+                    <label for="name" class="weui-label">任务类型</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input t-right txt-d" id="task_type" type="text" value="">
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </div>
+        </div>
+        <div class="c-item">
+            <div>备注(选填)</div>
+            <div class="flex flex-between flex-align-center">
+                <div class="f-14 txt-d">请补充描述对此次回访的态度</div>
+                <div class="f-14">
+                    <i class="iconfont icon-shanchu"></i>
+                    清空
+                </div>
+            </div>
+            <div>
+                <textarea class="weui-textarea txt-d" rows="5"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!--start:script-->
+</body>
+<script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="./../../../script/jquery-weui.min.js"></script>
+<script type="text/javascript" src="./../../../script/template-web.js"></script>
+<script type="text/javascript" src="./../../../script/fastclick.js"></script>
+<script type="text/javascript" src="./../../../script/lodash.min.js"></script>
+<script type="text/javascript" src="./../../../script/moment.min.js"></script>
+<script type="text/javascript" src="./../../../script/crm-base.js"></script>
+<!--end:script-->
+
+<script>
+    $( '.h-btn' ).on( 'click', function () {
+        var index = $( this ).data( 'index' )
+        if ( index == $( '.h-btn.active' ).data( 'index' ) ) {
+            if ( $( this ).hasClass( 'active' ) ) {
+                $( this ).removeClass( 'active' )
+            } else {
+                $( this ).addClass( 'active' )
+            }
+        } else {
+            $( '.h-btn.active' ).removeClass('active')
+            $(this).addClass('active')
+        }
+    } )
+</script>
+
+<!--start:footer-->
+</html>
+<!--end:footer-->
