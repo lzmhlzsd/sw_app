@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>自定义分组</title>
+    <title>其他回访</title>
 </head>
 
 <body>
@@ -37,12 +37,10 @@
                         <p>{{m.name}}</p>
                     </div>
                     <div class="weui-cell__ft">
-                        <span class="txt-d">{{m.count}}</span>
+                        <span class="weui-badge c-badge txt-d p-r" style="top:-1px;">{{m.count}}</span>
+                        <!-- <i class="iconfont icon-arrow-right"></i> -->
                     </div>
                 </div>
-            </div>
-            <div class="weui-cell__ft">
-                <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout g-item-delete" href="javascript:" data-id="{{m.id}}">删除</a>
             </div>
         </div>
         {{/each}}
@@ -61,8 +59,12 @@
 <script>
     var Mock = {
         list: [
-            { id: 1, name: '自定义分组1', count: 13673 },
-            { id: 2, name: '自定义分组2', count: 13673 }
+            { id: 1, name: '普升银回访', count: 2 },
+            { id: 2, name: '银升金回访', count: 19 },
+            { id: 3, name: '注册会员回访', count: 20 },
+            { id: 4, name: '消费会员回访', count: 32 },
+            { id: 5, name: '忠诚会员回访', count: 11 },
+            { id: 6, name: '新贵族(首单5000以上)', count: 24 }
         ]
     }
 
@@ -70,15 +72,10 @@
         list: Mock.list
     }, $( '#group-list' ) )
 
-    $( '.weui-cell_swiped' ).swipeout()
-
     $( '.g-item' ).on( 'click', function () {
         console.log( $( this ).data( 'id' ) )
     } )
 
-    $( '.g-item-delete' ).on( 'click', function () {
-        console.log( 'g-item-delete' + $( this ).data( 'id' ) )
-    } )
 </script>
 
 <!--start:footer-->

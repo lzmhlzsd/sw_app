@@ -31,14 +31,13 @@
     <script id="tp-group" type="text/html">
         {{each list as m index}}
         <div class="weui-cell weui-cell_swiped mb-5">
-            <div class="weui-cell__bd g-item" data-id="{{m.id}}">
+            <div class="weui-cell__bd g-item weui-cell_access weui-border" data-id="{{m.id}}">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <p>{{m.name}}</p>
                     </div>
                     <div class="weui-cell__ft">
                         <span class="txt-d">{{m.count}}</span>
-                        <i class="iconfont icon-arrow-right"></i>
                     </div>
                 </div>
             </div>

@@ -89,7 +89,7 @@
             <div class="weui-cells_checkbox flex">
                 <label class="weui-cell weui-check__label mr-5" style="padding: 0;">
                     <div class="weui-cell__hd" style="padding: 0;">
-                        <input type="radio" class="weui-check" name="rtype" checked="checked">
+                        <input type="radio" class="weui-check" name="rtype" value="1" checked="checked">
                         <i class="weui-icon-checked"></i>
                     </div>
                     <div class="weui-cell__bd p-r" style="top: 2px;">
@@ -98,7 +98,7 @@
                 </label>
                 <label class="weui-cell weui-check__label" style="padding: 0;">
                     <div class="weui-cell__hd" style="padding: 0;">
-                        <input type="radio" class="weui-check" name="rtype">
+                        <input type="radio" class="weui-check" name="rtype" value="2">
                         <i class="weui-icon-checked"></i>
                     </div>
                     <div class="weui-cell__bd p-r" style="top: 2px;">
@@ -124,33 +124,25 @@
                 </div>
             </div>
         </div>
-        <div class="c-item flex flex-between">
-            <div>预计到店日期</div>
-            <div></div>
-        </div>
-        <div class="weui-cells weui-cells_form" style="margin-top: 0;">
-            <div class="weui-cell  weui-cell_access">
-                <div class="weui-cell__hd">
-                    <label for="name" class="weui-label">任务类型</label>
-                </div>
-                <div class="weui-cell__bd">
-                    <input class="weui-input t-right txt-d" id="task_type" type="text" value="">
-                </div>
-                <div class="weui-cell__ft">
-                </div>
+        <div class="c-item flex flex-between weui-cell_access">
+            <div class="weui-cell__hd">预计到店日期</div>
+            <div class="weui-cell__bd">
+                <input class="weui-input t-right txt-d" id="date" type="text" value="" placeholder="选择日期">
+            </div>
+            <div class="weui-cell__ft">
             </div>
         </div>
         <div class="c-item">
             <div>备注(选填)</div>
             <div class="flex flex-between flex-align-center">
                 <div class="f-14 txt-d">请补充描述对此次回访的态度</div>
-                <div class="f-14">
+                <div class="f-14 clear-input">
                     <i class="iconfont icon-shanchu"></i>
                     清空
                 </div>
             </div>
             <div>
-                <textarea class="weui-textarea txt-d" rows="5"></textarea>
+                <textarea class="weui-textarea txt-d" id="memo" rows="5"></textarea>
             </div>
         </div>
 
@@ -181,6 +173,26 @@
             $(this).addClass('active')
         }
     } )
+
+    $( "#date" ).calendar({
+        dateFormat: 'yyyy-mm-dd'
+    });
+
+    $('.clear-input').on('click', function() {
+        $('#memo').val('')
+    })
+    
+
+    //获取表单数据
+    function getForm() {
+        var tjson = {}
+        tjson.type = $('input[name="rtype"]:checked').val()
+        tjson.result = $('.h-btn.active').data('index')
+        tjson.date = $('#date').val()
+        tjson.memo = $('#memo').val()
+        console.log(tjson)
+    }
+
 </script>
 
 <!--start:footer-->

@@ -426,15 +426,19 @@ input {
     padding-top: 44px;
 }
 .weui-btn_primary {
-    background-color: #ffcc00;
-    color: #666;
+    background-color: #ffcc00 !important;
+    color: #666 !important;
 }
 .weui-btn_primary:not(.weui-btn_disabled):active {
-    color: #666;
-    background-color: #f9db63;
+    color: #666 !important;
+    background-color: #f9db63 !important;
 }
 .weui-btn_default {
     background-color: #f0f0f0;
+    color: #666;
+}
+.weui-btn_default:not(.weui-btn_disabled):active {
+    background-color: #dedede;
     color: #666;
 }
 .weui-btn_bl {
@@ -464,6 +468,7 @@ input {
 .weui-check__label:active{
     background-color: transparent;
 }
+.weui-border { border: 1px solid #cdcdcd; }
 /* 常用字体类 */
 .f-12 { font-size: 12px !important; }
 .f-14 { font-size: 14px !important; }

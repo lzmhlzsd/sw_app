@@ -24,5 +24,13 @@ module.exports = {
     './src/html/CRM/appoint/index2.html': '生日回访',
     './src/html/CRM/appoint/index3.html': '回访评价',
     './src/html/CRM/appoint/index4.html': '已访会员',
-    './src/html/CRM/appoint/coupon.html': '优惠券'
+    './src/html/CRM/appoint/index5.html': '其他回访',
+    './src/html/CRM/appoint/coupon.html': '优惠券',
+    './src/html/CRM/mk/index1.html': '会员分配',
+    './src/html/CRM/mk/index2.html': '导购列表',
+    './src/html/CRM/mk/index3.html': '已分配会员列表',
+    './src/html/CRM/mk/index4.html': '更换导购',
+    './src/html/CRM/mk/index5.html': '指定导购',
+    './src/html/CRM/mk/index6.html': '粉丝列表',
+    './src/html/CRM/mk/index7.html': '个人信息'
 }
