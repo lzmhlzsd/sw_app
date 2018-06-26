@@ -16,13 +16,147 @@
 <!--end:header-->
 
     <style>
-    </style>
-    <div>
-        test
-        <div id="btng" class="clearfix"></div>
-        <button id="get">button</button>
-    </div>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
 
+        .bar {
+            width: 100px;
+            height: 10px;
+            border-radius: 5px;
+            background: #eeeeee;
+        }
+
+        .bar-value {
+            height: 10px;
+            border-radius: 5px;
+            background: #ffcc01;
+        }
+
+        .card {
+            padding: 0 5px 10px;
+        }
+
+        .card:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #efeff5;
+            z-index: 9999;
+        }
+    </style>
+    <div class="fixed-header">
+        <div class="flex">
+            <div class="weui-search-bar flex-1 pr-5 pl-5" id="searchBar">
+                <form class="weui-search-bar__form" action="#">
+                    <div class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="请输入手机号、会员姓名" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>请输入手机号、会员姓名</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+        </div>
+        <div class="pr-10 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+            <span class="p-r" style="top: -2px;">
+                <span class="p-r" style="display: inline-block; top: 5px;">
+                    <i class="iconfont icon-message f-24" style="color: #bbb;"></i>
+                    <span class="p-a f-12" style="color: #fff; top: 10px; left: 8px;">N</span>
+                </span>
+                <span class="f-12 mr-10">近N天有过访问</span>
+                <span class="p-r" style="display: inline-block; top: 2px;">
+                    <i class="iconfont icon-gongwenbao f-20" style="color: #30aee8;"></i>
+                    <span class="p-a f-12" style="color: #fff; top: 8px; left: 7px;">N</span>
+                </span>
+                <span class="f-12">近N天有过消费(不含注册)</span>
+            </span>
+        </div>
+    </div>
+    <div style="margin-top: 83px;padding-bottom: 60px;">
+        <div class="content-block mb-20">
+            <div id="memlist" class="pl-10 pr-10">
+
+            </div>
+        </div>
+
+    <!-- <div class="weui-loadmore weui-loadmore_line" style="margin-top: 200px;">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </div> -->
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+    </div>
+    <div class="fixed-footer flex">
+        <a class="flex-1 btn weui-btn_primary" href="#">
+            更换导购
+        </a>
+    </div>
+    <!-- 会员模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex flex-align-center">
+            <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
+            <div class="flex-1 f-14">
+                <div class="flex flex-between flex-align-center">
+                    <div class="pt-10">
+                        {{m.name}} 
+                        <span class="txt-d"> | </span>
+                        <span>{{m.type}}</span>
+                        <span class="txt-d"> | </span> 
+                        <i class="iconfont icon-shengri"></i> 
+                        <span>{{m.birthday}}</span>
+                    </div>
+                    <!-- #ff7579 #30aee8-->
+                    <div>
+                        <span class="p-r" style="display: inline-block; top: 5px;">
+                            <i class="iconfont icon-message f-24" style="color: #30aee8;"></i> 
+                            <span class="p-a f-12" style="color: #fff;bottom: 8px;
+                            display: block;
+                            height: 20px;
+                            width: 100%;
+                            text-align: center;">{{m.fw}}</span>
+                        </span>
+                        <span class="p-r" style="display: inline-block; top: 2px;">
+                            <i class="iconfont icon-gongwenbao f-20" style="color: #ff7579;"></i> 
+                            <span class="p-a f-12" style="color: #fff;display: block;
+                            bottom: 4px;
+                            height: 20px;
+                            width: 100%;
+                            text-align: center;">{{m.xf}}</span>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-shouji"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                </div>
+                <div class="flex flex-between">
+                    <div class="bqs">
+                        {{each m.labels as lb index}}  
+                        <span class="weui-badge c-badge">{{lb}}</span>
+                        {{/each}}
+                    </div>
+                    <div>
+                        <i class="iconfont icon-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -36,12 +170,160 @@
 
 <script>
     $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+        var loading = false
+        var Mock = {
+            list: [
+                {
+                    name: '钟文',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '李国涛',
+                    img: './../../../image/CRM/m4.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代', '90年代']
+                },
+                {
+                    name: '张丽',
+                    img: './../../../image/CRM/m5.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '李金明',
+                    img: './../../../image/CRM/m6.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代', '90年代']
+                },
+                {
+                    name: '陈赫',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '钟文',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '李国涛',
+                    img: './../../../image/CRM/m4.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代', '90年代']
+                },
+                {
+                    name: '张丽',
+                    img: './../../../image/CRM/m5.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '李金明',
+                    img: './../../../image/CRM/m6.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代', '90年代']
+                },
+                {
+                    name: '陈赫',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                }
+            ]
+        }
+        //模版渲染
+        util.templateRender( 'tp-card', {
+            list: Mock.list
+        }, $( '#memlist' ) )
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
+        $( '#switch' ).switchBtn( {
+            trueValue: 0,
+            falseValue: 1,
+            openText: '店铺',
+            closeText: '导购',
+            onchange: function ( e ) {
+                console.log( e )
+                // 模拟弹出模态框
+
+            }
+        } )
+
+        //filter group btns
+
+
+
+        $( document.body ).infinite().on( "infinite", function () {
+            if ( loading ) return;
+            loading = true;
+            setTimeout( function () {
+                util.templateRenderAppend( 'tp-card', {
+                    list: [{
+                        name: 'test',
+                        img: './../../../image/CRM/m1.jpeg',
+                        type: '普卡',
+                        phone: '13812312345',
+                        birthday: '1988-05-01',
+                        fw: 9,
+                        xf: 10,
+                        labels: ['近一年消费', '80年代']
+                    }]
+                }, $( '#memlist' ) )
+
+                loading = false;
+            }, 2000 );
+        } );
+
+        $( '#search' ).on( 'click', function () {
+            //alert('查询')
+            util.hideModal( 'filter-box' )
         } )
     } )
+
+
 </script>
 
 <!--start:footer-->

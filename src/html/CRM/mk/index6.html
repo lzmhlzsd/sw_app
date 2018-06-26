@@ -9,18 +9,72 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>粉丝列表</title>
+    <title>个人信息</title>
 </head>
 
 <body>
 <!--end:header-->
 
     <style>
+        .weui-input {
+            text-align: right;
+        }
     </style>
-    <div>
-        test
-        <div id="btng" class="clearfix"></div>
-        <button id="get">button</button>
+    <div class="weui-cells" id="usr-info" style="margin-top: 0;">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>会员昵称</p>
+            </div>
+            <div class="weui-cell__ft">张小红</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>真实姓名<span class="f-12 txt-d">(必填)</span></p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" type="text" name="name" placeholder="请填写真实姓名">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>手机号码<span class="f-12 txt-d">(必填)</span></p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" type="text" name="phone" placeholder="请填写会员手机号码">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>生日</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" id="date" type="text" name="date" placeholder="请选择日期">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>电子邮箱</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" type="text" name="email" placeholder="请填写电子邮箱">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>省市区</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" id="city" type="text" name="city" placeholder="请选择省市区">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>地址</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input form-filed" type="text" name="address" placeholder="请填写常用地址">
+            </div>
+        </div>
     </div>
 
     <!--start:script-->
@@ -33,15 +87,22 @@
 <script type="text/javascript" src="./../../../script/moment.min.js"></script>
 <script type="text/javascript" src="./../../../script/crm-base.js"></script>
 <!--end:script-->
-
+<script type="text/javascript" src="./../../../script/city-picker.js"></script>
 <script>
-    $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+    $( "#date" ).calendar( {
+        dateFormat: 'yyyy-mm-dd' 
+    } );
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
-        } )
-    } )
+    $( "#city" ).cityPicker( {
+        title: "选择省市区",
+        onChange: function ( picker, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+
+    function getForm() {
+        console.log( util.getForm('#usr-info') )
+    }
 </script>
 
 <!--start:footer-->

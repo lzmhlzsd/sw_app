@@ -16,13 +16,59 @@
 <!--end:header-->
 
     <style>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .card {
+            padding: 0 5px 10px;
+        }
+
+        .card:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
     </style>
-    <div>
-        test
-        <div id="btng" class="clearfix"></div>
-        <button id="get">button</button>
+    <div class="content-block mb-20">
+        <div id="memlist" class="pl-10 pr-10">
+
+        </div>
     </div>
 
+    <!-- <div class="weui-loadmore weui-loadmore_line" style="margin-top: 200px;">
+    <span class="weui-loadmore__tips">暂无数据</span>
+</div> -->
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <!-- 会员模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex flex-align-center">
+            <img class="mem-birthday mr-10 mt-10" src="{{m.img}}" alt="">
+            <div class="flex-1 f-14">
+                <div class="flex flex-between flex-align-center">
+                    <div class="pt-10">
+                        {{m.name}} 
+                        <span class="txt-d"> | </span>
+                        <span>{{m.type}}</span>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-shouji"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                </div>
+                <div>
+                    会员数：<span class="txt-d">{{m.mcount}}</span>
+                </div>
+            </div>
+            <div>
+                <i class="iconfont icon-arrow-right"></i>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -36,12 +82,118 @@
 
 <script>
     $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+        var loading = false
+        var Mock = {
+            list: [
+                {
+                    name: '钟文',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '李国涛',
+                    img: './../../../image/CRM/m4.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '张丽',
+                    img: './../../../image/CRM/m5.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '李金明',
+                    img: './../../../image/CRM/m6.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '陈赫',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '钟文',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '李国涛',
+                    img: './../../../image/CRM/m4.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '张丽',
+                    img: './../../../image/CRM/m5.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    fw: 9,
+                    xf: 10,
+                    labels: ['近一年消费', '80年代']
+                },
+                {
+                    name: '李金明',
+                    img: './../../../image/CRM/m6.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                },
+                {
+                    name: '陈赫',
+                    img: './../../../image/CRM/m1.jpeg',
+                    type: '店长',
+                    phone: '13812312345',
+                    mcount: 83
+                }
+            ]
+        }
+        //模版渲染
+        util.templateRender( 'tp-card', {
+            list: Mock.list
+        }, $( '#memlist' ) )
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
+        //filter group btns
+
+
+
+        $( document.body ).infinite().on( "infinite", function () {
+            if ( loading ) return;
+            loading = true;
+            setTimeout( function () {
+                util.templateRenderAppend( 'tp-card', {
+                    list: [{
+                        name: 'test',
+                        img: './../../../image/CRM/m1.jpeg',
+                        type: '店长',
+                        phone: '13812312345',
+                        mcount: 83
+                    }]
+                }, $( '#memlist' ) )
+
+                loading = false;
+            }, 2000 );
+        } );
+
+        $( '#search' ).on( 'click', function () {
+            //alert('查询')
+            util.hideModal( 'filter-box' )
         } )
     } )
+
+
 </script>
 
 <!--start:footer-->

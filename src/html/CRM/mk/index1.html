@@ -16,10 +16,31 @@
 <!--end:header-->
 
     <style>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+
+        .card {
+            padding: 10px 5px 10px;
+        }
+
+        .card:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
     </style>
     <div style="background-color: #fff;padding-bottom: 60px;">
-        <div>
-            
+        <div class="pr-10 pl-10" style="
+        background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8; 
+        position: fixed; top: 0; width: 100%;z-index: 999;">
+            <span class="f-12 txt-d">尚有
+                <span class="f-22 mr-5 ml-5 txt-a" id="count">0</span>位消费者未分配专属导购</span>
+        </div>
+        <div id="memlist" class="pl-10 pr-10" style="margin-top: 36px;"></div>
+        <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
         </div>
         <div class="fixed-footer flex">
             <a class="flex-1 btn weui-btn_default" href="#">
@@ -33,6 +54,49 @@
         </div>
     </div>
 
+    <!-- 会员模版 -->
+    <script id="tp-mem" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex flex-align-center" data-id="{{m.id}}">
+            <img class="mem-birthday mr-10" src="{{m.img}}" alt="">
+            <div class="flex-1 f-14">
+                <div class="flex flex-between">
+                    <div>
+                        {{m.name}} 
+                        <span class="txt-d"> | </span>
+                        <span class="txt-d">{{m.type}}</span>
+                        <span class="txt-d"> | </span> 
+                        <i class="iconfont icon-shengri txt-d"></i> 
+                        <span class="txt-d">{{m.birthday}}</span>
+                    </div>
+                    <label class="weui-check__label">
+                        <div class="weui-cells_checkbox">
+                            {{if m.checked }}
+                            <input type="checkbox" name="radio_{{index}}" value="{{m.id}}" onchange="change()" class="weui-check" checked="checked">
+                            {{else}}
+                            <input type="checkbox" name="radio_{{index}}" value="{{m.id}}" onchange="change()" class="weui-check">
+                            {{/if}}
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                    </label>
+                    <!-- #ff7579 #30aee8-->
+                </div>
+                <div>
+                    <i class="iconfont icon-shouji"></i>
+                    <span class="txt-d p-r" style="top: -2px;">{{m.phone}}</span>
+                </div>
+                <div class="flex flex-between">
+                    <div>
+                        注册日期：<span class="txt-d">{{m.datetime}}</span>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -45,13 +109,152 @@
 <!--end:script-->
 
 <script>
-    $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+    loading = false
+    var Mock = {
+        list: [
+            {
+                id: 1,
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 2,
+                name: '李国涛',
+                img: './../../../image/CRM/m4.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: true
+            },
+            {
+                id: 3,
+                name: '张丽',
+                img: './../../../image/CRM/m5.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 4,
+                name: '李金明',
+                img: './../../../image/CRM/m6.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 5,
+                name: '陈赫',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 6,
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 7,
+                name: '李国涛',
+                img: './../../../image/CRM/m4.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 8,
+                name: '张丽',
+                img: './../../../image/CRM/m5.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 9,
+                name: '李金明',
+                img: './../../../image/CRM/m6.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            },
+            {
+                id: 10,
+                name: '陈赫',
+                img: './../../../image/CRM/m1.jpeg',
+                type: '普卡',
+                phone: '13812312345',
+                birthday: '1988-05-01',
+                datetime: '2018-05-01 1周前',
+                checked: false
+            }
+        ]
+    }
+    //模版渲染
+    util.templateRender( 'tp-mem', {
+        list: Mock.list
+    }, $( '#memlist' ) )
+    $( '#count' ).html( $( '.weui-check:checked' ).length )
+    
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-mem', {
+                list: [{
+                    id: $( '#memlist' ).children().length + 1,
+                    name: 'test',
+                    img: './../../../image/CRM/m4.jpeg',
+                    type: '普卡',
+                    phone: '13812312345',
+                    birthday: '1988-05-01',
+                    datetime: '2018-05-01 1周前',
+                    checked: false
+                }]
+            }, $( '#memlist' ) )
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
-        } )
-    } )
+            loading = false;
+        }, 2000 );
+    } );
+
+    function change() {
+        $('#count').html( $( '.weui-check:checked' ).length)
+    }
+
+    //计算选中项
+    function getSelect() {
+        var ele = $( '.weui-check:checked' )
+        var data = []
+        for ( var i = 0; i < ele.length; i++ ) {
+            data.push( ele[i].value )
+        }
+        console.log( data )
+    }
+    //console.log(_.filter( Mock.list, { 'checked': true } ))
 </script>
 
 <!--start:footer-->

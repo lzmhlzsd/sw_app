@@ -9,20 +9,111 @@
     <link rel="stylesheet" type="text/css" href="./../../../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/crm-base.css">
     <link rel="stylesheet" type="text/css" href="./../../../css/fonts/iconfont.css">
-    <title>指定导购</title>
+    <title>粉丝列表</title>
 </head>
 
 <body>
 <!--end:header-->
 
     <style>
-    </style>
-    <div>
-        test
-        <div id="btng" class="clearfix"></div>
-        <button id="get">button</button>
-    </div>
+        .mem-birthday {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
 
+        .card {
+            padding: 0 5px 10px;
+        }
+
+        .card:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .gk>span {
+            display: inline-block;
+            min-width: 50%;
+            padding-right: 10px;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .icon-box {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="flex flex-between flex-align-center pt-5 pr-10 pb-5 pl-10" style="background-color: #f7f7f7;border-bottom: 1px solid #e8e8e8;">
+        <div class="f-14">
+            <span data-key="start_date">0000-00-00</span>至
+            <span data-key="end_date">0000-00-00</span>
+        </div>
+        <div class="f-14">
+            <span class="drop-search" data-drop="date">
+                本月
+                <i class="iconfont icon-xiasanjiao txt-n f-14"></i>
+            </span>
+        </div>
+    </div>
+    <div class="drop-search-content p-15" data-dropcontent="date">
+        <div id="gbt"></div>
+        <div class="mt-5">
+            <input class="weui-input date-sinput" id="date1" type="text">
+            <span class="f-14 ml-5 mr-5">至</span>
+            <input class="weui-input date-sinput" id="date2" type="text">
+        </div>
+        <div class="mt-10" style="height: 29px;">
+            <a href="javascript:;" id="search" class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top: 0;">确定</a>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default cancle-search" style="margin-top: 0;">取消</a>
+        </div>
+    </div>
+    <div ontouchstart class="content-block mb-20">
+        <div id="memlist" class="pl-10">
+
+        </div>
+    </div>
+    <!-- <div class="weui-loadmore weui-loadmore_line" style="margin-top: 200px;">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </div> -->
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <!-- 会员模版 -->
+    <script id="tp-card" type="text/html">  
+        {{each list as m index}}  
+        <div class="card flex">
+            <div>
+                <img class="mem-birthday mr-10 mt-20" src="{{m.img}}" alt="">
+            </div>
+            <div class="flex-1 f-14 pt-15">
+                <div>
+                    {{m.name}}
+                </div>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-shouji f-18"></i>
+                    </div>
+                    <span class="txt-d">{{m.phone}}</span>
+                </div>
+                <div class="flex">
+                    <div class="icon-box">
+                        <i class="iconfont icon-guanzhu"></i>
+                    </div>
+                    <span class="txt-d">{{m.datetime}}</span>
+                </div>
+            </div>
+            <div class="flex flex-align-center">
+                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default pr-5 pl-5">完善信息</a>
+            </div>
+        </div>
+        {{/each}}  
+    </script>
     <!--start:script-->
 </body>
 <script type="text/javascript" src="./../../../script/jquery-2.1.4.js"></script>
@@ -35,12 +126,126 @@
 <!--end:script-->
 
 <script>
-    $( function () {
-        var bts = $( '#btng' ).buttonTab().setValue( 1 )
+    var loading = false
+    var Mock = {
+        sdate: moment().startOf( 'month' ).format( "YYYY-MM-DD" ),
+        edate: moment().endOf( 'month' ).format( "YYYY-MM-DD" ),
+        list: [
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345'
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345'
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345'
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345'
+            },
+            {
+                name: '钟文',
+                img: './../../../image/CRM/m1.jpeg',
+                datetime: '2018-05-08 12:08:09',
+                phone: '13812312345'
+            }
+        ]
+    }
+    //模版渲染
+    util.templateRender( 'tp-card', {
+        list: Mock.list
+    }, $( '#memlist' ) )
 
-        $( '#get' ).on( 'click', function () {
-            console.log( bts.getValue() )
-        } )
+    util.render( {
+        start_date: Mock.sdate,
+        end_date: Mock.edate
+    } )
+
+    $( document.body ).infinite().on( "infinite", function () {
+        if ( loading ) return;
+        loading = true;
+        setTimeout( function () {
+            util.templateRenderAppend( 'tp-card', {
+                list: [{
+                    name: 'test',
+                    img: './../../../image/CRM/m1.jpeg',
+                    datetime: '2018-05-08 12:08:09',
+                    phone: '13812312345'
+                }]
+            }, $( '#memlist' ) )
+
+            loading = false;
+        }, 2000 );
+    } );
+
+
+    var gbt = $( '#gbt' ).buttonTab( {
+        width: 50,
+        buttons: [
+            { id: 0, text: '本月' },
+            { id: 1, text: '次月' }
+        ],
+        onchange: function ( e ) {
+            // e is button's id
+            console.log( e )
+            if ( e == 0 ) {
+                var sdate = moment().startOf( 'month' ).format( "YYYY-MM-DD" )
+                var edate = moment().endOf( 'month' ).format( "YYYY-MM-DD" )
+                $( "#date1" ).val( sdate )
+                $( "#date2" ).val( edate )
+                util.render( {
+                    start_date: sdate,
+                    end_date: edate
+                } )
+            } else if ( e == 1 ) {
+                var sdate = moment().add( 1, 'months' ).startOf( 'month' ).format( "YYYY-MM-DD" )
+                var edate = moment().add( 1, 'months' ).endOf( 'month' ).format( "YYYY-MM-DD" )
+                $( "#date1" ).val( sdate )
+                $( "#date2" ).val( edate )
+                util.render( {
+                    start_date: sdate,
+                    end_date: edate
+                } )
+            }
+        }
+    } ).setValue( 0 )
+
+    $( "#date1" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        value: [moment().startOf( 'month' ).format( "YYYY-MM-DD" )],
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+    $( "#date2" ).calendar( {
+        dateFormat: 'yyyy-mm-dd',
+        value: [moment().endOf( 'month' ).format( "YYYY-MM-DD" )],
+        onChange: function ( p, values, displayValues ) {
+            console.log( values, displayValues );
+        }
+    } );
+
+    $( "#date1" ).val( Mock.sdate )
+    $( "#date2" ).val( Mock.edate )
+
+    // $( "#date1" ).calendar( "setValue", [moment().startOf( 'month' ).format( "YYYY-MM-DD" )] );
+    // $( "#date2" ).calendar( "setValue", [moment().endOf( 'month' ).format( "YYYY-MM-DD" )] );
+    $( '#search' ).on( 'click', function () {
+        var sdate = $( "#date1" ).val()
+        var edate = $( "#date2" ).val()
+        console.log( 'sdate: %s, edate: %s', sdate, edate )
     } )
 </script>
 
