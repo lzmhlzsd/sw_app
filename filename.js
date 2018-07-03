@@ -31,5 +31,6 @@ module.exports = {
     './src/html/CRM/mk/index3.html': '已分配会员列表',
     './src/html/CRM/mk/index4.html': '更换导购',
     './src/html/CRM/mk/index5.html': '粉丝列表',
-    './src/html/CRM/mk/index6.html': '个人信息'
+    './src/html/CRM/mk/index6.html': '个人信息',
+    './src/html/CRM/mk/index7.html': '选择导购'
 }
