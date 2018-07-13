@@ -508,7 +508,7 @@ $( function () {
 
             this.$element.find( 'input' ).change( function () {
                 if ( self.options.onchange ) {
-                    self.options.onchange( $( 'input[name="radio_' + this.$element[0].id + '"]:checked' ).val() )
+                    self.options.onchange( $( 'input[name="radio_' + self.$element[0].id + '"]:checked' ).val() )
                 }
             } )
         }
